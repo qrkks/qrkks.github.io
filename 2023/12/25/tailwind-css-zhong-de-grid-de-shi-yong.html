@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" /> 
+      <link rel="stylesheet" href="/static/css/pygment.css" /> 
+      <!-- Custom CSS -->
+      <title>
+Website Building Learning Journal - Tailwind CSS 中的 Grid 的使用      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/za-xiang.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Website Building Learning Journal Categories Atom Feed" />
+
+
+
+
+    <meta name="tags" content="tailwind css" />
+    <meta name="tags" content="others" />
+
+  </head>
+  <body>
+    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+      <hgroup>
+        <h1 >
+          <a href="https://qrkks.github.io/">Website Building Learning Journal</a>
+        </h1>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/category/za-xiang.html"
+ aria-current="page" >杂项</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
+<article >
+  <header>
+    <h2>
+      <a href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-de-grid-de-shi-yong.html" rel="bookmark"
+         title="Permalink to Tailwind CSS 中的 Grid 的使用">Tailwind CSS 中的 Grid 的使用</a></h2>
+ 
+  </header>
+  <h2>基本用法</h2>
+<p>Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先定义的类，用于快速构建响应式布局。在 Tailwind 中，网格布局是通过一系列的工具类来实现的，这些类基于 CSS Grid Layout。以下是 Tailwind Grid 的基本用法：</p>
+<ol>
+<li><strong>创建一个网格容器</strong>：首先，你需要创建一个网格容器。这可以通过使用 <code>grid</code> 类来实现。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid&quot;</span><span class="p">&gt;</span>
+ <span class="cm">&lt;!-- 网格项 --&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<ol>
+<li><strong>定义列</strong>：使用 <code>grid-cols-{n}</code> 类来定义列的数量。例如，<code>grid-cols-3</code> 将创建三列的网格。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-3&quot;</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<ol>
+<li><strong>间距</strong>：可以使用 <code>gap-{size}</code> 类来定义行与列之间的间距。例如，<code>gap-4</code> 会在行与列之间添加一定的空间。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-3 gap-4&quot;</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<ol>
+<li><strong>响应式设计</strong>：Tailwind 提供了基于不同断点的响应式类。例如，<code>md:grid-cols-2</code> 会在中等尺寸的屏幕上将网格设置为两列。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3&quot;</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<ol>
+<li><strong>对齐和定位</strong>：你可以使用 <code>justify-items-{alignment}</code>, <code>align-items-{alignment}</code>, <code>justify-content-{alignment}</code> 和 <code>align-content-{alignment}</code> 类来控制子项的对齐和定位。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-3 justify-items-center&quot;</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+ <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<ol>
+<li><strong>网格行</strong>：类似于列，你也可以使用 <code>grid-rows-{n}</code> 来定义行数。</li>
+</ol>
+<p>Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建响应式布局变得非常快捷和直观。记得要根据你的项目需求和设计选择合适的类。</p>
+<h2>添加跨度</h2>
+<p>在 Tailwind CSS 中，使用 <code>span</code> 类可以控制网格项(grid items)跨越多少列（column-span）或行（row-span）。这是实现更复杂网格布局的关键部分，允许你定义某个网格项应该占据的空间大小。</p>
+<h3>列跨度（Column Span）</h3>
+<ul>
+<li><strong>使用 <code>col-span-{n}</code> 类</strong>：这个类用于定义一个网格项应跨越多少列。例如，<code>col-span-2</code> 表示网格项将跨越两列。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-4&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-span-2&quot;</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="cm">&lt;!-- 此项跨两列 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3>行跨度（Row Span）</h3>
+<ul>
+<li><strong>使用 <code>row-span-{n}</code> 类</strong>：与列跨度类似，行跨度类定义一个网格项应跨越多少行。例如，<code>row-span-3</code> 表示网格项将跨越三行。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-3 grid-rows-3&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;row-span-2&quot;</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="cm">&lt;!-- 此项跨两行 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>4<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<h3>响应式设计</h3>
+<p>与其他 Tailwind 类一样，列跨度和行跨度也可以结合响应式前缀来使用，以适应不同屏幕尺寸。</p>
+<ul>
+<li><strong>响应式跨度</strong>：例如，<code>md:col-span-2</code> 表示在中等尺寸屏幕上，元素将跨越两列。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid grid-cols-3&quot;</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;col-span-1 md:col-span-2&quot;</span><span class="p">&gt;</span>1<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span> <span class="cm">&lt;!-- 小屏占一列，中屏占两列 --&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>2<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span><span class="p">&gt;</span>3<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+</code></pre></div>
+
+<p>使用这些类，你可以灵活地定义网格布局中各项的大小和位置，从而创建出既美观又响应式的布局设计。</p>
+<h2>总结</h2>
+<p>在使用 Tailwind CSS 创建网格布局时，通常遵循以下步骤：</p>
+<ol>
+<li>
+<p><strong>定义网格容器</strong>：首先，通过使用 <code>grid</code> 类将一个元素定义为网格容器。</p>
+</li>
+<li>
+<p><strong>设定行和列的数量</strong>：接下来，使用 <code>grid-cols-{n}</code> 和 <code>grid-rows-{n}</code> 类来定义网格的列数和行数。例如，<code>grid-cols-3</code> 创建三列，而 <code>grid-rows-2</code> 创建两行。</p>
+</li>
+<li>
+<p><strong>决定跨行或跨列</strong>：然后，你可以为网格中的项（子元素）指定它们应该跨越的行数或列数。这是通过 <code>col-span-{n}</code> 和 <code>row-span-{n}</code> 类来实现的。例如，<code>col-span-2</code> 表示一个网格项将跨越两列。</p>
+</li>
+<li>
+<p><strong>调整间隙和对齐</strong>：此外，你还可以使用 <code>gap-{size}</code>、<code>justify-items-{alignment}</code>、<code>align-items-{alignment}</code> 等类来调整网格项之间的间距和对齐方式。</p>
+</li>
+<li>
+<p><strong>添加响应式设计</strong>：最后，可以结合使用响应式前缀（如 <code>md:</code>, <code>lg:</code>）来调整不同屏幕尺寸下的网格布局。</p>
+</li>
+</ol>
+<p>通过这些步骤，你可以灵活地创建各种网格布局，从简单的均匀网格到复杂的跨行或跨列布局，都可以用 Tailwind CSS 快速实现。</p>
+  <footer>
+    <p>Published: <time datetime="2023-12-25T20:09:39+08:00">
+      2023年12月25日 Monday 20:09
+    </time></p>
+    <p>Last updated: <time datetime="2023-12-25T21:17:49+08:00">
+      2023年12月25日 Monday 21:17
+    </time></p>
+    <p>
+        Category: <a href="https://qrkks.github.io/category/za-xiang.html">杂项</a>
+    </p>
+    <p>
+        Tags:
+            <a href="https://qrkks.github.io/tag/tailwind-css.html">tailwind css</a>
+            <a href="https://qrkks.github.io/tag/others.html">others</a>
+    </p>
+  </footer>
+  </article>
+    </main>
+    <footer>
+      <address class="text-center text-gray-500">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>
