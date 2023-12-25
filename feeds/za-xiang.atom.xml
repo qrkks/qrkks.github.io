@@ -1,6 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Website Building Learning Journal - 杂项</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/za-xiang.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-25T15:44:44+08:00</updated><entry><title>将pelican自动化部署到Github Pages的action文件</title><link href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages.html" rel="alternate"></link><published>2023-12-25T14:44:07+08:00</published><updated>2023-12-25T15:44:44+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/deploy-pelican-to-github-pages.html</id><summary type="html">&lt;p&gt;本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;思路&lt;/h2&gt;
-&lt;p&gt;将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支(github默认优先检查ph-pages分支来生成网站)。&lt;/p&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Website Building Learning Journal - 杂项</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/za-xiang.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-25T20:20:14+08:00</updated><entry><title>Tailwind CSS 中的 Grid 的使用</title><link href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-de-grid-de-shi-yong.html" rel="alternate"></link><published>2023-12-25T20:09:39+08:00</published><updated>2023-12-25T20:20:14+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/tailwind-css-zhong-de-grid-de-shi-yong.html</id><summary type="html">&lt;p&gt;讨论Tailwind CSS 中的 Grid 的使用，三步走：先定义是个grid，然后定义有几行几列，然后再定义有没有跨行。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;基本用法&lt;/h2&gt;
+&lt;p&gt;Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先定义的类，用于快速构建响应式布局。在 Tailwind 中，网格布局是通过一系列的工具类来实现的，这些类基于 CSS Grid Layout。以下是 Tailwind Grid 的基本用法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;创建一个网格容器&lt;/strong&gt;：首先，你需要创建一个网格容器。这可以通过使用 &lt;code&gt;grid&lt;/code&gt; 类来实现。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;```html
+ &lt;br&gt;
+&lt;div class="grid"&gt;
+     &lt;!-- 网格项 --&gt;
+   &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;定义列&lt;/strong&gt;：使用 &lt;code&gt;grid-cols-{n}&lt;/code&gt; 类来定义列的数量。例如，&lt;code&gt;grid-cols-3&lt;/code&gt; 将创建三列的网格。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;```html
+ &lt;br&gt;
+&lt;div class="grid grid-cols-3"&gt;
+     &lt;div&gt;1&lt;/div&gt;
+     &lt;div&gt;2&lt;/div&gt;
+     &lt;div&gt;3&lt;/div&gt;
+   &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;间距&lt;/strong&gt;：可以使用 &lt;code&gt;gap-{size}&lt;/code&gt; 类来定义行与列之间的间距。例如，&lt;code&gt;gap-4&lt;/code&gt; 会在行与列之间添加一定的空间。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;```html
+ &lt;br&gt;
+&lt;div class="grid grid-cols-3 gap-4"&gt;
+     &lt;div&gt;1&lt;/div&gt;
+     &lt;div&gt;2&lt;/div&gt;
+     &lt;div&gt;3&lt;/div&gt;
+   &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;响应式设计&lt;/strong&gt;：Tailwind 提供了基于不同断点的响应式类。例如，&lt;code&gt;md:grid-cols-2&lt;/code&gt; 会在中等尺寸的屏幕上将网格设置为两列。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;```html
+ &lt;br&gt;
+&lt;div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3"&gt;
+     &lt;div&gt;1&lt;/div&gt;
+     &lt;div&gt;2&lt;/div&gt;
+     &lt;div&gt;3&lt;/div&gt;
+   &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;对齐和定位&lt;/strong&gt;：你可以使用 &lt;code&gt;justify-items-{alignment}&lt;/code&gt;, &lt;code&gt;align-items-{alignment}&lt;/code&gt;, &lt;code&gt;justify-content-{alignment}&lt;/code&gt; 和 &lt;code&gt;align-content-{alignment}&lt;/code&gt; 类来控制子项的对齐和定位。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;```html
+ &lt;br&gt;
+&lt;div class="grid grid-cols-3 justify-items-center"&gt;
+     &lt;div&gt;1&lt;/div&gt;
+     &lt;div&gt;2&lt;/div&gt;
+     &lt;div&gt;3&lt;/div&gt;
+   &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;网格行&lt;/strong&gt;：类似于列，你也可以使用 &lt;code&gt;grid-rows-{n}&lt;/code&gt; 来定义行数。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建响应式布局变得非常快捷和直观。记得要根据你的项目需求和设计选择合适的类。&lt;/p&gt;
+&lt;h2&gt;添加跨度&lt;/h2&gt;
+&lt;p&gt;在 Tailwind CSS 中，使用 &lt;code&gt;span&lt;/code&gt; 类可以控制网格项(grid items)跨越多少列（column-span）或行（row-span）。这是实现更复杂网格布局的关键部分，允许你定义某个网格项应该占据的空间大小。&lt;/p&gt;
+&lt;h3&gt;列跨度（Column Span）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;使用 &lt;code&gt;col-span-{n}&lt;/code&gt; 类&lt;/strong&gt;：这个类用于定义一个网格项应跨越多少列。例如，&lt;code&gt;col-span-2&lt;/code&gt; 表示网格项将跨越两列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;```html
+&lt;br&gt;
+&lt;div class="grid grid-cols-4"&gt;
+    &lt;div class="col-span-2"&gt;1&lt;/div&gt; &lt;!-- 此项跨两列 --&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+  &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h3&gt;行跨度（Row Span）&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;使用 &lt;code&gt;row-span-{n}&lt;/code&gt; 类&lt;/strong&gt;：与列跨度类似，行跨度类定义一个网格项应跨越多少行。例如，&lt;code&gt;row-span-3&lt;/code&gt; 表示网格项将跨越三行。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;```html
+&lt;br&gt;
+&lt;div class="grid grid-cols-3 grid-rows-3"&gt;
+    &lt;div class="row-span-2"&gt;1&lt;/div&gt; &lt;!-- 此项跨两行 --&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+    &lt;div&gt;4&lt;/div&gt;
+  &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;h3&gt;响应式设计&lt;/h3&gt;
+&lt;p&gt;与其他 Tailwind 类一样，列跨度和行跨度也可以结合响应式前缀来使用，以适应不同屏幕尺寸。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;响应式跨度&lt;/strong&gt;：例如，&lt;code&gt;md:col-span-2&lt;/code&gt; 表示在中等尺寸屏幕上，元素将跨越两列。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;```html
+&lt;br&gt;
+&lt;div class="grid grid-cols-3"&gt;
+    &lt;div class="col-span-1 md:col-span-2"&gt;1&lt;/div&gt; &lt;!-- 小屏占一列，中屏占两列 --&gt;
+    &lt;div&gt;2&lt;/div&gt;
+    &lt;div&gt;3&lt;/div&gt;
+  &lt;/div&gt;&lt;/p&gt;
+&lt;p&gt;```&lt;/p&gt;
+&lt;p&gt;使用这些类，你可以灵活地定义网格布局中各项的大小和位置，从而创建出既美观又响应式的布局设计。&lt;/p&gt;
+&lt;h2&gt;总结&lt;/h2&gt;
+&lt;p&gt;在使用 Tailwind CSS 创建网格布局时，通常遵循以下步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;定义网格容器&lt;/strong&gt;：首先，通过使用 &lt;code&gt;grid&lt;/code&gt; 类将一个元素定义为网格容器。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;设定行和列的数量&lt;/strong&gt;：接下来，使用 &lt;code&gt;grid-cols-{n}&lt;/code&gt; 和 &lt;code&gt;grid-rows-{n}&lt;/code&gt; 类来定义网格的列数和行数。例如，&lt;code&gt;grid-cols-3&lt;/code&gt; 创建三列，而 &lt;code&gt;grid-rows-2&lt;/code&gt; 创建两行。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;决定跨行或跨列&lt;/strong&gt;：然后，你可以为网格中的项（子元素）指定它们应该跨越的行数或列数。这是通过 &lt;code&gt;col-span-{n}&lt;/code&gt; 和 &lt;code&gt;row-span-{n}&lt;/code&gt; 类来实现的。例如，&lt;code&gt;col-span-2&lt;/code&gt; 表示一个网格项将跨越两列。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;调整间隙和对齐&lt;/strong&gt;：此外，你还可以使用 &lt;code&gt;gap-{size}&lt;/code&gt;、&lt;code&gt;justify-items-{alignment}&lt;/code&gt;、&lt;code&gt;align-items-{alignment}&lt;/code&gt; 等类来调整网格项之间的间距和对齐方式。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;添加响应式设计&lt;/strong&gt;：最后，可以结合使用响应式前缀（如 &lt;code&gt;md:&lt;/code&gt;, &lt;code&gt;lg:&lt;/code&gt;）来调整不同屏幕尺寸下的网格布局。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;通过这些步骤，你可以灵活地创建各种网格布局，从简单的均匀网格到复杂的跨行或跨列布局，都可以用 Tailwind CSS 快速实现。&lt;/p&gt;</content><category term="杂项"></category><category term="tailwind css"></category></entry><entry><title>将pelican自动化部署到Github Pages的action文件</title><link href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages.html" rel="alternate"></link><published>2023-12-25T14:44:07+08:00</published><updated>2023-12-25T20:18:23+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/deploy-pelican-to-github-pages.html</id><summary type="html">&lt;p&gt;本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;思路&lt;/h2&gt;
+&lt;p&gt;将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库main分支来存储项目代码，。&lt;/p&gt;
 &lt;h2&gt;准备&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;设置好github pages，设置main，gh-pages两个分支。&lt;/li&gt;
@@ -117,4 +236,4 @@ jobs:
 &lt;h2&gt;问题&lt;/h2&gt;
 &lt;h3&gt;权限问题报错&lt;/h3&gt;
 &lt;p&gt;解决方法：修改actions权限。&lt;/p&gt;
-&lt;p&gt;参考：&lt;a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128"&gt;Action failed with "The process '/usr/bin/git' failed with exit code 128"&lt;/a&gt;&lt;/p&gt;</content><category term="杂项"></category></entry></feed>
+&lt;p&gt;参考：&lt;a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128"&gt;Action failed with "The process '/usr/bin/git' failed with exit code 128"&lt;/a&gt;&lt;/p&gt;</content><category term="杂项"></category><category term="pelican"></category><category term="github actions"></category></entry></feed>
