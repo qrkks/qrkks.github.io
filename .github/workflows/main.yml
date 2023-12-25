@@ -18,6 +18,9 @@ jobs:
     # The job will run on the latest version of Ubuntu.
     runs-on: ubuntu-latest
     steps:
+      - name: Install Chinese language pack
+        run: sudo apt-get install -y language-pack-zh-hans
+
       - name: Configure locale
         run: |
           sudo locale-gen zh_CN.UTF-8
