@@ -2,7 +2,7 @@
 title: 将pelican自动化部署到Github Pages的action文件
 slug: deploy-pelican-to-github-pages
 date: 2023-12-25 14:44:07
-modified: 2023-12-25 22:52:12
+modified: 2023-12-25 22:55:17
 category: 
 tags: pelican, github actions
 summary: 本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。
