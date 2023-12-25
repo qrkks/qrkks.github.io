@@ -13,7 +13,7 @@ DATE_FORMATS = {
     'zh': '%Y年%m月%d日 %A %H:%M',
 }
 
-THEME = './themes/myidea'
+THEME = './themes/simple'
 
 STATIC_PATHS = ['images', 'static']
 
