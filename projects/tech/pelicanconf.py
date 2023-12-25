@@ -7,7 +7,7 @@ SITEURL = ""
 PATH = "content"
 
 TIMEZONE = 'Asia/Shanghai'
-LOCALE = ('zh_CN', )
+LOCALE = ('zh_CN', 'zh', 'zh_Hans','zh_Hant', 'en_US', 'en')
 
 DEFAULT_LANG = 'zh'
 
