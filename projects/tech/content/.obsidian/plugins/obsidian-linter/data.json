@@ -54,7 +54,7 @@
     "yaml-title": {
       "enabled": false,
       "title-key": "title",
-      "mode": "filename"
+      "mode": "first-h1"
     },
     "yaml-title-alias": {
       "enabled": false,
