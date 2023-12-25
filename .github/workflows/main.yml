@@ -24,7 +24,7 @@ jobs:
 
       - name: Build with Pelican
         run: |
-          pelican content -o output -s pelicanconf.py  # Replace with your Pelican build command
+          pelican content -o output -s publishconf.py  # Replace with your Pelican build command
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
