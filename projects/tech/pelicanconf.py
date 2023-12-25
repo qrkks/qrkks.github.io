@@ -1,5 +1,5 @@
 # AUTHOR = 'pp'
-SITENAME = 'Pelican Test'
+SITENAME = 'Trading Site Building Journal'
 SITEURL = ""
 
 PATH = "content"
