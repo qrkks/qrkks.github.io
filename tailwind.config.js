@@ -4,7 +4,7 @@ const forms = require('@tailwindcss/forms');
 
 module.exports = {
     content: [
-      './**/projects/themes/simple/**/*.html',
+      './**/themes/simple/**/*.html',
     ],
     // darkMode: media, // or 'media' or 'class'
     theme: {

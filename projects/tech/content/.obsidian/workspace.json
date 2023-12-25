@@ -61,7 +61,7 @@
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#publishing",
+                "query": "tag:#pelican",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -162,8 +162,9 @@
   },
   "active": "e7a1b05f83584435",
   "lastOpenFiles": [
-    "pages/关于.md",
+    "未命名.md",
     "2023-12-25.md",
+    "pages/关于.md",
     "代码.md",
     "第一篇.md",
     "第一篇 1 1.md",

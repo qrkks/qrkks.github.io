@@ -72,9 +72,9 @@
     {% endblock head %}
   </head>
   <body>
-    <header class="flex justify-between p-3 bg-gray-300">
+    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
-        <h1 class="text-cyan-500">
+        <h1 >
           <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
         </h1>
         {% if SITESUBTITLE %}
@@ -109,12 +109,15 @@
         </ul>
       </nav>
     </header>
-    <main class="mx-auto prose lg:prose-xl p-5 max-w-2xl">
+    {# <div class="grid grid-cols-1 gap-4 lg:grid-cols-4 lg:gap-8">
+    <aside class="lg:col-span-1 bg-sky-200"></aside> #}
+    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
       {% block content %}
       {% endblock %}
     </main>
+    {# </div> #}
     <footer>
-      <address class="prose mx-auto">
+      <address class="text-center text-gray-500">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
         which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
       </address>
