@@ -2,9 +2,9 @@
 title: Tailwind CSS 中的 Grid 的使用
 slug: 
 date: 2023-12-25 20:09:39
-modified: 2023-12-25 20:20:14
+modified: 2023-12-25 21:17:49
 category: 
-tags: tailwind css
+tags: tailwind css, others
 summary:  讨论Tailwind CSS 中的 Grid 的使用，三步走：先定义是个grid，然后定义有几行几列，然后再定义有没有跨行。
 ---
 
@@ -14,51 +14,51 @@ Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先�
 
 1. **创建一个网格容器**：首先，你需要创建一个网格容器。这可以通过使用 `grid` 类来实现。
 
-   ```html
-   <div class="grid">
-     <!-- 网格项 -->
-   </div>
-   ```
+```html
+<div class="grid">
+ <!-- 网格项 -->
+</div>
+```
 
 2. **定义列**：使用 `grid-cols-{n}` 类来定义列的数量。例如，`grid-cols-3` 将创建三列的网格。
 
-   ```html
-   <div class="grid grid-cols-3">
-     <div>1</div>
-     <div>2</div>
-     <div>3</div>
-   </div>
-   ```
+```html
+<div class="grid grid-cols-3">
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+</div>
+```
 
 3. **间距**：可以使用 `gap-{size}` 类来定义行与列之间的间距。例如，`gap-4` 会在行与列之间添加一定的空间。
 
-   ```html
-   <div class="grid grid-cols-3 gap-4">
-     <div>1</div>
-     <div>2</div>
-     <div>3</div>
-   </div>
-   ```
+```html
+<div class="grid grid-cols-3 gap-4">
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+</div>
+```
 
 4. **响应式设计**：Tailwind 提供了基于不同断点的响应式类。例如，`md:grid-cols-2` 会在中等尺寸的屏幕上将网格设置为两列。
 
-   ```html
-   <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
-     <div>1</div>
-     <div>2</div>
-     <div>3</div>
-   </div>
-   ```
+```html
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+</div>
+```
 
 5. **对齐和定位**：你可以使用 `justify-items-{alignment}`, `align-items-{alignment}`, `justify-content-{alignment}` 和 `align-content-{alignment}` 类来控制子项的对齐和定位。
 
-   ```html
-   <div class="grid grid-cols-3 justify-items-center">
-     <div>1</div>
-     <div>2</div>
-     <div>3</div>
-   </div>
-   ```
+```html
+<div class="grid grid-cols-3 justify-items-center">
+ <div>1</div>
+ <div>2</div>
+ <div>3</div>
+</div>
+```
 
 6. **网格行**：类似于列，你也可以使用 `grid-rows-{n}` 来定义行数。
 
@@ -72,26 +72,26 @@ Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建�
 
 - **使用 `col-span-{n}` 类**：这个类用于定义一个网格项应跨越多少列。例如，`col-span-2` 表示网格项将跨越两列。
 
-  ```html
-  <div class="grid grid-cols-4">
-    <div class="col-span-2">1</div> <!-- 此项跨两列 -->
-    <div>2</div>
-    <div>3</div>
-  </div>
-  ```
+```html
+<div class="grid grid-cols-4">
+	<div class="col-span-2">1</div> <!-- 此项跨两列 -->
+	<div>2</div>
+	<div>3</div>
+</div>
+```
 
 ### 行跨度（Row Span）
 
 - **使用 `row-span-{n}` 类**：与列跨度类似，行跨度类定义一个网格项应跨越多少行。例如，`row-span-3` 表示网格项将跨越三行。
 
-  ```html
-  <div class="grid grid-cols-3 grid-rows-3">
-    <div class="row-span-2">1</div> <!-- 此项跨两行 -->
-    <div>2</div>
-    <div>3</div>
-    <div>4</div>
-  </div>
-  ```
+```html
+<div class="grid grid-cols-3 grid-rows-3">
+	<div class="row-span-2">1</div> <!-- 此项跨两行 -->
+	<div>2</div>
+	<div>3</div>
+	<div>4</div>
+</div>
+```
 
 ### 响应式设计
 
@@ -99,13 +99,13 @@ Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建�
 
 - **响应式跨度**：例如，`md:col-span-2` 表示在中等尺寸屏幕上，元素将跨越两列。
 
-  ```html
-  <div class="grid grid-cols-3">
-    <div class="col-span-1 md:col-span-2">1</div> <!-- 小屏占一列，中屏占两列 -->
-    <div>2</div>
-    <div>3</div>
-  </div>
-  ```
+```html
+<div class="grid grid-cols-3">
+	<div class="col-span-1 md:col-span-2">1</div> <!-- 小屏占一列，中屏占两列 -->
+	<div>2</div>
+	<div>3</div>
+</div>
+```
 
 使用这些类，你可以灵活地定义网格布局中各项的大小和位置，从而创建出既美观又响应式的布局设计。
 

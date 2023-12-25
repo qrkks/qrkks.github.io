@@ -17,7 +17,7 @@
     "format-yaml-array": {
       "enabled": true,
       "alias-key": true,
-      "tag-key": true,
+      "tag-key": false,
       "default-array-style": "single-line",
       "default-array-keys": true,
       "force-single-line-array-style": "",
