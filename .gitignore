@@ -3,6 +3,7 @@ node_pelican_env/
 pelican_env/
 
 **/seo_report.html
+**/output/
 
 
 # Byte-compiled / optimized / DLL files
