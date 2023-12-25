@@ -21,11 +21,11 @@ jobs:
         run: |
           pip install -r requirements.txt
           pip install ghp-import
-        working-directory: projects/tech
 
       - name: Build with Pelican
         run: pelican content -o output -s publishconf.py
         working-directory: projects/tech
+
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
