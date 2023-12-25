@@ -14,7 +14,7 @@
   "version": "1.0.0",
   "main": "postcss.config.js",
   "scripts": {
-    "build": "postcss css/tailwind.css -o projects/content/static/css/tailwind.min.css -c tailwind.config.js"
+    "build": "postcss css/tailwind.css -o projects/tech/content/static/css/tailwind.min.css -c tailwind.config.js"
   },
   "keywords": [],
   "author": "",

@@ -1,3 +1,6 @@
+# This YAML file is used to define a GitHub Actions workflow for deploying a Pelican website to GitHub Pages.
+# The workflow will be triggered when there is a push event on the 'main' branch.
+
 name: Deploy Pelican to GitHub Pages
 
 on:
@@ -6,27 +9,33 @@ on:
       - main  
 
 jobs:
+  # This is the main job called 'deploy'.
   deploy:
+    # The job will run on the latest version of Ubuntu.
     runs-on: ubuntu-latest
     steps:
+      # The first step is to check out the repository.
       - name: Checkout
         uses: actions/checkout@v2
 
+      # The second step is to set up Python.
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: '3.11'
 
+      # The third step is to install the project dependencies.
       - name: Install dependencies
         run: |
           pip install -r requirements.txt
           pip install ghp-import
 
+      # The fourth step is to build the Pelican website.
       - name: Build with Pelican
         run: pelican content -o output -s publishconf.py
         working-directory: projects/tech
 
-
+      # The final step is to deploy the generated website to GitHub Pages using the 'peaceiris/actions-gh-pages' action.
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:

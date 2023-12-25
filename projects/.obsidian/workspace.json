@@ -1,52 +1,35 @@
 {
   "main": {
-    "id": "250186e755fbe8b3",
+    "id": "7b2dee77843c42f2",
     "type": "split",
     "children": [
       {
-        "id": "907e446196cfadcb",
+        "id": "55cb8f826d33267c",
         "type": "tabs",
         "children": [
           {
-            "id": "adc69c93e7ff1d76",
+            "id": "9256a93922148b82",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "pages/关于.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "e7a1b05f83584435",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2023-12-25.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
   },
   "left": {
-    "id": "89fd6c52790c28ef",
+    "id": "0cbe244c333c26f1",
     "type": "split",
     "children": [
       {
-        "id": "fda8c70017378fa3",
+        "id": "dbf76f34acb3ba02",
         "type": "tabs",
         "children": [
           {
-            "id": "39354aefbe505eca",
+            "id": "c032c31a3036568b",
             "type": "leaf",
             "state": {
               "type": "file-explorer",
@@ -56,12 +39,12 @@
             }
           },
           {
-            "id": "22dbec946758918a",
+            "id": "59e5ea795bfb50de",
             "type": "leaf",
             "state": {
               "type": "search",
               "state": {
-                "query": "tag:#publishing",
+                "query": "",
                 "matchingCase": false,
                 "explainSearch": false,
                 "collapseAll": false,
@@ -71,7 +54,7 @@
             }
           },
           {
-            "id": "20b7fc0dd1617b03",
+            "id": "9fa778e2b387f6e4",
             "type": "leaf",
             "state": {
               "type": "bookmarks",
@@ -82,23 +65,22 @@
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300
   },
   "right": {
-    "id": "21ef2c372d808d9f",
+    "id": "dabbe081e39d704c",
     "type": "split",
     "children": [
       {
-        "id": "eb9a2f33c9fc8262",
+        "id": "b6fd9bbd6c594ac0",
         "type": "tabs",
         "children": [
           {
-            "id": "64565b2ebb637482",
+            "id": "d35622431af2e7b3",
             "type": "leaf",
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2023-12-25.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -110,19 +92,18 @@
             }
           },
           {
-            "id": "20a6768340e8771e",
+            "id": "aec99b25595e3e06",
             "type": "leaf",
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2023-12-25.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
             }
           },
           {
-            "id": "932b616c6c40ed5b",
+            "id": "12993c19ab5f5a29",
             "type": "leaf",
             "state": {
               "type": "tag",
@@ -133,21 +114,19 @@
             }
           },
           {
-            "id": "027284b5e768ce39",
+            "id": "7c5533695407b05a",
             "type": "leaf",
             "state": {
               "type": "outline",
-              "state": {
-                "file": "2023-12-25.md"
-              }
+              "state": {}
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "horizontal",
-    "width": 200
+    "width": 300,
+    "collapsed": true
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -156,19 +135,9 @@
       "canvas:新建白板": false,
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
-      "command-palette:打开命令面板": false,
-      "obsidian42-brat:BRAT": false
+      "command-palette:打开命令面板": false
     }
   },
-  "active": "e7a1b05f83584435",
-  "lastOpenFiles": [
-    "pages/关于.md",
-    "2023-12-25.md",
-    "代码.md",
-    "第一篇.md",
-    "第一篇 1 1.md",
-    "第一篇 1.md",
-    "{filename}kb.md",
-    "pages/联系.md"
-  ]
+  "active": "9256a93922148b82",
+  "lastOpenFiles": []
 }
