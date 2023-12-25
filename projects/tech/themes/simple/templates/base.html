@@ -3,8 +3,8 @@
   <head>
     {% block head %}
       <script src="https://cdn.tailwindcss.com"></script>
-      <link rel="stylesheet" href="/static/css/tailwind.min.css" /> 
-      <link rel="stylesheet" href="/static/css/pygment.css" /> 
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
       <!-- Custom CSS -->
       {# <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/static/css/tailwnd.min.css"
             rel="stylesheet"> #}
@@ -75,7 +75,7 @@
   <body>
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
-        <h1 >
+        <h1>
           <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
         </h1>
         {% if SITESUBTITLE %}
@@ -117,8 +117,8 @@
       {% endblock %}
     </main>
     {# </div> #}
-    <footer>
-      <address class="text-center text-gray-500">
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
         which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
       </address>
