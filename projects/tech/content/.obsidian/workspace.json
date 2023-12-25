@@ -1,0 +1,160 @@
+{
+  "main": {
+    "id": "250186e755fbe8b3",
+    "type": "split",
+    "children": [
+      {
+        "id": "907e446196cfadcb",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "adc69c93e7ff1d76",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "第一篇 1.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "89fd6c52790c28ef",
+    "type": "split",
+    "children": [
+      {
+        "id": "fda8c70017378fa3",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "39354aefbe505eca",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "22dbec946758918a",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "tag:#publishing",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "20b7fc0dd1617b03",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "right": {
+    "id": "21ef2c372d808d9f",
+    "type": "split",
+    "children": [
+      {
+        "id": "eb9a2f33c9fc8262",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "64565b2ebb637482",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "第一篇 1.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "20a6768340e8771e",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "第一篇 1.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "932b616c6c40ed5b",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "027284b5e768ce39",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "第一篇 1.md"
+              }
+            }
+          }
+        ],
+        "currentTab": 2
+      }
+    ],
+    "direction": "horizontal",
+    "width": 200
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:打开快速切换": false,
+      "graph:查看关系图谱": false,
+      "canvas:新建白板": false,
+      "daily-notes:打开/创建今天的日记": false,
+      "templates:插入模板": false,
+      "command-palette:打开命令面板": false,
+      "obsidian42-brat:BRAT": false
+    }
+  },
+  "active": "adc69c93e7ff1d76",
+  "lastOpenFiles": [
+    "第一篇.md",
+    "代码.md",
+    "第一篇 1 1.md",
+    "第一篇 1.md",
+    "{filename}kb.md",
+    "pages/联系.md",
+    "pages/关于.md"
+  ]
+}

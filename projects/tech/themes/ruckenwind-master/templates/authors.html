@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{% block title %}{{ SITENAME }} - Authors{% endblock title %}
+
+{% block header %}
+    <!-- Page Header -->
+    {% if HEADER_COVER %}
+        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
+    {% elif HEADER_COLOR %}
+        <header class="intro-header" style="background-color: {{ HEADER_COLOR }}">
+    {% else %}
+        <header class="intro-header" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/home-bg.jpg')">
+    {% endif %}
+        <div class="relative mx-auto max-w-xl lg:max-w-4xl py-16 px-4 sm:py-32 sm:px-6 lg:px-8 text-center">
+          <h1 class="text-5xl md:text-7xl lg:text-7xl  font-extrabold tracking-normal text-white align-middle">
+            Articles by {{ author }}
+          </h1>
+        </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+    {% for author, articles in authors|sort %}
+        <div class="post-preview">
+            <a href="{{ SITEURL }}/{{ author.url }}" rel="bookmark">
+                <h2 class="post-title">
+                    {{ author }} ({{ articles|count }})
+                </h2>
+            </a>
+        </div>
+        <hr>
+    {% endfor %}
+{% endblock content %}

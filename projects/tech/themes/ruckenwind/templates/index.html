@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block header %}
+  <header>
+    <div class="relative">
+      <!-- Header image and overlay -->
+      <div class="absolute inset-0">
+        {% if HEADER_COVER %}
+          <img class="object-cover w-full h-full"
+               src="{{ SITEURL }}/{{ HEADER_COVER }}"
+               alt=""
+               aria-hidden="true" />
+        {% else %}
+          <img class="object-cover w-full h-full"
+               src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/img/home-bg.jpg"
+               alt=""
+               aria-hidden="true" />
+        {% endif %}
+        {% if HEADER_COLOR %}
+          <div class="h-full absolute inset-0 {{ HEADER_COLOR }} mix-blend-multiply"
+               aria-hidden="true">
+          </div>
+        {% endif %}
+      </div>
+      <!-- End Header image and overlay -->
+      <!-- Nav menu -->
+      <div class="absolute inset-0">
+        {% include "nav_menu.html" %}
+      </div>
+      <!-- End Nav menu -->
+      <div class="relative max-w-xl px-4 py-16 mx-auto text-center lg:max-w-4xl sm:py-32 sm:px-6 lg:px-8">
+        <h1 class="text-5xl font-extrabold tracking-normal text-white align-middle md:text-7xl lg:text-7xl">
+          {{ SITENAME }}
+        </h1>
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+{% block content %}
+  {% for article in articles_page.object_list %}
+    <article class="prose">
+      <hr class="">
+      <a class="no-underline" href="{{ SITEURL }}/{{ article.url }}">
+        <h2 class="my-2 text-3xl font-extrabold tracking-wide text-gray-800 duration-300 md:text-4xl hover:text-indigo-500">
+          {{ article.title }}
+        </h2>
+      </a>
+      <p class="text-xl">
+        {% if article.has_summary %}
+          {{ article.summary }}
+        {% elif article.summary %}
+          {{ article.summary|striptags|truncate(140) }}
+        {% endif %}
+      </p>
+      <p class="mt-6 text-lg italic text-gray-500">
+        Posted by
+        {% for author in article.authors %}
+          <a class="text-gray-800 duration-500 hover:text-indigo-500 hover:underline"
+             href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+        {% endfor %}
+        on {{ article.locale_date }}
+      </p>
+    </article>
+  {% endfor %}
+  {% include "pagination.html" %}
+{% endblock content %}
