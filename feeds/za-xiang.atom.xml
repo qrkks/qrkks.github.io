@@ -1,11 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Trading Site Building Journal - 杂项</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/za-xiang.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-22T19:54:48+08:00</updated><entry><title>代码</title><link href="https://qrkks.github.io/2023/12/21/dai-ma.html" rel="alternate"></link><published>2023-12-21T16:48:22+08:00</published><updated>2023-12-22T19:54:48+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-21:/2023/12/21/dai-ma.html</id><summary type="html">&lt;p&gt;HI&lt;/p&gt;</summary><content type="html">&lt;p&gt;Title: My First Review&lt;/p&gt;
-&lt;p&gt;Date: 2010-12-03 10:20&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;pyhton&lt;/span&gt; &lt;span class="n"&gt;manage&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;py&lt;/span&gt; &lt;span class="n"&gt;runserver&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-&lt;p&gt;Category: Review&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;[!note] &lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;Following is a review of my favorite mechanical keyboard.&lt;/p&gt;</content><category term="杂项"></category><category term="pelican"></category><category term="publishing"></category></entry></feed>
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Trading Site Building Journal - 杂项</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/za-xiang.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-25T14:45:36+08:00</updated><entry><title>"2023-12-25"</title><link href="https://qrkks.github.io/2023/12/25/2023-12-25.html" rel="alternate"></link><published>2023-12-25T14:44:07+08:00</published><updated>2023-12-25T14:45:36+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/2023-12-25.html</id><content type="html"></content><category term="杂项"></category></entry></feed>
