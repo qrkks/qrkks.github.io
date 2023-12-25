@@ -1,3 +1,5 @@
+from filters import format_date_zh
+
 # AUTHOR = 'pp'
 SITENAME = 'Website Building Learning Journal'
 SITEURL = ""
@@ -13,6 +15,11 @@ DATE_FORMATS = {
     'en': '%a, %d %b %Y',
     'zh': '%Y年%m月%d日 %A %H:%M',
 }
+
+JINJA_FILTERS = {
+    'format_date_zh': format_date_zh
+}
+
 
 THEME = './themes/simple'
 
