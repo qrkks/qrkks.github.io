@@ -4,7 +4,6 @@ on:
   push:
     branches:
       - main  # 确保这是您使用的分支
-
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -15,18 +14,18 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.x'  # 确保这与您的项目匹配
+          python-version: '3.x' 
 
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pelican ghp-import  # 添加必要的依赖项
+          pip install pelican ghp-import
 
-      - name: List files
-        run: ls -la
+      - name: Change to Pelican directory
+        run: cd projects/tech
 
       - name: Build with Pelican
-        run: pelican content -o output -s projects/tech/publishconf.py
+        run: pelican content -o output -s publishconf.py
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
