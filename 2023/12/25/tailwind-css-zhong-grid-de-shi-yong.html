@@ -1,35 +1,35 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="  zh
+">
   <head>
         <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js" ></script>
+
       <!-- Custom CSS -->
       <title>
-Website Building Learning Journal - Tailwind CSS 中 Grid 的使用      </title>
+  Python Website Building Learning Journal - Tailwind CSS 中 Grid 的使用
+      </title>
       <meta charset="utf-8" />
       <meta name="generator" content="Pelican" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://qrkks.github.io/feeds/all.atom.xml"
               type="application/atom+xml"
               rel="alternate"
-              title="Website Building Learning Journal Full Atom Feed" />
+              title="Python Website Building Learning Journal Full Atom Feed" />
         <link href="https://qrkks.github.io/feeds/taiwindcss.atom.xml"
               type="application/atom+xml"
               rel="alternate"
-              title="Website Building Learning Journal Categories Atom Feed" />
-
-
-
+              title="Python Website Building Learning Journal Categories Atom Feed" />
 
     <meta name="tags" content="tailwind css" />
-
   </head>
   <body>
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
         <h1>
-          <a href="https://qrkks.github.io/">Website Building Learning Journal</a>
+          <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
         </h1>
       </hgroup>
       <nav>
@@ -42,18 +42,24 @@ Website Building Learning Journal - Tailwind CSS 中 Grid 的使用      </title
                 <a href="https://qrkks.github.io/category/taiwindcss.html"
  aria-current="page" >TaiwindCSS</a>
               </li>
+              <li>
+                <a href="https://qrkks.github.io/category/za-xiang.html"
+>杂项</a>
+              </li>
         </ul>
       </nav>
     </header>
     <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
-<article >
-  <header>
-    <h2>
-      <a href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html" rel="bookmark"
-         title="Permalink to Tailwind CSS 中 Grid 的使用">Tailwind CSS 中 Grid 的使用</a></h2>
- 
-  </header>
-  <h2>基本用法</h2>
+  <article>
+    <header>
+      <h2>
+        <a href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html"
+           rel="bookmark"
+           title="Permalink to Tailwind CSS 中 Grid 的使用">Tailwind CSS 中 Grid 的使用</a>
+      </h2>
+      
+    </header>
+    <h2>基本用法</h2>
 <p>Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先定义的类，用于快速构建响应式布局。在 Tailwind 中，网格布局是通过一系列的工具类来实现的，这些类基于 CSS Grid Layout。以下是 Tailwind Grid 的基本用法：</p>
 <p>1.<strong>创建一个网格容器</strong>：首先，你需要创建一个网格容器。这可以通过使用 <code>grid</code> 类来实现。</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid&quot;</span><span class="p">&gt;</span>
@@ -186,22 +192,44 @@ Website Building Learning Journal - Tailwind CSS 中 Grid 的使用      </title
 <li><strong>添加响应式设计</strong>：最后，可以结合使用响应式前缀（如 <code>md:</code>, <code>lg:</code>）来调整不同屏幕尺寸下的网格布局。</li>
 </ol>
 <p>通过这些步骤，你可以灵活地创建各种网格布局，从简单的均匀网格到复杂的跨行或跨列布局，都可以用 Tailwind CSS 快速实现。</p>
-  <footer>
-    <p>Published: <time datetime="2023-12-25T00:00:00+08:00">
-      2023-12-25 Mon
-    </time></p>
-    <p>Last updated: <time datetime="2023-12-26T13:09:05+08:00">
-      2023-12-26 Tue
-    </time></p>
-    <p>
-        Category: <a href="https://qrkks.github.io/category/taiwindcss.html">TaiwindCSS</a>
+    <footer>
+      <p>
+        Published: <time datetime="2023-12-25T00:00:00+08:00">
+        2023-12-25 Mon
+      </time>
+    </p>
+      <p>
+        Last updated: <time datetime="2023-12-26T13:09:05+08:00">
+        2023-12-26 Tue
+      </time>
     </p>
     <p>
-        Tags:
-            <a href="https://qrkks.github.io/tag/tailwind-css.html">tailwind css</a>
+      Category: <a href="https://qrkks.github.io/category/taiwindcss.html">TaiwindCSS</a>
     </p>
-  </footer>
-  </article>
+    <p>
+      Tags:
+        <a href="https://qrkks.github.io/tag/tailwind-css.html">tailwind css</a>
+    </p>
+</footer>
+<div id="vcomments">
+</div>
+<script src="/static/js/valine_init.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+    this.page.url = "2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html";  // 使用文章的 URL
+    this.page.identifier = "2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html";  // 使用文章的 URL 作为标识符
+};
+(function() {  // 不要更改以下代码
+    var d = document, s = d.createElement('script');
+    s.src = 'https://qrkks.disqus.com/embed.js';  // 替换为你的 Disqus shortname
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<script id="dsq-count-scr" src="//qrkks.disqus.com/count.js" async></script>
+
+</article>
     </main>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">

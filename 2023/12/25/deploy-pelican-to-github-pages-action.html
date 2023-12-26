@@ -1,36 +1,36 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="  zh
+">
   <head>
         <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
+<script src="//unpkg.com/valine@latest/dist/Valine.min.js" ></script>
+
       <!-- Custom CSS -->
       <title>
-Website Building Learning Journal - 将pelican自动化部署到Github Pages的action文件      </title>
+  Python Website Building Learning Journal - 将pelican自动化部署到Github Pages的action文件
+      </title>
       <meta charset="utf-8" />
       <meta name="generator" content="Pelican" />
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link href="https://qrkks.github.io/feeds/all.atom.xml"
               type="application/atom+xml"
               rel="alternate"
-              title="Website Building Learning Journal Full Atom Feed" />
+              title="Python Website Building Learning Journal Full Atom Feed" />
         <link href="https://qrkks.github.io/feeds/pelican.atom.xml"
               type="application/atom+xml"
               rel="alternate"
-              title="Website Building Learning Journal Categories Atom Feed" />
-
-
-
+              title="Python Website Building Learning Journal Categories Atom Feed" />
 
     <meta name="tags" content="pelican" />
     <meta name="tags" content="github actions" />
-
   </head>
   <body>
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
         <h1>
-          <a href="https://qrkks.github.io/">Website Building Learning Journal</a>
+          <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
         </h1>
       </hgroup>
       <nav>
@@ -43,18 +43,24 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
                 <a href="https://qrkks.github.io/category/taiwindcss.html"
 >TaiwindCSS</a>
               </li>
+              <li>
+                <a href="https://qrkks.github.io/category/za-xiang.html"
+>杂项</a>
+              </li>
         </ul>
       </nav>
     </header>
     <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
-<article >
-  <header>
-    <h2>
-      <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html" rel="bookmark"
-         title="Permalink to 将pelican自动化部署到Github Pages的action文件">将pelican自动化部署到Github Pages的action文件</a></h2>
- 
-  </header>
-  <h2>思路</h2>
+  <article>
+    <header>
+      <h2>
+        <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html"
+           rel="bookmark"
+           title="Permalink to 将pelican自动化部署到Github Pages的action文件">将pelican自动化部署到Github Pages的action文件</a>
+      </h2>
+      
+    </header>
+    <h2>思路</h2>
 <p>将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。</p>
 <p>因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。</p>
 <h2>准备</h2>
@@ -174,23 +180,45 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
 <h3>权限问题报错</h3>
 <p>解决方法：修改actions权限。</p>
 <p>参考：<a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128">Action failed with "The process '/usr/bin/git' failed with exit code 128"</a></p>
-  <footer>
-    <p>Published: <time datetime="2023-12-25T00:00:00+08:00">
-      2023-12-25 Mon
-    </time></p>
-    <p>Last updated: <time datetime="2023-12-26T13:09:23+08:00">
-      2023-12-26 Tue
-    </time></p>
-    <p>
-        Category: <a href="https://qrkks.github.io/category/pelican.html">Pelican</a>
+    <footer>
+      <p>
+        Published: <time datetime="2023-12-25T00:00:00+08:00">
+        2023-12-25 Mon
+      </time>
+    </p>
+      <p>
+        Last updated: <time datetime="2023-12-26T13:29:51+08:00">
+        2023-12-26 Tue
+      </time>
     </p>
     <p>
-        Tags:
-            <a href="https://qrkks.github.io/tag/pelican.html">pelican</a>
-            <a href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
+      Category: <a href="https://qrkks.github.io/category/pelican.html">Pelican</a>
     </p>
-  </footer>
-  </article>
+    <p>
+      Tags:
+        <a href="https://qrkks.github.io/tag/pelican.html">pelican</a>
+        <a href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
+    </p>
+</footer>
+<div id="vcomments">
+</div>
+<script src="/static/js/valine_init.js"></script>
+<div id="disqus_thread"></div>
+<script>
+var disqus_config = function () {
+    this.page.url = "2023/12/25/deploy-pelican-to-github-pages-action.html";  // 使用文章的 URL
+    this.page.identifier = "2023/12/25/deploy-pelican-to-github-pages-action.html";  // 使用文章的 URL 作为标识符
+};
+(function() {  // 不要更改以下代码
+    var d = document, s = d.createElement('script');
+    s.src = 'https://qrkks.disqus.com/embed.js';  // 替换为你的 Disqus shortname
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+})();
+</script>
+<script id="dsq-count-scr" src="//qrkks.disqus.com/count.js" async></script>
+
+</article>
     </main>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
