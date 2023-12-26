@@ -13,7 +13,7 @@ DEFAULT_LANG = 'zh'
 
 DATE_FORMATS = {
     'en': '%a, %d %b %Y',
-    'zh': '%Y-%m-%d %a',
+    'zh': '%Y-%m-%d',
 }
 
 # JINJA_FILTERS = {
@@ -70,7 +70,6 @@ DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 
-DISQUS_SITENAME = "qrkks"
 
 # Plugin settings
 IMAGE_PROCESS = {

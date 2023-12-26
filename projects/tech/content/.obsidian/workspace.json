@@ -34,21 +34,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "539fc834ae4bc963",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "articles/2023-12-26 test.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -114,7 +102,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023-12-26 test.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +119,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023-12-26 test.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -154,7 +142,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "articles/2023-12-26 test.md"
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md"
               }
             }
           }
@@ -177,12 +165,12 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "539fc834ae4bc963",
+  "active": "f5724f2e9bd1e5dc",
   "lastOpenFiles": [
+    "articles/2023-12-26 test.md",
     "static/js/valine_init.js",
     "static/js",
     "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
-    "articles/2023-12-26 test.md",
     "articles/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
     "calender/1/2023-12-26 1.md",
     "calender/1/2023-12-26 task.md",
