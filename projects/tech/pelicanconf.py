@@ -1,7 +1,7 @@
 # from .custom_func.filters import format_date_zh
 
 # AUTHOR = 'pp'
-SITENAME = 'Website Building Learning Journal'
+SITENAME = 'Python Website Building Learning Journal'
 SITEURL = ""
 
 PATH = "content"
@@ -24,6 +24,7 @@ DATE_FORMATS = {
 THEME = './themes/simple'
 
 STATIC_PATHS = ['images', 'static']
+
 
 
 # Feed generation is usually not desired when developing
@@ -69,6 +70,7 @@ DEFAULT_DATE_FORMAT = '%Y-%m-%d'
 ARTICLE_URL = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 
+DISQUS_SITENAME = "qrkks"
 
 # Plugin settings
 IMAGE_PROCESS = {
