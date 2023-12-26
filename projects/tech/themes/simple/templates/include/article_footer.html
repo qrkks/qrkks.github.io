@@ -1,9 +1,9 @@
-      <footer class="">
+      <footer class="bg-r">
         <p>
           Published: <time datetime="{{ article.date }}"> {{ article.locale_date }} </time>
           <br>
           {% if  article.modified %}
-            Modified: <time datetime="{{ article.modified.isoformat() }}"> {{ article.locale_modified|format_date_zh }} </time>
+            Modified: <time datetime="{{ article.modified.isoformat() }}"> {{ article.locale_modified }} </time>
           {% endif %}
         </p>
         {% if article.author %}

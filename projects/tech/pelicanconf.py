@@ -1,4 +1,4 @@
-from filters import format_date_zh
+# from .custom_func.filters import format_date_zh
 
 # AUTHOR = 'pp'
 SITENAME = 'Website Building Learning Journal'
@@ -16,9 +16,9 @@ DATE_FORMATS = {
     'zh': '%Y年%m月%d日 %A %H:%M',
 }
 
-JINJA_FILTERS = {
-    'format_date_zh': format_date_zh
-}
+# JINJA_FILTERS = {
+    # 'format_date_zh': format_date_zh
+# }
 
 
 THEME = './themes/simple'
