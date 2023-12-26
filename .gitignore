@@ -5,6 +5,8 @@ pelican_env/
 **/seo_report.html
 **/output/
 
+*.conf
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
