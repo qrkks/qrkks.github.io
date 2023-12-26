@@ -14,7 +14,7 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
               type="application/atom+xml"
               rel="alternate"
               title="Website Building Learning Journal Full Atom Feed" />
-        <link href="https://qrkks.github.io/feeds/za-xiang.atom.xml"
+        <link href="https://qrkks.github.io/feeds/pelican.atom.xml"
               type="application/atom+xml"
               rel="alternate"
               title="Website Building Learning Journal Categories Atom Feed" />
@@ -36,8 +36,12 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
       <nav>
         <ul class="flex gap-5 mx-4">
               <li>
-                <a href="https://qrkks.github.io/category/za-xiang.html"
- aria-current="page" >杂项</a>
+                <a href="https://qrkks.github.io/category/pelican.html"
+ aria-current="page" >Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwindcss.html"
+>TaiwindCSS</a>
               </li>
         </ul>
       </nav>
@@ -46,13 +50,13 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
 <article >
   <header>
     <h2>
-      <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages.html" rel="bookmark"
+      <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html" rel="bookmark"
          title="Permalink to 将pelican自动化部署到Github Pages的action文件">将pelican自动化部署到Github Pages的action文件</a></h2>
  
   </header>
   <h2>思路</h2>
 <p>将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。</p>
-<p>因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。</p>
+<p>因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。</p>
 <h2>准备</h2>
 <ol>
 <li>设置好github pages，设置main，gh-pages两个分支。</li>
@@ -171,14 +175,14 @@ Website Building Learning Journal - 将pelican自动化部署到Github Pages的a
 <p>解决方法：修改actions权限。</p>
 <p>参考：<a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128">Action failed with "The process '/usr/bin/git' failed with exit code 128"</a></p>
   <footer>
-    <p>Published: <time datetime="2023-12-25T14:44:07+08:00">
-      2023年12月25日 Monday 14:44
+    <p>Published: <time datetime="2023-12-25T00:00:00+08:00">
+      2023-12-25 Mon
     </time></p>
-    <p>Last updated: <time datetime="2023-12-25T22:55:17+08:00">
-      2023年12月25日 Monday 22:55
+    <p>Last updated: <time datetime="2023-12-26T13:09:23+08:00">
+      2023-12-26 Tue
     </time></p>
     <p>
-        Category: <a href="https://qrkks.github.io/category/za-xiang.html">杂项</a>
+        Category: <a href="https://qrkks.github.io/category/pelican.html">Pelican</a>
     </p>
     <p>
         Tags:
