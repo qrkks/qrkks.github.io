@@ -34,21 +34,9 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "7e52dcb6bfe6a225",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "articles/2023-12-26 test.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -114,7 +102,6 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023-12-26 test.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -131,7 +118,6 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023-12-26 test.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -177,7 +163,7 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "7e52dcb6bfe6a225",
+  "active": "39354aefbe505eca",
   "lastOpenFiles": [
     "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
     "articles/2023-12-26 test.md",
