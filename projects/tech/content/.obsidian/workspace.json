@@ -4,35 +4,39 @@
     "type": "split",
     "children": [
       {
-        "id": "907e446196cfadcb",
+        "id": "5cbe84c508038747",
         "type": "tabs",
         "children": [
           {
-            "id": "e7a1b05f83584435",
+            "id": "159b7d2aaaae4209",
             "type": "leaf",
             "state": {
-              "type": "markdown",
-              "state": {
-                "file": "2023-12-25将pelican自动化部署到Github Pages的action文件.md",
-                "mode": "source",
-                "source": false
-              }
+              "type": "empty",
+              "state": {}
             }
           },
           {
-            "id": "b2c6d999a98487c4",
+            "id": "f5724f2e9bd1e5dc",
+            "type": "leaf",
+            "state": {
+              "type": "full-calendar-view",
+              "state": {}
+            }
+          },
+          {
+            "id": "4a53a812ce3bb88d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "2023-12-25Tailwind CSS 中 Grid 的使用.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +102,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "2023-12-25Tailwind CSS 中 Grid 的使用.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +119,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "2023-12-25Tailwind CSS 中 Grid 的使用.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,12 +142,12 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "2023-12-25Tailwind CSS 中 Grid 的使用.md"
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md"
               }
             }
           }
         ],
-        "currentTab": 2
+        "currentTab": 3
       }
     ],
     "direction": "horizontal",
@@ -157,14 +161,30 @@
       "daily-notes:打开/创建今天的日记": false,
       "templates:插入模板": false,
       "command-palette:打开命令面板": false,
-      "obsidian42-brat:BRAT": false
+      "obsidian42-brat:BRAT": false,
+      "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "b2c6d999a98487c4",
+  "active": "4a53a812ce3bb88d",
   "lastOpenFiles": [
-    "2023-12-25将pelican自动化部署到Github Pages的action文件.md",
-    "2023-12-25Tailwind CSS 中 Grid 的使用.md",
+    "articles/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
+    "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
+    "calender/1/2023-12-26 1.md",
+    "calender/1/2023-12-26 task.md",
+    "articles",
+    "calender/1",
+    "calender/2023-12-26.md",
     "未命名.md",
+    "Inbox.md",
+    "calender/2023-12-26 5.md",
+    "calender/2023-12-26 2.md",
+    "2023-12-26%201.md",
+    "calender/2023-12-27 1.md",
+    "calender/2023-12-26 a.md",
+    "calender/2023-12-27 3.md",
+    "calender/2023-12-26 text.md",
+    "calender/2023-12-27 2.md",
+    "calender",
     "static/css/pygment.css",
     "pages/关于.md",
     "代码.md",

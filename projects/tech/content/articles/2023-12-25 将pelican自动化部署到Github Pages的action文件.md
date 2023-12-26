@@ -1,18 +1,24 @@
 ---
 title: 将pelican自动化部署到Github Pages的action文件
-slug: deploy-pelican-to-github-pages
-date: 2023-12-25 14:44:07
-modified: 2023-12-25 22:55:17
-category: 
+slug: deploy-pelican-to-github-pages-action
+date: 2023-12-25 
+created: 2023-12-25 14:44:07
+status: 
+modified: 2023-12-26 13:09:23
+category: Pelican
 tags: pelican, github actions
 summary: 本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。
+allDay: false
+startTime: 14:30
+endTime: 15:00
+completed: null
 ---
 
 ## 思路
 
 将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。
 
-因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。
+因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。
 
 ## 准备
 

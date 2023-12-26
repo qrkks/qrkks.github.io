@@ -13,7 +13,7 @@ DEFAULT_LANG = 'zh'
 
 DATE_FORMATS = {
     'en': '%a, %d %b %Y',
-    'zh': '%Y年%m月%d日 %A %H:%M',
+    'zh': '%Y-%m-%d %a',
 }
 
 # JINJA_FILTERS = {
@@ -56,6 +56,8 @@ DEFAULT_PAGINATION = 10
 USE_FOLDER_AS_CATEGORY = False
 DISPLAY_CATEGORIES_ON_MENU = True
 DEFAULT_CATEGORY = '杂项'
+
+SUMMERY_MAX_LENGTH = 300 # 如果未显式指定给定帖子的摘要元数据，则 SUMMARY_MAX_LENGTH 设置可用于指定从文章开头开始有多少单词用作摘要。
 
 # 输出文件夹
 OUTPUT_PATH = 'output/'
