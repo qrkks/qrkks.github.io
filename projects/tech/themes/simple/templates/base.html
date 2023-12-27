@@ -5,6 +5,7 @@
       <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
       <title>
         {% block title %}
           {{ SITENAME|striptags }}
@@ -69,12 +70,14 @@
       {% endif %}
     {% endblock head %}
   </head>
-  <body>
+  <body class="font-noto-sans-sc ">
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
-        <h1>
-          <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
-        </h1>
+        {% block sitename %}
+          <h2>
+            <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
+          </h2>
+        {% endblock sitename %}
         {% if SITESUBTITLE %}
           <p>
             {{ SITESUBTITLE }}

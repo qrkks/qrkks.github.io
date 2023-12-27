@@ -33,14 +33,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "articles/2023-12-27 1.md",
+                "file": "pages/博客建站日志.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 2
+        ]
       }
     ],
     "direction": "vertical"
@@ -106,7 +105,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023-12-27 1.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +122,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023-12-27 1.md",
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +145,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "articles/2023-12-27 1.md"
+                "file": "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md"
               }
             }
           }
@@ -169,14 +168,16 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "1f7a268e4b8a5f39",
+  "active": "f5724f2e9bd1e5dc",
   "lastOpenFiles": [
+    "pages/博客建站日志.md",
     "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
-    "articles/2023-12-27 1.md",
+    "articles/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
+    "static/css/custom copy.css",
+    "static/css/custom.css",
     "articles/2023-12-26 test.md",
     "static/js/valine_init.js",
     "static/js",
-    "articles/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
     "calender/1/2023-12-26 1.md",
     "calender/1/2023-12-26 task.md",
     "articles",

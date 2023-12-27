@@ -1,7 +1,6 @@
-      <footer class="bg-r">
+      <footer class="not-prose flex justify-start text-sm text-gray-400">
         <p>
           Published: <time datetime="{{ article.date }}"> {{ article.locale_date }} </time>
-          <br>
           {% if  article.modified %}
             Modified: <time datetime="{{ article.modified.isoformat() }}"> {{ article.locale_modified }} </time>
           {% endif %}

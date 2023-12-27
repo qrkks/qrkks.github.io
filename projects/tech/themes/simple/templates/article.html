@@ -21,61 +21,28 @@
 {% block content %}
   <article>
     <header>
-      <h2>
+      <h1>
         <a href="{{ SITEURL }}/{{ article.url }}"
            rel="bookmark"
            title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
-      </h2>
+      </h1>
       {% import 'translations.html' as translations with context %}
       {{ translations.translations_for(article) }}
     </header>
     {{ article.content }}
-    <footer>
-      <p>
-        Published: <time datetime="{{ article.date.isoformat() }}">
-        {{ article.locale_date }}
-      </time>
-    </p>
-    {% if article.modified %}
-      <p>
-        Last updated: <time datetime="{{ article.modified.isoformat() }}">
-        {{ article.locale_modified }}
-      </time>
-    </p>
-  {% endif %}
-  {% if article.authors %}
-    <address>
-      By
-      {% for author in article.authors %}
-        <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
-      {% endfor %}
-    </address>
-  {% endif %}
-  {% if article.category %}
-    <p>
-      Category: <a href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
-    </p>
-  {% endif %}
-  {% if article.tags %}
-    <p>
-      Tags:
-      {% for tag in article.tags %}
-        <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
-      {% endfor %}
-    </p>
-  {% endif %}
-</footer>
+{% include "include/footer_article_article.html" %}
 {# <section id="isso-thread" data-title="{{ page.title }}" data-isso-id="{{ article.id }}"></section>
 <script data-isso="https://39.107.126.13:8090"
         src="https://39.107.126.13:8090/js/embed.min.js" async></script> #}
-        <div id="cusdis_thread"
+        {# <div id="cusdis_thread"
   data-host="https://cusdis.com"
   data-app-id="f95773a8-2dbc-4ecd-a1e4-9a07929a6290"
   data-page-id="{{ PAGE_ID }}"
   data-page-url="{{ PAGE_URL }}"
   data-page-title="{{ PAGE_TITLE }}"
 ></div>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
+<script async defer src="https://cusdis.com/js/cusdis.es.js"></script> #}
+{% include "include/comment.html" %}
 
 </article>
 {% endblock %}

@@ -1,0 +1,37 @@
+<footer class="not-prose grid grid-cols-2 text-gray-500 gap-4 text-sm bg-gray-100 py-5 px-10 my-10 rounded">
+  <p>
+    Published: <time datetime="{{ article.date.isoformat() }}">
+    {{ article.locale_date }}
+  </time>
+</p>
+{% if article.modified %}
+  <p>
+    Last updated: <time datetime="{{ article.modified.isoformat() }}">
+    {{ article.locale_modified }}
+  </time>
+</p>
+{% endif %}
+{% if article.authors %}
+  <address>
+    By
+    {% for author in article.authors %}
+      <a href="{{ SITEURL }}/{{ author.url }}">{{ author }}</a>
+    {% endfor %}
+  </address>
+{% endif %}
+{% if article.category %}
+  <p class="col-span-2 ">
+    Category: <a class="px-3 py-1 bg-yellow-400 duration-300 hover:bg-yellow-600 rounded-full text-white"
+    href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
+  </p>
+{% endif %}
+{% if article.tags %}
+  <p class="col-span-2">
+    Tags:
+    {% for tag in article.tags %}
+      <a class="px-3 py-1 bg-pink-400 rounded-full duration-300 hover:bg-pink-600 text-white"
+         href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a>
+    {% endfor %}
+  </p>
+{% endif %}
+</footer>

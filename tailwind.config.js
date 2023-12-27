@@ -8,7 +8,17 @@ module.exports = {
     ],
     // darkMode: media, // or 'media' or 'class'
     theme: {
-      extend: {},
+      extend: {
+        fontFamily: {
+          sans: ['Arial', 'Helvetica', 'sans'],
+          serif: ['Georgia', 'serif'],
+          mono: ['Courier', 'monospace'],
+          'noto-sans-sc': ['Noto Sans SC', 'sans'],
+          // nunito: ['Nunito'],
+          // montserrat: ['Montserrat'],
+          // ubuntu: ['Ubuntu'],
+        }
+      },
     },
     variants: {
       extend: {},

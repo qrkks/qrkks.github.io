@@ -149,4 +149,4 @@ GitHub Actions 的操作是用于自动化 CI/CD 流程的组件，您可以在 
 
 解决方法：修改actions权限。
 
-参考：[Action failed with "The process '/usr/bin/git' failed with exit code 128"](https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128)
+参考Stack Overflow的回答：[Action failed with "The process '/usr/bin/git' failed with exit code 128"](https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128)
