@@ -4,6 +4,7 @@
       <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
       <title>
 Python Website Building Learning Journal - Pelican category      </title>
       <meta charset="utf-8" />
@@ -18,15 +19,19 @@ Python Website Building Learning Journal - Pelican category      </title>
               rel="alternate"
               title="Python Website Building Learning Journal Categories Atom Feed" />
   </head>
-  <body>
+  <body class="font-noto-sans-sc ">
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
-        <h1>
-          <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
-        </h1>
+    <h1>
+      <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+    </h1>
       </hgroup>
       <nav>
         <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
               <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
  aria-current="page" >Pelican</a>
@@ -34,10 +39,6 @@ Python Website Building Learning Journal - Pelican category      </title>
               <li>
                 <a href="https://qrkks.github.io/category/taiwindcss.html"
 >TaiwindCSS</a>
-              </li>
-              <li>
-                <a href="https://qrkks.github.io/category/za-xiang.html"
->杂项</a>
               </li>
         </ul>
       </nav>
@@ -54,10 +55,9 @@ Python Website Building Learning Journal - Pelican category      </title>
       <section>
         <p>本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。</p>
       </section>
-      <footer class="bg-r">
+      <footer class="not-prose flex justify-start text-sm text-gray-400">
         <p>
           Published: <time datetime="2023-12-25 00:00:00+08:00"> 2023-12-25 </time>
-          <br>
             Modified: <time datetime="2023-12-26T13:29:51+08:00"> 2023-12-26 </time>
         </p>
       </footer>

@@ -118,4 +118,4 @@
 &lt;h2&gt;问题&lt;/h2&gt;
 &lt;h3&gt;权限问题报错&lt;/h3&gt;
 &lt;p&gt;解决方法：修改actions权限。&lt;/p&gt;
-&lt;p&gt;参考：&lt;a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128"&gt;Action failed with "The process '/usr/bin/git' failed with exit code 128"&lt;/a&gt;&lt;/p&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="github actions"></category></entry></feed>
+&lt;p&gt;参考Stack Overflow的回答：&lt;a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128"&gt;Action failed with "The process '/usr/bin/git' failed with exit code 128"&lt;/a&gt;&lt;/p&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="github actions"></category></entry></feed>

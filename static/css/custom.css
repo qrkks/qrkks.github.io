@@ -1,0 +1,56 @@
+/* 关于蓝色背景或边框的类： */
+
+.twikoo .el-input__inner:focus,
+.twikoo .el-textarea__inner:focus {
+  border-color: #bdbdbd !important; /* 蓝色边框 */
+}
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):active,
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):focus,
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):hover {
+  color: #bdbdbd !important; /* 蓝色文字 */
+  background-color: rgba(64, 158, 255, 0.063); /* 蓝色背景 */
+  border-color: rgba(64, 158, 255, 0.5); /* 蓝色边框 */
+}
+.twikoo .el-button--primary.is-disabled,
+.twikoo .el-button--primary.is-disabled:active,
+.twikoo .el-button--primary.is-disabled:focus,
+.twikoo .el-button--primary.is-disabled:hover {
+  background-color: #bdbdbd !important; /* 蓝色背景 */
+}
+.tk-action-link {
+  color: #bdbdbd !important; /* 蓝色文字 */
+}
+.tk-action-icon {
+  color: #bdbdbd !important; /* 蓝色图标 */
+}
+.tk-nick-link:hover {
+  color: #bdbdbd !important; /* 鼠标悬浮时蓝色文字 */
+}
+.tk-icon.__comments {
+  color: #bdbdbd !important; /* 蓝色图标 */
+}
+.tk-pagination-pager.__current {
+  background-color: #bdbdbd !important; 
+}
+
+/* 关于蓝色边框的类 */
+.twikoo .el-input__inner:focus,
+.twikoo .el-textarea__inner:focus {
+  border-color: #bdbdbd !important; /* 蓝色边框 */
+}
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):active,
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):focus,
+.twikoo .el-button:not(.el-button--primary):not(.el-button--text):hover {
+  border-color: rgba(64, 158, 255, 0.5); /* 蓝色边框 */
+}
+
+/* 都改成直角 */
+/* #erectContainer * {
+  border-radius: 0 !important;
+} */
+
+.tk-tag-green {
+  background-color: #fff !important; /* 绿色背景 */
+  border: 1px solid #d8d2d2 !important; /* 绿色边框 */
+  color: #bebbbb !important; /* 绿色文字 */
+}

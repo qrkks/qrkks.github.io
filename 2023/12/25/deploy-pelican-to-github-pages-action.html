@@ -5,6 +5,7 @@
         <script src="https://cdn.tailwindcss.com"></script>
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
       <title>
   Python Website Building Learning Journal - 将pelican自动化部署到Github Pages的action文件
       </title>
@@ -23,15 +24,19 @@
     <meta name="tags" content="pelican" />
     <meta name="tags" content="github actions" />
   </head>
-  <body>
+  <body class="font-noto-sans-sc ">
     <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
       <hgroup>
-        <h1>
-          <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
-        </h1>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
       </hgroup>
       <nav>
         <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
               <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
  aria-current="page" >Pelican</a>
@@ -40,21 +45,17 @@
                 <a href="https://qrkks.github.io/category/taiwindcss.html"
 >TaiwindCSS</a>
               </li>
-              <li>
-                <a href="https://qrkks.github.io/category/za-xiang.html"
->杂项</a>
-              </li>
         </ul>
       </nav>
     </header>
     <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
   <article>
     <header>
-      <h2>
+      <h1>
         <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html"
            rel="bookmark"
            title="Permalink to 将pelican自动化部署到Github Pages的action文件">将pelican自动化部署到Github Pages的action文件</a>
-      </h2>
+      </h1>
       
     </header>
     <h2>思路</h2>
@@ -176,36 +177,41 @@
 <h2>问题</h2>
 <h3>权限问题报错</h3>
 <p>解决方法：修改actions权限。</p>
-<p>参考：<a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128">Action failed with "The process '/usr/bin/git' failed with exit code 128"</a></p>
-    <footer>
-      <p>
-        Published: <time datetime="2023-12-25T00:00:00+08:00">
-        2023-12-25
-      </time>
-    </p>
-      <p>
-        Last updated: <time datetime="2023-12-26T13:29:51+08:00">
-        2023-12-26
-      </time>
-    </p>
-    <p>
-      Category: <a href="https://qrkks.github.io/category/pelican.html">Pelican</a>
-    </p>
-    <p>
-      Tags:
-        <a href="https://qrkks.github.io/tag/pelican.html">pelican</a>
-        <a href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
-    </p>
-</footer>
-        <div id="cusdis_thread"
-  data-host="https://cusdis.com"
-  data-app-id="f95773a8-2dbc-4ecd-a1e4-9a07929a6290"
-  data-page-id=""
-  data-page-url="pages/{slug}.html"
-  data-page-title=""
-></div>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script>
-
+<p>参考Stack Overflow的回答：<a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128">Action failed with "The process '/usr/bin/git' failed with exit code 128"</a></p>
+<footer class="not-prose grid grid-cols-2 text-gray-500 gap-4 text-sm bg-gray-100 py-5 px-10 my-10 rounded">
+  <p>
+    Published: <time datetime="2023-12-25T00:00:00+08:00">
+    2023-12-25
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-26T13:29:51+08:00">
+    2023-12-26
+  </time>
+</p>
+  <p class="col-span-2 ">
+    Category: <a class="px-3 py-1 bg-yellow-400 duration-300 hover:bg-yellow-600 rounded-full text-white"
+    href="https://qrkks.github.io/category/pelican.html">Pelican</a>
+  </p>
+  <p class="col-span-2">
+    Tags:
+      <a class="px-3 py-1 bg-pink-400 rounded-full duration-300 hover:bg-pink-600 text-white"
+         href="https://qrkks.github.io/tag/pelican.html">pelican</a>
+      <a class="px-3 py-1 bg-pink-400 rounded-full duration-300 hover:bg-pink-600 text-white"
+         href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
+  </p>
+</footer><section id="erectContainer"
+         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+  <div id="twikoo">
+  </div>
+  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script>
+  twikoo.init({
+    envId: 'https://39.107.126.13:8092/',
+    path: '2023/12/25/deploy-pelican-to-github-pages-action.html'
+  });
+  </script>
+</section>
 </article>
     </main>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
