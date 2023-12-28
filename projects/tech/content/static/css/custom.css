@@ -9,7 +9,7 @@
 .twikoo .el-button:not(.el-button--primary):not(.el-button--text):hover {
   color: #bdbdbd !important; /* 蓝色文字 */
   background-color: rgba(64, 158, 255, 0.063); /* 蓝色背景 */
-  border-color: rgba(64, 158, 255, 0.5); /* 蓝色边框 */
+  border-color: #bdbdbd; /* 蓝色边框 */
 }
 .twikoo .el-button--primary.is-disabled,
 .twikoo .el-button--primary.is-disabled:active,
@@ -41,7 +41,7 @@
 .twikoo .el-button:not(.el-button--primary):not(.el-button--text):active,
 .twikoo .el-button:not(.el-button--primary):not(.el-button--text):focus,
 .twikoo .el-button:not(.el-button--primary):not(.el-button--text):hover {
-  border-color: rgba(64, 158, 255, 0.5); /* 蓝色边框 */
+  border-color: #bdbdbd !important; /* 蓝色边框 */
 }
 
 /* 都改成直角 */

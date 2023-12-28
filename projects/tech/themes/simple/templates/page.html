@@ -1,38 +1,35 @@
 {% extends "base.html" %}
-{% block html_lang %}{{ page.lang }}{% endblock %}
-
-{% block title %}{{ SITENAME|striptags }} - {{ page.title|striptags }}{%endblock%}
-
-{% block head %}
-  {{ super() }}
-
-  {% import 'translations.html' as translations with context %}
-  {% if translations.entry_hreflang(page) %}
-    {{ translations.entry_hreflang(page) }}
-  {% endif %}
+{% block html_lang %}
+  {{ page.lang }}
 {% endblock %}
-
-{% block content %}
-<article>
-  <header>
-    <h1>{{ page.title }}</h1>
-  </header>
+{% block title %}
+  {{ SITENAME|striptags }} - {{ page.title|striptags }}{% endblock %}
+  {% block head %}
+    {{ super() }}
     {% import 'translations.html' as translations with context %}
-    {{ translations.translations_for(page) }}
-
-    {{ page.content }}
-
-    {% if page.modified %}
-      <footer class="gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
-        <p>
-        Last updated: {{ page.locale_modified }}
-        </p>
-      </footer>
-      {% with article=page %}
-      
-      {% include "include/comment.html" %}
-      {% endwith %}
-
+    {% if translations.entry_hreflang(page) %}
+      {{ translations.entry_hreflang(page) }}
     {% endif %}
-</article>
-{% endblock %}
+  {% endblock %}
+  {% block content %}
+    <article>
+      <header>
+        <h1>
+          {{ page.title }}
+        </h1>
+      </header>
+      {% import 'translations.html' as translations with context %}
+      {{ translations.translations_for(page) }}
+      {{ page.content }}
+      {% if page.modified %}
+        <footer class="gap-4 px-10 py-5 my-10 text-xs text-gray-500 bg-gray-100 rounded not-prose">
+          <p>
+            Last updated: {{ page.locale_modified }}
+          </p>
+        </footer>
+        {# {% with article=page %}
+          {% include "include/comment.html" %}
+        {% endwith %} #}
+      {% endif %}
+    </article>
+  {% endblock %}

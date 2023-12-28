@@ -30,19 +30,19 @@
       {{ translations.translations_for(article) }}
     </header>
     {{ article.content }}
-{% include "include/footer_article_article.html" %}
-{# <section id="isso-thread" data-title="{{ page.title }}" data-isso-id="{{ article.id }}"></section>
-<script data-isso="https://39.107.126.13:8090"
-        src="https://39.107.126.13:8090/js/embed.min.js" async></script> #}
-        {# <div id="cusdis_thread"
-  data-host="https://cusdis.com"
-  data-app-id="f95773a8-2dbc-4ecd-a1e4-9a07929a6290"
-  data-page-id="{{ PAGE_ID }}"
-  data-page-url="{{ PAGE_URL }}"
-  data-page-title="{{ PAGE_TITLE }}"
-></div>
-<script async defer src="https://cusdis.com/js/cusdis.es.js"></script> #}
-{% include "include/comment.html" %}
-
-</article>
+    {% include "include/footer_article_article.html" %}
+    {# <section id="isso-thread" data-title="{{ page.title }}" data-isso-id="{{ article.id }}"></section> #}
+    {# <script data-isso="https://39.107.126.13:8090"
+    src="https://39.107.126.13:8090/js/embed.min.js" async></script>  #}
+    {# <div id="cusdis_thread"
+         data-host="https://cusdis.com"
+         data-app-id="f95773a8-2dbc-4ecd-a1e4-9a07929a6290"
+         data-page-id="{{ article.url }}"
+         data-page-url="{{SITEURL}}/{{ article.url }}"
+         data-page-title="{{ article.title }}"
+         class="p-10 bg-green-50">
+    </div>
+    <script async defer src="https://cusdis.com/js/cusdis.es.js"></script> #}
+    {% include "include/comment.html" %}
+  </article>
 {% endblock %}

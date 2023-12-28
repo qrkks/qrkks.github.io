@@ -212,7 +212,7 @@
       "enabled": false
     },
     "space-between-chinese-japanese-or-korean-and-english-or-numbers": {
-      "enabled": false
+      "enabled": true
     },
     "trailing-spaces": {
       "enabled": false,
