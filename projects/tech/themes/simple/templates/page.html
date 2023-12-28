@@ -28,7 +28,10 @@
         Last updated: {{ page.locale_modified }}
         </p>
       </footer>
+      {% with article=page %}
+      
       {% include "include/comment.html" %}
+      {% endwith %}
 
     {% endif %}
 </article>
