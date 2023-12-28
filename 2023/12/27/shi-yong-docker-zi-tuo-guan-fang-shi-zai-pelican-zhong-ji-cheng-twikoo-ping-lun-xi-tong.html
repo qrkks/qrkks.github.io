@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <title>
+  Python Website Building Learning Journal - 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/pelican.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="pelican twikoo" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+ aria-current="page" >pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwindcss.html"
+>TaiwindCSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
+  <article>
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html"
+           rel="bookmark"
+           title="Permalink to 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统">使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统</a>
+      </h1>
+      
+    </header>
+    <p>由于 twikoo 提供了 <a href="https://twikoo.js.org/backend.html#%E7%A7%81%E6%9C%89%E9%83%A8%E7%BD%B2-docker">官方的容器和YAML文件</a>，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。</p>
+<h2>服务器端</h2>
+<h3>YAML</h3>
+<p>由于我的服务器上已经运行了一个 nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">twikoo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaegoo/twikoo</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">twikoo</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">TWIKOO_THROTTLE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/app/data</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nginx-network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+<h4>Twikoo + Nginx 容器</h4>
+<p>如果本来没有 Nginx 的话，可以使用以下 YAML 文件让 Twikoo 和 Nginx 一起启动，在同一个 YAML 里启动的容器会默认在同一个容器网络里：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">twikoo</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">imaegoo/twikoo</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">twikoo</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">unless-stopped</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="nt">TWIKOO_THROTTLE</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./data:/app/data</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span>
+<span class="w">  </span><span class="nt">nginx</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx</span>
+<span class="w">    </span><span class="nt">ports</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="s">&quot;8092:8092&quot;</span><span class="w"> </span><span class="c1"># 设置想用的端口，以8092为例，前面是宿主机端口，后面是容器端口。</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./conf.d:/etc/nginx/conf.d</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:var/certs/</span>
+</code></pre></div>
+
+<h3>Nginx 代理</h3>
+<p>使用 Nginx 反向代理 twikoo 并进行 https 加密。 在很多情况下使用 https 加密是必要的，如果你的静态网站是使用 https 加密的，但是网页内的部分内容使用 http 通信，这在大部分现代浏览器上是不被允许的，请求会被拒绝。</p>
+<p>在 nginx 配置文件里加上 server 块，设置你希望的监听端口，此处设置为 8092（自定义）：</p>
+<div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="kn">listen</span><span class="w">  </span><span class="mi">8092</span><span class="w">  </span><span class="s">ssl</span><span class="p">;</span><span class="w"> </span><span class="c1"># 配置想要监听的端口</span>
+<span class="w">    </span><span class="kn">server_name</span><span class="w">  </span><span class="s">_</span><span class="p">;</span>
+
+<span class="w">    </span><span class="kn">ssl_certificate</span><span class="w">      </span><span class="s">/certs/zerossl/certificate.crt</span><span class="p">;</span><span class="w">  </span><span class="c1"># 配置自己的证书</span>
+<span class="w">    </span><span class="kn">ssl_certificate_key</span><span class="w">  </span><span class="s">/certs/zerossl/private.key</span><span class="p">;</span><span class="w"> </span><span class="c1"># 配置自己的密钥</span>
+
+
+<span class="w">    </span><span class="kn">location</span><span class="w"> </span><span class="s">/</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="kn">proxy_pass</span><span class="w"> </span><span class="s">http://twikoo:8080</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-For</span><span class="w"> </span><span class="nv">$proxy_add_x_forwarded_for</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">Host</span><span class="w"> </span><span class="nv">$host</span><span class="p">;</span>
+<span class="w">        </span><span class="kn">proxy_set_header</span><span class="w"> </span><span class="s">X-Forwarded-Proto</span><span class="w"> </span><span class="nv">$scheme</span><span class="p">;</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+
+<h2>客户端</h2>
+<p>官方文档没有提供 pelican 客户端的配置示例，我在通用示例上做了一下修改以适应 pelican 模板。</p>
+<p>在需要添加评论的网页（比如 article 模板文件下）的末尾添加以下脚本：</p>
+<div class="highlight"><pre><span></span><code>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twikoo&quot;</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js&quot;</span><span class="p">&gt;&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">script</span><span class="p">&gt;</span>
+<span class="w">  </span><span class="nx">twikoo</span><span class="p">.</span><span class="nx">init</span><span class="p">({</span>
+<span class="w">    </span><span class="nx">envId</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;https://xx.xxx.xxx.xx:8092/&#39;</span><span class="p">,</span><span class="w"> </span><span class="c">&lt;!--</span><span class="w"> </span><span class="nx">放上你的服务器的域名或IP地址以及Nginx监听的端口号</span><span class="w"> </span><span class="o">--&gt;</span>
+<span class="w">    </span><span class="nx">path</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;{{ article.url }}&#39;</span>
+<span class="w">  </span><span class="p">});</span>
+<span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
+</code></pre></div>
+<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+  <p>
+    Published: <time datetime="2023-12-27T00:00:00+08:00">
+    2023-12-27
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-28T16:17:43+08:00">
+    2023-12-28
+  </time>
+</p>
+  <p class="col-span-2 ">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/pelican.html">pelican</a>
+  </p>
+  <p class="col-span-2">
+    Tags:
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/pelican-twikoo.html">pelican twikoo</a>
+  </p>
+</footer><section id="erectContainer"
+         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+  <div id="twikoo">
+  </div>
+  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script>
+  twikoo.init({
+    envId: 'https://39.107.126.13:8092/',
+    path: '2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html'
+  });
+  </script>
+</section>  </article>
+    </main>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>
