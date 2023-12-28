@@ -1,7 +1,7 @@
 ---
 title: 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统
 slug: 
-category: pelican
+category: Pelican
 keywords: 
 tags: pelican twikoo
 date: 2023-12-27
