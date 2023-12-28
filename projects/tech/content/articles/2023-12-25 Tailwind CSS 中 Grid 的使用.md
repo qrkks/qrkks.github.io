@@ -5,7 +5,7 @@ date: 2023-12-25
 created: 2023-12-25 20:09:39
 status: 
 modified: 2023-12-26 13:09:05
-category: TaiwindCSS
+category: Taiwind CSS
 tags: tailwind css
 summary:  讨论Tailwind CSS 中的 Grid 的使用，三步走：先定义是个grid，然后定义有几行几列，然后再定义有没有跨行。
 allDay: false

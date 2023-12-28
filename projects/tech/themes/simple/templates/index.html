@@ -1,9 +1,9 @@
 {% extends "base.html" %}
-  {% block sitename %}
-    <h1>
-      <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
-    </h1>
-  {% endblock sitename %}
+{% block sitename %}
+  <h1>
+    <a href="{{ SITEURL }}/">{{ SITENAME }}</a>
+  </h1>
+{% endblock sitename %}
 {% block content %}
   {# {% block content_title %}
     <h2>
@@ -20,7 +20,11 @@
         </h2>
       </header>
       <section>
-        {{ article.summary }}
+        {% if article.summary %}
+          {{ article.summary }}
+        {% else %}
+          {{ article.content|striptags|truncate(SUMMERY_MAX_LENGTH) }}
+        {% endif %}
       </section>
       {% include "include/footer_article_index.html" %}
     </article>

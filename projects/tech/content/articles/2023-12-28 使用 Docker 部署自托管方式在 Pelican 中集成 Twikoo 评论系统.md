@@ -3,12 +3,12 @@ title: 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统
 slug: 
 category: Pelican
 keywords: 
-tags: pelican twikoo
+tags: pelican,twikoo
 date: 2023-12-27
 created: 2023-12-28 14:52:18
-modified: 2023-12-28 16:17:43
+modified: 2023-12-28 17:06:48
 status: 
-summary: 
+summary:
 allDay: false
 startTime: 14:30
 endTime: 15:00
@@ -17,11 +17,13 @@ completed: null
 
 由于 twikoo 提供了 [官方的容器和YAML文件](https://twikoo.js.org/backend.html#%E7%A7%81%E6%9C%89%E9%83%A8%E7%BD%B2-docker)，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。
 
+实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。
+
 ## 服务器端
 
 ### YAML
 
-由于我的服务器上已经运行了一个 nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。
+由于我的服务器上已经运行了一个 Nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。
 
 ```YAML
 version: "3"
