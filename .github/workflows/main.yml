@@ -16,15 +16,15 @@ jobs:
   # This is the main job called 'deploy'.
   deploy:
     # The job will run on the latest version of Ubuntu.
-    # runs-on: ubuntu-latest
-    # steps:
-    #   - name: Install Chinese language pack
-    #     run: sudo apt-get install -y language-pack-zh-hans
+    runs-on: ubuntu-latest
+    steps:
+      # - name: Install Chinese language pack
+      #   run: sudo apt-get install -y language-pack-zh-hans
 
-    #   - name: Configure locale
-    #     run: |
-    #       sudo locale-gen zh_CN.UTF-8
-    #       sudo update-locale LANG=zh_CN.UTF-8 LC_ALL=zh_CN.UTF-8
+      # - name: Configure locale
+      #   run: |
+      #     sudo locale-gen zh_CN.UTF-8
+      #     sudo update-locale LANG=zh_CN.UTF-8 LC_ALL=zh_CN.UTF-8
 
       # The first step is to check out the repository.
       - name: Checkout
