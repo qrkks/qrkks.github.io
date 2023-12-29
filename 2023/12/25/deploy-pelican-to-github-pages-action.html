@@ -6,6 +6,12 @@
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
       <title>
   Python Website Building Learning Journal - 将pelican自动化部署到Github Pages的action文件
       </title>
@@ -25,7 +31,7 @@
     <meta name="tags" content="github actions" />
   </head>
   <body class="font-noto-sans-sc ">
-    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
       <hgroup>
           <h2>
             <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
@@ -38,6 +44,10 @@
 >Blog Log</a>
               </li>
               <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
  aria-current="page" >Pelican</a>
               </li>
@@ -48,8 +58,19 @@
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
-  <article>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
+          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <div class="mb-2 text-xl font-bold">Table of Contents</div>
+            <ul id="toc-list" class="space-y-2 list-none">
+                <!-- JavaScript will dynamically fill this list -->
+            </ul>
+        </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
     <header>
       <h1>
         <a href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html"
@@ -58,15 +79,15 @@
       </h1>
       
     </header>
-    <h2>思路</h2>
+    <h2>1 思路</h2>
 <p>将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。</p>
 <p>因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。</p>
-<h2>准备</h2>
+<h2>2 准备</h2>
 <ol>
 <li>设置好github pages，设置main，gh-pages两个分支。</li>
 <li>根目录<code>pip freeze &gt; requirements.txt</code>。</li>
 </ol>
-<h2>Action 文件</h2>
+<h2>3 Action 文件</h2>
 <div class="highlight"><pre><span></span><code><span class="c1"># This YAML file is used to define a GitHub Actions workflow for deploying a Pelican website to GitHub Pages.</span>
 <span class="c1"># The workflow will be triggered when there is a push event on the &#39;main&#39; branch.</span>
 
@@ -112,7 +133,7 @@
 <span class="w">          </span><span class="nt">publish_dir</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./projects/tech/output</span>
 </code></pre></div>
 
-<h3>actions/checkout@v2</h3>
+<h3>3.1 actions/checkout@v2</h3>
 <p><code>actions/checkout@v2</code> 是一个 GitHub Actions 中的一个预定义的操作（也称为 Action），用于将代码仓库检出到工作环境中。这个操作允许您在 GitHub Actions 工作流程中获取代码库的副本，以便在后续步骤中执行构建、测试、部署等操作。</p>
 <p>具体来说，<code>actions/checkout@v2</code> 操作做了以下事情：</p>
 <ol>
@@ -129,7 +150,7 @@
 </code></pre></div>
 
 <p>这个步骤将在工作流中使用 <code>actions/checkout@v2</code> 操作来检出代码。</p>
-<h3>actions/setup-python@v2</h3>
+<h3>3.2 actions/setup-python@v2</h3>
 <p><code>actions/setup-python@v2</code> 是 GitHub Actions 中的一个官方操作，用于设置 Python 环境，以便您可以在 GitHub Actions 工作流程中执行 Python 相关的任务。它允许您指定要使用的 Python 版本，并设置 Python 环境的各种配置选项。</p>
 <p>具体来说，<code>actions/setup-python@v2</code> 操作可以执行以下操作：</p>
 <ol>
@@ -155,7 +176,7 @@
 </code></pre></div>
 
 <p>上述示例中，工作流程将设置 Python 3.8 环境以供后续步骤使用。您可以根据您的项目需求和 Python 版本要求来配置此操作。</p>
-<h3>peaceiris/actions-gh-pages@v3</h3>
+<h3>3.3 peaceiris/actions-gh-pages@v3</h3>
 <p><code>peaceiris/actions-gh-pages@v3</code> 是一个 GitHub Actions 的操作（Action），用于将静态网站或其他内容发布到 GitHub Pages。这个操作是由社区维护的，它简化了将内容发布到 GitHub Pages 的流程。</p>
 <p>具体来说，<code>peaceiris/actions-gh-pages</code> 操作提供了以下功能：</p>
 <ol>
@@ -174,11 +195,11 @@
 </ol>
 <p>GitHub Actions 的操作是用于自动化 CI/CD 流程的组件，您可以在 GitHub Actions 工作流程中使用它们。<code>peaceiris/actions-gh-pages</code> 操作通常用于构建和发布静态网站，以便在 GitHub Pages 上托管。</p>
 <p>要了解如何在 GitHub Actions 中使用 <code>peaceiris/actions-gh-pages</code> 操作，请查阅相关文档和示例。操作的版本号 <code>v3</code> 表示操作的版本，通常建议使用最新版本以获得最新的功能和改进。</p>
-<h2>问题</h2>
-<h3>权限问题报错</h3>
+<h2>4 问题</h2>
+<h3>4.1 权限问题报错</h3>
 <p>解决方法：修改actions权限。</p>
 <p>参考Stack Overflow的回答：<a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128">Action failed with "The process '/usr/bin/git' failed with exit code 128"</a></p>
-<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
   <p>
     Published: <time datetime="2023-12-25T00:00:00+08:00">
     2023-12-25
@@ -201,18 +222,31 @@
          href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
   </p>
 </footer><section id="erectContainer"
-         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
   <div id="twikoo">
   </div>
-  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
   <script>
-  twikoo.init({
-    envId: 'https://39.107.126.13:8092/',
-    path: '2023/12/25/deploy-pelican-to-github-pages-action.html'
-  });
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/25/deploy-pelican-to-github-pages-action.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
   </script>
 </section>  </article>
-    </main>
+      </main>
+    </div>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,

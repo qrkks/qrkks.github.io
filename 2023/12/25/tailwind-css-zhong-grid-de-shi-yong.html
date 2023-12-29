@@ -6,6 +6,12 @@
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
       <title>
   Python Website Building Learning Journal - Tailwind CSS 中 Grid 的使用
       </title>
@@ -24,7 +30,7 @@
     <meta name="tags" content="tailwind css" />
   </head>
   <body class="font-noto-sans-sc ">
-    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
       <hgroup>
           <h2>
             <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
@@ -37,6 +43,10 @@
 >Blog Log</a>
               </li>
               <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
 >Pelican</a>
               </li>
@@ -47,8 +57,19 @@
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
-  <article>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
+          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <div class="mb-2 text-xl font-bold">Table of Contents</div>
+            <ul id="toc-list" class="space-y-2 list-none">
+                <!-- JavaScript will dynamically fill this list -->
+            </ul>
+        </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
     <header>
       <h1>
         <a href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html"
@@ -57,7 +78,7 @@
       </h1>
       
     </header>
-    <h2>基本用法</h2>
+    <h2>1 基本用法</h2>
 <p>Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先定义的类，用于快速构建响应式布局。在 Tailwind 中，网格布局是通过一系列的工具类来实现的，这些类基于 CSS Grid Layout。以下是 Tailwind Grid 的基本用法：</p>
 <p>1.<strong>创建一个网格容器</strong>：首先，你需要创建一个网格容器。这可以通过使用 <code>grid</code> 类来实现。</p>
 <div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;grid&quot;</span><span class="p">&gt;</span>
@@ -123,9 +144,9 @@
 
 <p>6.<strong>网格行</strong>：类似于列，你也可以使用 <code>grid-rows-{n}</code> 来定义行数。</p>
 <p>Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建响应式布局变得非常快捷和直观。记得要根据你的项目需求和设计选择合适的类。</p>
-<h2>添加跨度</h2>
+<h2>2 添加跨度</h2>
 <p>在 Tailwind CSS 中，使用 <code>span</code> 类可以控制网格项(grid items)跨越多少列（column-span）或行（row-span）。这是实现更复杂网格布局的关键部分，允许你定义某个网格项应该占据的空间大小。</p>
-<h3>列跨度（Column Span）</h3>
+<h3>2.1 列跨度（Column Span）</h3>
 <ul>
 <li><strong>使用 <code>col-span-{n}</code> 类</strong>：这个类用于定义一个网格项应跨越多少列。例如，<code>col-span-2</code> 表示网格项将跨越两列。</li>
 </ul>
@@ -142,7 +163,7 @@
     <div class="bg-gray-300">3</div>
 </div>
 
-<h3>行跨度（Row Span）</h3>
+<h3>2.2 行跨度（Row Span）</h3>
 <ul>
 <li><strong>使用 <code>row-span-{n}</code> 类</strong>：与列跨度类似，行跨度类定义一个网格项应跨越多少行。例如，<code>row-span-3</code> 表示网格项将跨越三行。</li>
 </ul>
@@ -161,7 +182,7 @@
     <div class="bg-yellow-400">4</div>
 </div>
 
-<h3>响应式设计</h3>
+<h3>2.3 响应式设计</h3>
 <p>与其他 Tailwind 类一样，列跨度和行跨度也可以结合响应式前缀来使用，以适应不同屏幕尺寸。</p>
 <ul>
 <li><strong>响应式跨度</strong>：例如，<code>md:col-span-2</code> 表示在中等尺寸屏幕上，元素将跨越两列。</li>
@@ -180,7 +201,7 @@
 </div>
 
 <p>使用这些类，你可以灵活地定义网格布局中各项的大小和位置，从而创建出既美观又响应式的布局设计。</p>
-<h2>总结</h2>
+<h2>3 总结</h2>
 <p>在使用 Tailwind CSS 创建网格布局时，通常遵循以下步骤：</p>
 <ol>
 <li><strong>定义网格容器</strong>：首先，通过使用 <code>grid</code> 类将一个元素定义为网格容器。</li>
@@ -190,7 +211,7 @@
 <li><strong>添加响应式设计</strong>：最后，可以结合使用响应式前缀（如 <code>md:</code>, <code>lg:</code>）来调整不同屏幕尺寸下的网格布局。</li>
 </ol>
 <p>通过这些步骤，你可以灵活地创建各种网格布局，从简单的均匀网格到复杂的跨行或跨列布局，都可以用 Tailwind CSS 快速实现。</p>
-<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
   <p>
     Published: <time datetime="2023-12-25T00:00:00+08:00">
     2023-12-25
@@ -211,18 +232,31 @@
          href="https://qrkks.github.io/tag/tailwind-css.html">tailwind css</a>
   </p>
 </footer><section id="erectContainer"
-         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
   <div id="twikoo">
   </div>
-  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
   <script>
-  twikoo.init({
-    envId: 'https://39.107.126.13:8092/',
-    path: '2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html'
-  });
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
   </script>
 </section>  </article>
-    </main>
+      </main>
+    </div>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,

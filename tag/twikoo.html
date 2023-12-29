@@ -5,6 +5,12 @@
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
       <title>
 Python Website Building Learning Journal - twikoo tag      </title>
       <meta charset="utf-8" />
@@ -16,7 +22,7 @@ Python Website Building Learning Journal - twikoo tag      </title>
               title="Python Website Building Learning Journal Full Atom Feed" />
   </head>
   <body class="font-noto-sans-sc ">
-    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
       <hgroup>
   <h1>
     <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
@@ -29,6 +35,10 @@ Python Website Building Learning Journal - twikoo tag      </title>
 >Blog Log</a>
               </li>
               <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
 >Pelican</a>
               </li>
@@ -39,7 +49,8 @@ Python Website Building Learning Journal - twikoo tag      </title>
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
+    <div class="flex flex-col lg:flex-row">
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
     <article class="text-gray-500">
       <header>
         <h2>
@@ -49,7 +60,7 @@ Python Website Building Learning Journal - twikoo tag      </title>
         </h2>
       </header>
       <section>
-          由于 twikoo 提供了 官方的容器和YAML文件，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。 实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。 服务器端 YAML 由于我的服务器上已经运行了一个...
+          由于 twikoo 提供了 官方的容器和YAML文件，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。 实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。 1 服务器端 1.1 YAML...
       </section>
       <footer class="flex justify-start my-5 text-sm text-gray-400 not-prose">
         <p>
@@ -58,7 +69,8 @@ Python Website Building Learning Journal - twikoo tag      </title>
         </p>
       </footer>
           </article>
-    </main>
+      </main>
+    </div>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal - Taiwind CSS</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/taiwind-css.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-26T13:09:05+08:00</updated><entry><title>Tailwind CSS 中 Grid 的使用</title><link href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html" rel="alternate"></link><published>2023-12-25T00:00:00+08:00</published><updated>2023-12-26T13:09:05+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html</id><summary type="html">&lt;p&gt;讨论Tailwind CSS 中的 Grid 的使用，三步走：先定义是个grid，然后定义有几行几列，然后再定义有没有跨行。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;基本用法&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal - Taiwind CSS</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/taiwind-css.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-26T13:09:05+08:00</updated><entry><title>Tailwind CSS 中 Grid 的使用</title><link href="https://qrkks.github.io/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html" rel="alternate"></link><published>2023-12-25T00:00:00+08:00</published><updated>2023-12-26T13:09:05+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/tailwind-css-zhong-grid-de-shi-yong.html</id><summary type="html">&lt;p&gt;讨论Tailwind CSS 中的 Grid 的使用，三步走：先定义是个grid，然后定义有几行几列，然后再定义有没有跨行。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 基本用法&lt;/h2&gt;
 &lt;p&gt;Tailwind CSS 是一个功能类优先的 CSS 框架，它提供了一组预先定义的类，用于快速构建响应式布局。在 Tailwind 中，网格布局是通过一系列的工具类来实现的，这些类基于 CSS Grid Layout。以下是 Tailwind Grid 的基本用法：&lt;/p&gt;
 &lt;p&gt;1.&lt;strong&gt;创建一个网格容器&lt;/strong&gt;：首先，你需要创建一个网格容器。这可以通过使用 &lt;code&gt;grid&lt;/code&gt; 类来实现。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;grid&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -65,9 +65,9 @@
 
 &lt;p&gt;6.&lt;strong&gt;网格行&lt;/strong&gt;：类似于列，你也可以使用 &lt;code&gt;grid-rows-{n}&lt;/code&gt; 来定义行数。&lt;/p&gt;
 &lt;p&gt;Tailwind 的这种方法极大地简化了 CSS Grid 的使用，并使得创建响应式布局变得非常快捷和直观。记得要根据你的项目需求和设计选择合适的类。&lt;/p&gt;
-&lt;h2&gt;添加跨度&lt;/h2&gt;
+&lt;h2&gt;2 添加跨度&lt;/h2&gt;
 &lt;p&gt;在 Tailwind CSS 中，使用 &lt;code&gt;span&lt;/code&gt; 类可以控制网格项(grid items)跨越多少列（column-span）或行（row-span）。这是实现更复杂网格布局的关键部分，允许你定义某个网格项应该占据的空间大小。&lt;/p&gt;
-&lt;h3&gt;列跨度（Column Span）&lt;/h3&gt;
+&lt;h3&gt;2.1 列跨度（Column Span）&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;使用 &lt;code&gt;col-span-{n}&lt;/code&gt; 类&lt;/strong&gt;：这个类用于定义一个网格项应跨越多少列。例如，&lt;code&gt;col-span-2&lt;/code&gt; 表示网格项将跨越两列。&lt;/li&gt;
 &lt;/ul&gt;
@@ -84,7 +84,7 @@
     &lt;div class="bg-gray-300"&gt;3&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h3&gt;行跨度（Row Span）&lt;/h3&gt;
+&lt;h3&gt;2.2 行跨度（Row Span）&lt;/h3&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;使用 &lt;code&gt;row-span-{n}&lt;/code&gt; 类&lt;/strong&gt;：与列跨度类似，行跨度类定义一个网格项应跨越多少行。例如，&lt;code&gt;row-span-3&lt;/code&gt; 表示网格项将跨越三行。&lt;/li&gt;
 &lt;/ul&gt;
@@ -103,7 +103,7 @@
     &lt;div class="bg-yellow-400"&gt;4&lt;/div&gt;
 &lt;/div&gt;
 
-&lt;h3&gt;响应式设计&lt;/h3&gt;
+&lt;h3&gt;2.3 响应式设计&lt;/h3&gt;
 &lt;p&gt;与其他 Tailwind 类一样，列跨度和行跨度也可以结合响应式前缀来使用，以适应不同屏幕尺寸。&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;响应式跨度&lt;/strong&gt;：例如，&lt;code&gt;md:col-span-2&lt;/code&gt; 表示在中等尺寸屏幕上，元素将跨越两列。&lt;/li&gt;
@@ -122,7 +122,7 @@
 &lt;/div&gt;
 
 &lt;p&gt;使用这些类，你可以灵活地定义网格布局中各项的大小和位置，从而创建出既美观又响应式的布局设计。&lt;/p&gt;
-&lt;h2&gt;总结&lt;/h2&gt;
+&lt;h2&gt;3 总结&lt;/h2&gt;
 &lt;p&gt;在使用 Tailwind CSS 创建网格布局时，通常遵循以下步骤：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;定义网格容器&lt;/strong&gt;：首先，通过使用 &lt;code&gt;grid&lt;/code&gt; 类将一个元素定义为网格容器。&lt;/li&gt;

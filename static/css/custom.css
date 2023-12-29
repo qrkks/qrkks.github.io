@@ -54,3 +54,30 @@
   border: 1px solid #d8d2d2 !important; /* 绿色边框 */
   color: #bebbbb !important; /* 绿色文字 */
 }
+
+/* #table-of-contents {
+  position: fixed; 
+  top: 10px;
+  right: 10px;
+  border: 1px solid #ddd;
+  padding: 10px;
+}
+
+#table-of-contents ul {
+  list-style: none;
+  padding: 0;
+}
+
+#table-of-contents li a {
+  text-decoration: none;
+  color: blue;
+}
+
+#table-of-contents a.active {
+  color: red; 
+} */
+
+/* #toc-list a.font-bold.text-red-500 {
+  font-weight: bold;
+  color: red;
+} */

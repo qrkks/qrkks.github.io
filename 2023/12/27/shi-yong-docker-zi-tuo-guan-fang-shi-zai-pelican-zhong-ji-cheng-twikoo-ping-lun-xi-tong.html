@@ -6,6 +6,12 @@
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
       <title>
   Python Website Building Learning Journal - 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统
       </title>
@@ -25,7 +31,7 @@
     <meta name="tags" content="twikoo" />
   </head>
   <body class="font-noto-sans-sc ">
-    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
       <hgroup>
           <h2>
             <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
@@ -38,6 +44,10 @@
 >Blog Log</a>
               </li>
               <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
  aria-current="page" >Pelican</a>
               </li>
@@ -48,8 +58,19 @@
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
-  <article>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
+          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <div class="mb-2 text-xl font-bold">Table of Contents</div>
+            <ul id="toc-list" class="space-y-2 list-none">
+                <!-- JavaScript will dynamically fill this list -->
+            </ul>
+        </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
     <header>
       <h1>
         <a href="https://qrkks.github.io/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html"
@@ -60,8 +81,8 @@
     </header>
     <p>由于 twikoo 提供了 <a href="https://twikoo.js.org/backend.html#%E7%A7%81%E6%9C%89%E9%83%A8%E7%BD%B2-docker">官方的容器和YAML文件</a>，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。</p>
 <p>实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。</p>
-<h2>服务器端</h2>
-<h3>YAML</h3>
+<h2>1 服务器端</h2>
+<h3>1.1 YAML</h3>
 <p>由于我的服务器上已经运行了一个 Nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
 <span class="nt">services</span><span class="p">:</span>
@@ -82,7 +103,7 @@
 <span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 
-<h4>Twikoo + Nginx 容器</h4>
+<h4>1.1.1 Twikoo + Nginx 容器</h4>
 <p>如果本来没有 Nginx 的话，可以使用以下 YAML 文件让 Twikoo 和 Nginx 一起启动，在同一个 YAML 里启动的容器会默认在同一个容器网络里：</p>
 <div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;3&quot;</span>
 <span class="nt">services</span><span class="p">:</span>
@@ -105,7 +126,7 @@
 <span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">./certs:var/certs/</span>
 </code></pre></div>
 
-<h3>Nginx 代理</h3>
+<h3>1.2 Nginx 代理</h3>
 <p>使用 Nginx 反向代理 twikoo 并进行 https 加密。 在很多情况下使用 https 加密是必要的，如果你的静态网站是使用 https 加密的，但是网页内的部分内容使用 http 通信，这在大部分现代浏览器上是不被允许的，请求会被拒绝。</p>
 <p>在 nginx 配置文件里加上 server 块，设置你希望的监听端口，此处设置为 8092（自定义）：</p>
 <div class="highlight"><pre><span></span><code><span class="k">server</span><span class="w"> </span><span class="p">{</span>
@@ -124,7 +145,7 @@
 <span class="w">    </span><span class="p">}</span>
 </code></pre></div>
 
-<h2>客户端</h2>
+<h2>2 客户端</h2>
 <p>官方文档没有提供 pelican 客户端的配置示例，我在通用示例上做了一下修改以适应 pelican 模板。</p>
 <p>在需要添加评论的网页（比如 article 模板文件下）的末尾添加以下脚本：</p>
 <div class="highlight"><pre><span></span><code>  <span class="p">&lt;</span><span class="nt">div</span> <span class="na">id</span><span class="o">=</span><span class="s">&quot;twikoo&quot;</span><span class="p">&gt;</span>
@@ -137,7 +158,7 @@
 <span class="w">  </span><span class="p">});</span>
 <span class="w">  </span><span class="p">&lt;/</span><span class="nt">script</span><span class="p">&gt;</span>
 </code></pre></div>
-<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
   <p>
     Published: <time datetime="2023-12-27T00:00:00+08:00">
     2023-12-27
@@ -160,18 +181,31 @@
          href="https://qrkks.github.io/tag/twikoo.html">twikoo</a>
   </p>
 </footer><section id="erectContainer"
-         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
   <div id="twikoo">
   </div>
-  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
   <script>
-  twikoo.init({
-    envId: 'https://39.107.126.13:8092/',
-    path: '2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html'
-  });
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
   </script>
 </section>  </article>
-    </main>
+      </main>
+    </div>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,

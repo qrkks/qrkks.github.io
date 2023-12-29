@@ -5,6 +5,12 @@
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
       <title>
 Python Website Building Learning Journal - tailwind css tag      </title>
       <meta charset="utf-8" />
@@ -16,7 +22,7 @@ Python Website Building Learning Journal - tailwind css tag      </title>
               title="Python Website Building Learning Journal Full Atom Feed" />
   </head>
   <body class="font-noto-sans-sc ">
-    <header class="flex justify-between p-3 text-gray-500 bg-gray-200">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
       <hgroup>
   <h1>
     <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
@@ -29,6 +35,10 @@ Python Website Building Learning Journal - tailwind css tag      </title>
 >Blog Log</a>
               </li>
               <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
                 <a href="https://qrkks.github.io/category/pelican.html"
 >Pelican</a>
               </li>
@@ -39,7 +49,8 @@ Python Website Building Learning Journal - tailwind css tag      </title>
         </ul>
       </nav>
     </header>
-    <main class="max-w-4xl p-5 mx-auto prose lg:col-span-3">
+    <div class="flex flex-col lg:flex-row">
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
     <article class="text-gray-500">
       <header>
         <h2>
@@ -58,7 +69,8 @@ Python Website Building Learning Journal - tailwind css tag      </title>
         </p>
       </footer>
           </article>
-    </main>
+      </main>
+    </div>
     <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
       <address class="not-italic text-center">
         Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,

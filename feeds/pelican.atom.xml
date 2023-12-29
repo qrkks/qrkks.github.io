@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal - Pelican</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/pelican.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-28T17:06:48+08:00</updated><entry><title>使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统</title><link href="https://qrkks.github.io/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html" rel="alternate"></link><published>2023-12-27T00:00:00+08:00</published><updated>2023-12-28T17:06:48+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-27:/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html</id><summary type="html"></summary><content type="html">&lt;p&gt;由于 twikoo 提供了 &lt;a href="https://twikoo.js.org/backend.html#%E7%A7%81%E6%9C%89%E9%83%A8%E7%BD%B2-docker"&gt;官方的容器和YAML文件&lt;/a&gt;，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。&lt;/p&gt;
 &lt;p&gt;实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。&lt;/p&gt;
-&lt;h2&gt;服务器端&lt;/h2&gt;
-&lt;h3&gt;YAML&lt;/h3&gt;
+&lt;h2&gt;1 服务器端&lt;/h2&gt;
+&lt;h3&gt;1.1 YAML&lt;/h3&gt;
 &lt;p&gt;由于我的服务器上已经运行了一个 Nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
 &lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -23,7 +23,7 @@
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;external&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h4&gt;Twikoo + Nginx 容器&lt;/h4&gt;
+&lt;h4&gt;1.1.1 Twikoo + Nginx 容器&lt;/h4&gt;
 &lt;p&gt;如果本来没有 Nginx 的话，可以使用以下 YAML 文件让 Twikoo 和 Nginx 一起启动，在同一个 YAML 里启动的容器会默认在同一个容器网络里：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;quot;3&amp;quot;&lt;/span&gt;
 &lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
@@ -46,7 +46,7 @@
 &lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;./certs:var/certs/&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3&gt;Nginx 代理&lt;/h3&gt;
+&lt;h3&gt;1.2 Nginx 代理&lt;/h3&gt;
 &lt;p&gt;使用 Nginx 反向代理 twikoo 并进行 https 加密。 在很多情况下使用 https 加密是必要的，如果你的静态网站是使用 https 加密的，但是网页内的部分内容使用 http 通信，这在大部分现代浏览器上是不被允许的，请求会被拒绝。&lt;/p&gt;
 &lt;p&gt;在 nginx 配置文件里加上 server 块，设置你希望的监听端口，此处设置为 8092（自定义）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;server&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
@@ -65,7 +65,7 @@
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h2&gt;客户端&lt;/h2&gt;
+&lt;h2&gt;2 客户端&lt;/h2&gt;
 &lt;p&gt;官方文档没有提供 pelican 客户端的配置示例，我在通用示例上做了一下修改以适应 pelican 模板。&lt;/p&gt;
 &lt;p&gt;在需要添加评论的网页（比如 article 模板文件下）的末尾添加以下脚本：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;  &lt;span class="p"&gt;&amp;lt;&lt;/span&gt;&lt;span class="nt"&gt;div&lt;/span&gt; &lt;span class="na"&gt;id&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;twikoo&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
@@ -77,15 +77,15 @@
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;path&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;{{ article.url }}&amp;#39;&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
 &lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;script&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="twikoo"></category></entry><entry><title>将pelican自动化部署到Github Pages的action文件</title><link href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html" rel="alternate"></link><published>2023-12-25T00:00:00+08:00</published><updated>2023-12-26T13:29:51+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/deploy-pelican-to-github-pages-action.html</id><summary type="html">&lt;p&gt;本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;思路&lt;/h2&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="twikoo"></category></entry><entry><title>将pelican自动化部署到Github Pages的action文件</title><link href="https://qrkks.github.io/2023/12/25/deploy-pelican-to-github-pages-action.html" rel="alternate"></link><published>2023-12-25T00:00:00+08:00</published><updated>2023-12-26T13:29:51+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-25:/2023/12/25/deploy-pelican-to-github-pages-action.html</id><summary type="html">&lt;p&gt;本文展示了一个示例 Action 文件，其中包括从代码检出到构建和部署的所有步骤。此外，我们介绍了一些常用的 GitHub Actions 操作，如 'actions/checkout@v2' 和 'actions/setup-python@v2'，以及如何使用 'peaceiris/actions-gh-pages@v3' 操作将生成的网站发布到 GitHub Pages。这个文章帮助您轻松自动化部署 Pelican 网站并提高可访问性。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 思路&lt;/h2&gt;
 &lt;p&gt;将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。&lt;/p&gt;
 &lt;p&gt;因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。&lt;/p&gt;
-&lt;h2&gt;准备&lt;/h2&gt;
+&lt;h2&gt;2 准备&lt;/h2&gt;
 &lt;ol&gt;
 &lt;li&gt;设置好github pages，设置main，gh-pages两个分支。&lt;/li&gt;
 &lt;li&gt;根目录&lt;code&gt;pip freeze &amp;gt; requirements.txt&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;h2&gt;Action 文件&lt;/h2&gt;
+&lt;h2&gt;3 Action 文件&lt;/h2&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="c1"&gt;# This YAML file is used to define a GitHub Actions workflow for deploying a Pelican website to GitHub Pages.&lt;/span&gt;
 &lt;span class="c1"&gt;# The workflow will be triggered when there is a push event on the &amp;#39;main&amp;#39; branch.&lt;/span&gt;
 
@@ -131,7 +131,7 @@
 &lt;span class="w"&gt;          &lt;/span&gt;&lt;span class="nt"&gt;publish_dir&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;./projects/tech/output&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
-&lt;h3&gt;actions/checkout@v2&lt;/h3&gt;
+&lt;h3&gt;3.1 actions/checkout@v2&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;actions/checkout@v2&lt;/code&gt; 是一个 GitHub Actions 中的一个预定义的操作（也称为 Action），用于将代码仓库检出到工作环境中。这个操作允许您在 GitHub Actions 工作流程中获取代码库的副本，以便在后续步骤中执行构建、测试、部署等操作。&lt;/p&gt;
 &lt;p&gt;具体来说，&lt;code&gt;actions/checkout@v2&lt;/code&gt; 操作做了以下事情：&lt;/p&gt;
 &lt;ol&gt;
@@ -148,7 +148,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;这个步骤将在工作流中使用 &lt;code&gt;actions/checkout@v2&lt;/code&gt; 操作来检出代码。&lt;/p&gt;
-&lt;h3&gt;actions/setup-python@v2&lt;/h3&gt;
+&lt;h3&gt;3.2 actions/setup-python@v2&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;actions/setup-python@v2&lt;/code&gt; 是 GitHub Actions 中的一个官方操作，用于设置 Python 环境，以便您可以在 GitHub Actions 工作流程中执行 Python 相关的任务。它允许您指定要使用的 Python 版本，并设置 Python 环境的各种配置选项。&lt;/p&gt;
 &lt;p&gt;具体来说，&lt;code&gt;actions/setup-python@v2&lt;/code&gt; 操作可以执行以下操作：&lt;/p&gt;
 &lt;ol&gt;
@@ -174,7 +174,7 @@
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;p&gt;上述示例中，工作流程将设置 Python 3.8 环境以供后续步骤使用。您可以根据您的项目需求和 Python 版本要求来配置此操作。&lt;/p&gt;
-&lt;h3&gt;peaceiris/actions-gh-pages@v3&lt;/h3&gt;
+&lt;h3&gt;3.3 peaceiris/actions-gh-pages@v3&lt;/h3&gt;
 &lt;p&gt;&lt;code&gt;peaceiris/actions-gh-pages@v3&lt;/code&gt; 是一个 GitHub Actions 的操作（Action），用于将静态网站或其他内容发布到 GitHub Pages。这个操作是由社区维护的，它简化了将内容发布到 GitHub Pages 的流程。&lt;/p&gt;
 &lt;p&gt;具体来说，&lt;code&gt;peaceiris/actions-gh-pages&lt;/code&gt; 操作提供了以下功能：&lt;/p&gt;
 &lt;ol&gt;
@@ -193,7 +193,7 @@
 &lt;/ol&gt;
 &lt;p&gt;GitHub Actions 的操作是用于自动化 CI/CD 流程的组件，您可以在 GitHub Actions 工作流程中使用它们。&lt;code&gt;peaceiris/actions-gh-pages&lt;/code&gt; 操作通常用于构建和发布静态网站，以便在 GitHub Pages 上托管。&lt;/p&gt;
 &lt;p&gt;要了解如何在 GitHub Actions 中使用 &lt;code&gt;peaceiris/actions-gh-pages&lt;/code&gt; 操作，请查阅相关文档和示例。操作的版本号 &lt;code&gt;v3&lt;/code&gt; 表示操作的版本，通常建议使用最新版本以获得最新的功能和改进。&lt;/p&gt;
-&lt;h2&gt;问题&lt;/h2&gt;
-&lt;h3&gt;权限问题报错&lt;/h3&gt;
+&lt;h2&gt;4 问题&lt;/h2&gt;
+&lt;h3&gt;4.1 权限问题报错&lt;/h3&gt;
 &lt;p&gt;解决方法：修改actions权限。&lt;/p&gt;
 &lt;p&gt;参考Stack Overflow的回答：&lt;a href="https://stackoverflow.com/questions/76023778/action-failed-with-the-process-usr-bin-git-failed-with-exit-code-128"&gt;Action failed with "The process '/usr/bin/git' failed with exit code 128"&lt;/a&gt;&lt;/p&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="github actions"></category></entry></feed>

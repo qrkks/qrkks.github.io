@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script 
+              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+
+      <title>
+  Python Website Building Learning Journal - Python 的 `*` 与Javascript 的`...` ： 展开运算符的比较
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/code-learning.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="python" />
+    <meta name="tags" content="编程" />
+    <meta name="tags" content="展开运算符" />
+    <meta name="tags" content="编程语言比较" />
+    <meta name="tags" content="python 与 javascript 比较" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+ aria-current="page" >Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
+          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <div class="mb-2 text-xl font-bold">Table of Contents</div>
+            <ul id="toc-list" class="space-y-2 list-none">
+                <!-- JavaScript will dynamically fill this list -->
+            </ul>
+        </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html"
+           rel="bookmark"
+           title="Permalink to Python 的 `*` 与Javascript 的`...` ： 展开运算符的比较">Python 的 `*` 与Javascript 的`...` ： 展开运算符的比较</a>
+      </h1>
+      
+    </header>
+    <h2>1 解决一个实际问题</h2>
+<p>今天，在处理 DOM 操作时，我遇到了一个有趣的场景。问题出在我想要优化下面这段 JavaScript 代码时：</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">bounding</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">bounding</span><span class="p">.</span><span class="nx">bottom</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;#toc-list a&#39;</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;font-bold&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-red-500&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;font-bold&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-red-500&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>在这个代码块中，我发现 <code>classList.add</code> 和 <code>classList.remove</code> 方法都使用了相同的类，这意味着我需要在两个不同的地方维护同样的信息。为了提高代码的可维护性，我决定将这些类名提取到一个变量中。但是，我遇到了一个问题：当我尝试将包含空格的字符串 <code>'font-bold text-red-500'</code> 作为类名参数传递给 <code>classList.add</code> 和 <code>classList.remove</code> 方法时，它们无法按预期工作。</p>
+<p>为了解决这个问题，我想到了两种方法：</p>
+<h3>方法一：使用数组和展开运算符</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;text-sky-500&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;font-bold&#39;</span><span class="p">];</span>
+
+<span class="c1">// 在函数中使用展开运算符</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(...</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 移除多个类</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 添加多个类</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<h3>方法二：使用字符串、split 和展开运算符</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;text-sky-500 font-bold&#39;</span><span class="p">;</span>
+
+<span class="c1">// 将字符串转换为数组，并使用展开运算符</span>
+<span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(...</span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>这个过程让我想到了 Python 中的 <code>*</code>，两者在功能上好像有些相似。</p>
+<h2>2 JavaScript 中的展开运算符 <code>...</code></h2>
+<p>JavaScript 的展开运算符（<code>...</code>）是一个多功能且强大的工具。它不仅可以在函数调用中展开数组元素为单独的参数，还可以在数组和对象字面量中用于合并。</p>
+<h3>2.1 函数调用</h3>
+<p>在函数调用中，<code>...</code> 可以将数组元素展开为单独的参数。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">));</span><span class="w">  </span><span class="c1">// 输出: 6</span>
+</code></pre></div>
+
+<h3>2.2 数组和对象合并</h3>
+<p><code>...</code> 运算符还可以用于数组和对象的合并操作。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">arr1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">arr1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">arr2</span><span class="p">];</span><span class="w">  </span><span class="c1">// 合并数组</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">obj1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">obj2</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 合并对象</span>
+</code></pre></div>
+
+<h2>3 JavaScript 与 Python: 展开运算符的对比</h2>
+<p>实际上，将 Python 中的 <code>*</code> 和 <code>**</code> 两个运算符共同与 JavaScript 中的 <code>...</code> 运算符对比更为合理，因为 Python 的这两个运算符结合起来覆盖了 JavaScript 中 <code>...</code> 运算符的大部分功能。</p>
+<h3>3.1 Python 中的 <code>*</code> 和 <code>**</code> 运算符</h3>
+<p>1.<strong><code>*</code> 用于列表和元组</strong>：在 Python 中，<code>*</code> 用于将列表或元组展开为单独的值，这在函数参数传递和列表解构中非常有用。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 合并列表</span>
+<span class="n">list1</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">list2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<span class="n">merged_list</span> <span class="o">=</span> <span class="p">[</span><span class="o">*</span><span class="n">list1</span><span class="p">,</span> <span class="o">*</span><span class="n">list2</span><span class="p">]</span>  <span class="c1"># 结果: [1, 2, 3, 4, 5, 6]</span>
+</code></pre></div>
+
+<div class="highlight"><pre><span></span><code><span class="c1"># 合并元组</span>
+<span class="n">tuple1</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">tuple2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="n">merged_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="o">*</span><span class="n">tuple1</span><span class="p">,</span> <span class="o">*</span><span class="n">tuple2</span><span class="p">)</span>  <span class="c1"># 结果: (1, 2, 3, 4, 5, 6)</span>
+</code></pre></div>
+
+<p>2.<strong><code>**</code> 用于字典</strong>：<code>**</code> 用于展开字典，将键值对作为单独的项展开，这在合并多个字典或将字典转换为函数的关键字参数时非常有用。</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># 合并字典</span>
+<span class="n">dict1</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;a&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">}</span>
+<span class="n">dict2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="mi">4</span><span class="p">}</span>
+<span class="n">merged_dict</span> <span class="o">=</span> <span class="p">{</span><span class="o">**</span><span class="n">dict1</span><span class="p">,</span> <span class="o">**</span><span class="n">dict2</span><span class="p">}</span>  <span class="c1"># {&#39;a&#39;: 1, &#39;b&#39;: 2, &#39;c&#39;: 3, &#39;d&#39;: 4}</span>
+</code></pre></div>
+
+<h3>3.2 JavaScript 中的 <code>...</code> 运算符</h3>
+<ol>
+<li><strong>数组和对象展开</strong>：<code>...</code> 用于展开数组和对象中的元素或属性。</li>
+<li><strong>函数参数</strong>：同样可以将数组展开为函数的多个参数。</li>
+<li><strong>解构赋值</strong>：<code>...</code> 还被用于数组和对象的解构赋值。</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="c1">// 合并对象</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">c</span><span class="o">:</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="nx">d</span><span class="o">:</span><span class="w"> </span><span class="mf">4</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">obj1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">obj2</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// { a: 1, b: 2, c: 3, d: 4 }</span>
+</code></pre></div>
+
+<h3>3.3 对比总结</h3>
+<ul>
+<li>在处理数组和元组（或类似结构）方面，Python 的 <code>*</code> 与 JavaScript 的 <code>...</code> 类似。</li>
+<li>在处理对象（字典）方面，Python 的 <code>**</code> 与 JavaScript 的 <code>...</code> 类似。</li>
+<li>JavaScript 的 <code>...</code> 提供了一种统一的方式来处理数组、对象和其它类型的数据，而 Python 则通过 <code>*</code> 和 <code>**</code> 分别处理不同类型的数据。</li>
+</ul>
+<p>因此，Python 的 <code>*</code> 和 <code>**</code> 结合起来，确实在功能上与 JavaScript 的 <code>...</code> 有些相似。这两种语言虽然在语法和具体实现上有所不同，但在数据展开和合并的功能上有着类似的应用。</p>
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+  <p>
+    Published: <time datetime="2023-12-29T00:00:00+08:00">
+    2023-12-29
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-29T22:34:30+08:00">
+    2023-12-29
+  </time>
+</p>
+  <p class="col-span-2 ">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/code-learning.html">Code Learning</a>
+  </p>
+  <p class="col-span-2">
+    Tags:
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript.html">javascript</a>
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/python.html">python</a>
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/bian-cheng.html">编程</a>
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/zhan-kai-yun-suan-fu.html">展开运算符</a>
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/bian-cheng-yu-yan-bi-jiao.html">编程语言比较</a>
+      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/python-yu-javascript-bi-jiao.html">python 与 javascript 比较</a>
+  </p>
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>
