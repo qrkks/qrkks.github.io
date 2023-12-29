@@ -8,7 +8,7 @@ date: 2023-12-29
 created: 2023-12-29 19:36:11
 modified: 2023-12-29 22:34:30
 status: 
-summary: 在本篇博客中，我们探讨了JavaScript中的展开运算符 `...` 与Python中的 `*` 运算符的功能和应用场景的差异。通过实际代码示例，我们解释了如何在JavaScript中有效地使用展开运算符来操作DOM元素的类列表，以及这与Python中的类似运算符的对比。此外，文章还深入分析了JavaScript展开运算符在函数调用、数组和对象操作中的广泛用途，与Python中相对受限的应用进行了比较。
+summary: 本文对比了JavaScript的展开运算符`...`与Python中的`*`和`**`运算符，重点介绍了它们在处理数组、对象和函数参数方面的不同用法。通过具体的代码示例，文章展示了如何在JavaScript和Python中使用这些运算符进行数据结构的展开和合并。
 allDay: false
 startTime: 19:30
 endTime: 20:00
