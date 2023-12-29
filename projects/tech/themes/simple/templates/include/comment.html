@@ -1,12 +1,24 @@
 <section id="erectContainer"
-         class="not-prose erect-it py-10 my-10 px-5 border-t border-gray-400 font-Arial">
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
   <div id="twikoo">
   </div>
-  <script src="https://cdn.staticfile.org/twikoo/1.6.27/twikoo.all.min.js"></script>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
   <script>
-  twikoo.init({
-    envId: 'https://39.107.126.13:8092/',
-    path: '{{ article.url }}'
-  });
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '{{ article.url }}'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
   </script>
 </section>

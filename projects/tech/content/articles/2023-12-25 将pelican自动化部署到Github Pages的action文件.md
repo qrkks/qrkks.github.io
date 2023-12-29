@@ -15,18 +15,18 @@ endTime: 15:00
 completed: null
 ---
 
-## 思路
+## 1 思路
 
 将pelican项目push到github pages仓库main分支时，自动构建output文件夹到gh-pages分支。
 
 因为github默认优先检查ph-pages分支来生成网站，所以可以使用同一个仓库的不同分支来分别存储pelican项目代码和静态网页文件：main分支来存储项目代码，gh-pages存放pelican项目生成的静态网页文件。
 
-## 准备
+## 2 准备
 
 1. 设置好github pages，设置main，gh-pages两个分支。
 2. 根目录`pip freeze > requirements.txt`。
 
-## Action 文件
+## 3 Action 文件
 
 ```yaml
 # This YAML file is used to define a GitHub Actions workflow for deploying a Pelican website to GitHub Pages.
@@ -74,7 +74,7 @@ jobs:
           publish_dir: ./projects/tech/output
 ```
 
-### actions/checkout@v2
+### 3.1 actions/checkout@v2
 
 `actions/checkout@v2` 是一个 GitHub Actions 中的一个预定义的操作（也称为 Action），用于将代码仓库检出到工作环境中。这个操作允许您在 GitHub Actions 工作流程中获取代码库的副本，以便在后续步骤中执行构建、测试、部署等操作。
 
@@ -98,7 +98,7 @@ steps:
 
 这个步骤将在工作流中使用 `actions/checkout@v2` 操作来检出代码。
 
-### actions/setup-python@v2
+### 3.2 actions/setup-python@v2
 
 `actions/setup-python@v2` 是 GitHub Actions 中的一个官方操作，用于设置 Python 环境，以便您可以在 GitHub Actions 工作流程中执行 Python 相关的任务。它允许您指定要使用的 Python 版本，并设置 Python 环境的各种配置选项。
 
@@ -125,7 +125,7 @@ steps:
 
 上述示例中，工作流程将设置 Python 3.8 环境以供后续步骤使用。您可以根据您的项目需求和 Python 版本要求来配置此操作。
 
-### peaceiris/actions-gh-pages@v3
+### 3.3 peaceiris/actions-gh-pages@v3
 
 `peaceiris/actions-gh-pages@v3` 是一个 GitHub Actions 的操作（Action），用于将静态网站或其他内容发布到 GitHub Pages。这个操作是由社区维护的，它简化了将内容发布到 GitHub Pages 的流程。
 
@@ -143,9 +143,9 @@ GitHub Actions 的操作是用于自动化 CI/CD 流程的组件，您可以在 
 
 要了解如何在 GitHub Actions 中使用 `peaceiris/actions-gh-pages` 操作，请查阅相关文档和示例。操作的版本号 `v3` 表示操作的版本，通常建议使用最新版本以获得最新的功能和改进。
 
-## 问题
+## 4 问题
 
-### 权限问题报错
+### 4.1 权限问题报错
 
 解决方法：修改actions权限。
 

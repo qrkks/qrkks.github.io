@@ -19,9 +19,9 @@ completed: null
 
 实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。
 
-## 服务器端
+## 1 服务器端
 
-### YAML
+### 1.1 YAML
 
 由于我的服务器上已经运行了一个 Nginx 容器服务，所以只在官方的 YAML 文件中加上网络的配置，将其加入到已有的 nginx 网络，并监听 twikoo 容器 8080 端口即可。
 
@@ -45,7 +45,7 @@ networks:
     external: true
 ```
 
-#### Twikoo + Nginx 容器
+#### 1.1.1 Twikoo + Nginx 容器
 
 如果本来没有 Nginx 的话，可以使用以下 YAML 文件让 Twikoo 和 Nginx 一起启动，在同一个 YAML 里启动的容器会默认在同一个容器网络里：
 
@@ -71,7 +71,7 @@ services:
       - ./certs:var/certs/
 ```
 
-### Nginx 代理
+### 1.2 Nginx 代理
 
 使用 Nginx 反向代理 twikoo 并进行 https 加密。 在很多情况下使用 https 加密是必要的，如果你的静态网站是使用 https 加密的，但是网页内的部分内容使用 http 通信，这在大部分现代浏览器上是不被允许的，请求会被拒绝。
 
@@ -94,7 +94,7 @@ server {
     }
 ```
 
-## 客户端
+## 2 客户端
 
 官方文档没有提供 pelican 客户端的配置示例，我在通用示例上做了一下修改以适应 pelican 模板。
 

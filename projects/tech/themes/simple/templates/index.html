@@ -10,6 +10,10 @@
       All articles
     </h2>
   {% endblock %} #}
+  {% block left_side %}
+  {% endblock left_side %}
+  {% block right_side %}
+  {% endblock right_side %}
   {% for article in articles_page.object_list %}
     <article class="text-gray-500">
       <header>
