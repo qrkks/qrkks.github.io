@@ -7,11 +7,9 @@
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
       <script defer src="/static/js/script.js"></script>
-      <script 
-              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
       <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
-
       <title>
   Python Website Building Learning Journal - 使用 Javascript, tailwind css 建一个动态目录
       </title>
@@ -64,12 +62,13 @@
     <div class="flex flex-col lg:flex-row">
         <aside class="order-1 w-full bg-white lg:w-1/5">
         </aside>
-        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
-          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
             <ul id="toc-list" class="space-y-2 list-none">
-                <!-- JavaScript will dynamically fill this list -->
+              <!-- JavaScript will dynamically fill this list -->
             </ul>
-        </div>
+          </div>
         </aside>
       <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
   <article class="text-gray-700">
@@ -91,17 +90,22 @@
 <h2>2 Javascript 代码</h2>
 <div class="highlight"><pre><span></span><code><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="s2">&quot;DOMContentLoaded&quot;</span><span class="p">,</span><span class="w"> </span><span class="kd">function</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <span class="w">    </span><span class="c1">// 获取TOC列表的容器</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">tocList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;toc-list&#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">tocList</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">getElementById</span><span class="p">(</span><span class="s1">&#39;toc-list&#39;</span><span class="p">);</span>
 
-<span class="w">    </span><span class="c1">// 定义要选择的标题</span>
-<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">headingSelector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;h1, h2, h3, h4, h5&quot;</span><span class="p">;</span>
+<span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">createHeadingSelector</span><span class="p">(</span><span class="nx">baseClass</span><span class="p">,</span><span class="w"> </span><span class="nx">headings</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="nx">headings</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">heading</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="sb">`</span><span class="si">${</span><span class="nx">baseClass</span><span class="si">}</span><span class="sb"> </span><span class="si">${</span><span class="nx">heading</span><span class="si">}</span><span class="sb">`</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s1">&#39;, &#39;</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
 
-<span class="w">    </span><span class="c1">// 选择指定容器内的标题元素</span>
-<span class="w">    </span><span class="kd">var</span><span class="w"> </span><span class="nx">headings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s2">&quot;.toc-content-area &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">headingSelector</span><span class="p">);</span>
+<span class="w">    </span><span class="c1">// 举例，如果你想选择 .toc-content-area 类中的 h1, h2, h3</span>
+<span class="w">    </span><span class="kd">const</span><span class="w"> </span><span class="nx">headingSelector</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">createHeadingSelector</span><span class="p">(</span><span class="s1">&#39;.toc-content-area&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;h1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;h2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;h3&#39;</span><span class="p">]);</span>
+
+<span class="w">    </span><span class="c1">// 使用生成的选择器选择标题元素</span>
+<span class="w">    </span><span class="kd">let</span><span class="w"> </span><span class="nx">headings</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="nx">headingSelector</span><span class="p">);</span>
+
 
 <span class="w">    </span><span class="c1">// 函数：更新TOC高亮状态</span>
 <span class="w">    </span><span class="kd">function</span><span class="w"> </span><span class="nx">updateTocHighlight</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">false</span><span class="p">;</span>
 <span class="w">        </span><span class="nx">headings</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">node</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
 <span class="w">            </span><span class="c1">// 排除带有特定类（toc-exclude）的元素</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">closest</span><span class="p">(</span><span class="s1">&#39;.toc-exclude&#39;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span>
@@ -109,8 +113,8 @@
 <span class="w">            </span><span class="p">}</span>
 
 <span class="w">            </span><span class="c1">// 获取标题的位置</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
-<span class="w">            </span><span class="kd">var</span><span class="w"> </span><span class="nx">bounding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">;</span>
+<span class="w">            </span><span class="kd">let</span><span class="w"> </span><span class="nx">bounding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
 
 <span class="w">            </span><span class="c1">// 判断标题是否在视窗内</span>
 <span class="w">            </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">bounding</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">bounding</span><span class="p">.</span><span class="nx">bottom</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
@@ -131,15 +135,15 @@
 <span class="w">            </span><span class="k">return</span><span class="p">;</span>
 <span class="w">        </span><span class="p">}</span>
 
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">innerText</span><span class="p">.</span><span class="nx">trim</span><span class="p">().</span><span class="nx">toLowerCase</span><span class="p">().</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\s+/g</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;-&#39;</span><span class="p">);</span>
 <span class="w">        </span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">id</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// 根据标题级别计算左边距</span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">1</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">marginLeftClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`ml-</span><span class="si">${</span><span class="nx">level</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">level</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parseInt</span><span class="p">(</span><span class="nx">node</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">.</span><span class="nx">substring</span><span class="p">(</span><span class="mf">1</span><span class="p">))</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">1</span><span class="p">;</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">marginLeftClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`ml-</span><span class="si">${</span><span class="nx">level</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">4</span><span class="si">}</span><span class="sb">`</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// 创建TOC项</span>
-<span class="w">        </span><span class="kd">var</span><span class="w"> </span><span class="nx">listItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="kd">let</span><span class="w"> </span><span class="nx">listItem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">document</span><span class="p">.</span><span class="nx">createElement</span><span class="p">(</span><span class="s1">&#39;li&#39;</span><span class="p">);</span>
 <span class="w">        </span><span class="nx">listItem</span><span class="p">.</span><span class="nx">innerHTML</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`&lt;a href=&quot;#</span><span class="si">${</span><span class="nx">id</span><span class="si">}</span><span class="sb">&quot; class=&quot;text-blue-500 hover:text-blue-700 </span><span class="si">${</span><span class="nx">marginLeftClass</span><span class="si">}</span><span class="sb">&quot;&gt;</span><span class="si">${</span><span class="nx">node</span><span class="p">.</span><span class="nx">innerText</span><span class="si">}</span><span class="sb">&lt;/a&gt;`</span><span class="p">;</span>
 
 <span class="w">        </span><span class="c1">// 为TOC项添加点击事件监听器</span>
@@ -157,12 +161,51 @@
 <span class="p">});</span>
 </code></pre></div>
 
-<h2>3 详细解释</h2>
-<h3>3.1 <code>getBoundingClientRect()</code></h3>
+<h2>3 逐句解释</h2>
+<h3>3.1 <code>var headings = document.querySelectorAll(".toc-content-area " + headingSelector);</code></h3>
+<p>这行代码是 JavaScript 中的一部分，用来选取页面上的某些元素。让我们逐步解析它：</p>
+<h4>3.1.1 <code>document.querySelectorAll</code></h4>
+<p>这是一个 DOM 方法，用于在文档中选择与指定选择器匹配的一组元素。它返回一个 <code>NodeList</code> 对象，其中包含文档（HTML 页面）中所有与指定的 CSS 选择器匹配的元素。</p>
+<p>例如，如果你使用 <code>document.querySelectorAll('.className')</code>，它将返回页面上所有具有 <code>className</code> 类的元素。这个 <code>NodeList</code> 对象类似于数组，你可以使用索引来访问其中的元素，也可以使用 <code>forEach</code> 方法来遍历它。</p>
+<p>重要的是要注意，尽管 <code>NodeList</code> 在使用上<strong>类似于数组</strong>，但它并不是一个真正的数组。它不具备数组的所有方法，但你可以用常见的方法如 <code>forEach</code> 来遍历其元素。</p>
+<div class="highlight"><pre><span></span><code><span class="nx">headings</span>
+
+<span class="mf">1.</span><span class="w"> </span><span class="nx">NodeList</span><span class="p">(</span><span class="mf">16</span><span class="p">)</span><span class="w"> </span><span class="p">[</span><span class="nx">h2</span><span class="p">,</span><span class="w"> </span><span class="nx">h1</span><span class="err">#</span><span class="nx">使用</span><span class="o">-</span><span class="nx">javascript</span><span class="p">,</span><span class="o">-</span><span class="nx">tailwind</span><span class="o">-</span><span class="nx">css</span><span class="o">-</span><span class="nx">建一个动态目录</span><span class="p">,</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">1</span><span class="o">-</span><span class="nx">实现思路</span><span class="p">,</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">2</span><span class="o">-</span><span class="nx">javascript</span><span class="o">-</span><span class="nx">代码</span><span class="p">,</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">3</span><span class="o">-</span><span class="nx">逐句解释</span><span class="p">,</span><span class="w"> </span><span class="nx">h3</span><span class="err">#</span><span class="mf">3.1</span><span class="o">-</span><span class="kd">var</span><span class="o">-</span><span class="nx">headings</span><span class="o">-=-</span><span class="nb">document</span><span class="p">.</span><span class="nx">queryselectorall</span><span class="p">(</span><span class="s2">&quot;.toc-content-area-&quot;</span><span class="o">-+-</span><span class="nx">headingselector</span><span class="p">);,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.1</span><span class="o">-</span><span class="nb">document</span><span class="p">.</span><span class="nx">queryselectorall</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.2</span><span class="o">-</span><span class="s2">&quot;.toc-content-area-&quot;</span><span class="o">-+-</span><span class="nx">headingselector</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.3</span><span class="o">-</span><span class="nx">整体表达的含义</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.4</span><span class="o">-</span><span class="nx">输入值</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.5</span><span class="o">-</span><span class="nx">输出值</span><span class="p">,</span><span class="w"> </span><span class="nx">h3</span><span class="err">#</span><span class="mf">3.2</span><span class="o">-</span><span class="nx">getboundingclientrect</span><span class="p">(),</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.1</span><span class="o">-</span><span class="nx">代码示例解释</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.2</span><span class="o">-</span><span class="nx">如何使用这些信息</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.3</span><span class="o">-</span><span class="nx">getboundingclientrect</span><span class="o">-</span><span class="nx">方法的字面意思</span><span class="p">,</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.4</span><span class="o">-</span><span class="nx">小结</span><span class="p">]</span>
+
+<span class="mf">1.</span><span class="w"> </span><span class="mf">0</span><span class="o">:</span><span class="w"> </span><span class="nx">h2</span>
+<span class="mf">2.</span><span class="w"> </span><span class="mf">1</span><span class="o">:</span><span class="w"> </span><span class="nx">h1</span><span class="err">#</span><span class="nx">使用</span><span class="o">-</span><span class="nx">javascript</span><span class="p">,</span><span class="o">-</span><span class="nx">tailwind</span><span class="o">-</span><span class="nx">css</span><span class="o">-</span><span class="nx">建一个动态目录</span>
+<span class="mf">3.</span><span class="w"> </span><span class="mf">2</span><span class="o">:</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">1</span><span class="o">-</span><span class="nx">实现思路</span>
+<span class="mf">4.</span><span class="w"> </span><span class="mf">3</span><span class="o">:</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">2</span><span class="o">-</span><span class="nx">javascript</span><span class="o">-</span><span class="nx">代码</span>
+<span class="mf">5.</span><span class="w"> </span><span class="mf">4</span><span class="o">:</span><span class="w"> </span><span class="nx">h2</span><span class="err">#</span><span class="mf">3</span><span class="o">-</span><span class="nx">逐句解释</span>
+<span class="mf">6.</span><span class="w"> </span><span class="mf">5</span><span class="o">:</span><span class="w"> </span><span class="nx">h3</span><span class="err">#</span><span class="mf">3.1</span><span class="o">-</span><span class="kd">var</span><span class="o">-</span><span class="nx">headings</span><span class="o">-=-</span><span class="nb">document</span><span class="p">.</span><span class="nx">queryselectorall</span><span class="p">(</span><span class="s2">&quot;.toc-content-area-&quot;</span><span class="o">-+-</span><span class="nx">headingselector</span><span class="p">);</span>
+<span class="mf">7.</span><span class="w"> </span><span class="mf">6</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.1</span><span class="o">-</span><span class="nb">document</span><span class="p">.</span><span class="nx">queryselectorall</span>
+<span class="mf">8.</span><span class="w"> </span><span class="mf">7</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.2</span><span class="o">-</span><span class="s2">&quot;.toc-content-area-&quot;</span><span class="o">-+-</span><span class="nx">headingselector</span>
+<span class="mf">9.</span><span class="w"> </span><span class="mf">8</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.3</span><span class="o">-</span><span class="nx">整体表达的含义</span>
+<span class="mf">10.</span><span class="w"> </span><span class="mf">9</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.4</span><span class="o">-</span><span class="nx">输入值</span>
+<span class="mf">11.</span><span class="w"> </span><span class="mf">10</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.1.5</span><span class="o">-</span><span class="nx">输出值</span>
+<span class="mf">12.</span><span class="w"> </span><span class="mf">11</span><span class="o">:</span><span class="w"> </span><span class="nx">h3</span><span class="err">#</span><span class="mf">3.2</span><span class="o">-</span><span class="nx">getboundingclientrect</span><span class="p">()</span>
+<span class="mf">13.</span><span class="w"> </span><span class="mf">12</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.1</span><span class="o">-</span><span class="nx">代码示例解释</span>
+<span class="mf">14.</span><span class="w"> </span><span class="mf">13</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.2</span><span class="o">-</span><span class="nx">如何使用这些信息</span>
+<span class="mf">15.</span><span class="w"> </span><span class="mf">14</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.3</span><span class="o">-</span><span class="nx">getboundingclientrect</span><span class="o">-</span><span class="nx">方法的字面意思</span>
+<span class="mf">16.</span><span class="w"> </span><span class="mf">15</span><span class="o">:</span><span class="w"> </span><span class="nx">h4</span><span class="err">#</span><span class="mf">3.2.4</span><span class="o">-</span><span class="nx">小结</span>
+<span class="mf">17.</span><span class="w"> </span><span class="nx">length</span><span class="o">:</span><span class="w"> </span><span class="mf">16</span>
+<span class="mf">18.</span><span class="w"> </span><span class="p">[[</span><span class="nx">Prototype</span><span class="p">]]</span><span class="o">:</span><span class="w"> </span><span class="nx">NodeList</span>
+</code></pre></div>
+
+<h4>3.1.2 <code>".toc-content-area " + headingSelector</code></h4>
+<p>这里，字符串 <code>".toc-content-area "</code> 是一个 CSS 类选择器，它指向页面上所有拥有 <code>toc-content-area</code> 类的元素。<code>headingSelector</code> 则是一个变量，它应该包含一个或多个 CSS 选择器的字符串，例如 <code>"h1, h2, h3"</code>，代表想要选取的标题级别。</p>
+<h4>3.1.3 整体表达的含义</h4>
+<p>代码 <code>document.querySelectorAll(".toc-content-area " + headingSelector)</code> 的含义是选择所有在 <code>.toc-content-area</code> 类内部且匹配 <code>headingSelector</code> 指定的选择器的元素。例如，如果 <code>headingSelector</code> 是 <code>"h1, h2, h3"</code>，那么它将选择所有在 <code>.toc-content-area</code> 类内部的 <code>&lt;h1&gt;</code>, <code>&lt;h2&gt;</code>, <code>&lt;h3&gt;</code> 元素。</p>
+<h4>3.1.4 输入值</h4>
+<p>输入值是一个由两部分组成的字符串：<code>.toc-content-area</code> 和 <code>headingSelector</code> 的值。<code>headingSelector</code> 的具体值在这个上下文中未给出，但通常会是一个表示标题级别的字符串。</p>
+<h4>3.1.5 输出值</h4>
+<p>输出值是一个 <code>NodeList</code> 对象，包含了所有匹配指定 CSS 类（<code>.toc-content-area</code>）和标题选择器（由 <code>headingSelector</code> 定义）的元素。这个对象可以像数组一样被遍历，但它并不是一个真正的数组。</p>
+<p>这行代码的作用是在特定区域（<code>.toc-content-area</code>）内找到所有指定类型的标题元素，以便后续的操作，比如创建或更新一个目录（Table of Contents）。</p>
+<h3>3.2 <code>getBoundingClientRect()</code></h3>
 <p><code>getBoundingClientRect()</code> 是一个 JavaScript DOM 方法，它返回一个 DOM 元素的大小及其相对于视口的位置。当这个方法应用于一个 DOM 节点时（比如一个 HTML 元素），它会提供该元素的 <code>top</code>, <code>bottom</code>, <code>left</code>, <code>right</code>, <code>width</code>, 和 <code>height</code> 等属性。</p>
 <p>在我们的动态目录（TOC）的上下文中，<code>getBoundingClientRect()</code> 被用来确定一个标题元素在当前视口中的位置。这是非常重要的，因为它允许脚本知道用户当前查看的是哪部分内容。</p>
-<h4>3.1.1 代码示例解释</h4>
-<div class="highlight"><pre><span></span><code><span class="kd">var</span><span class="w"> </span><span class="nx">bounding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
+<h4>3.2.1 代码示例解释</h4>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">bounding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">node</span><span class="p">.</span><span class="nx">getBoundingClientRect</span><span class="p">();</span>
 </code></pre></div>
 
 <p>在这行代码中：</p>
@@ -171,13 +214,13 @@
 <li><code>getBoundingClientRect()</code> 对该元素调用，返回一个包含该元素位置和尺寸的对象。</li>
 <li><code>bounding</code> 变量现在包含了元素的位置信息。</li>
 </ul>
-<h4>3.1.2 如何使用这些信息</h4>
+<h4>3.2.2 如何使用这些信息</h4>
 <ul>
 <li><code>bounding.top</code>: 元素顶部相对于视口顶部的距离。如果这个值小于或等于 0，意味着元素的顶部已经滚动到视口顶部或以上。</li>
 <li><code>bounding.bottom</code>: 元素底部相对于视口顶部的距离。如果这个值大于视口的高度，意味着元素的底部还没有进入视口。</li>
 </ul>
 <p>这些信息被用来判断一个标题是否在当前视口内，从而决定是否将对应的 TOC 项设置为“活动”状态，这通常通过改变样式（如高亮）来实现。</p>
-<h4>3.1.3 <code>getBoundingClientRect</code> 方法的字面意思</h4>
+<h4>3.2.3 <code>getBoundingClientRect</code> 方法的字面意思</h4>
 <p><code>getBoundingClientRect</code> 方法的字面意思可以分为两部分：</p>
 <ol>
 <li><strong>Bounding</strong>: 在这个上下文中，"bounding" 通常指的是一个边界框（bounding box）或外围矩形（bounding rectangle）。这个边界框是围绕着元素最小的矩形，包含了元素的全部可视部分，包括边框、滚动条等。</li>
@@ -185,7 +228,7 @@
 <li>"Rect" 在 <code>getBoundingClientRect</code> 方法中是 "rectangle"（矩形）的缩写。在计算机图形学和 Web 开发中，矩形通常用来描述一个元素或区域的形状和大小，它由两个坐标（通常是左上角和右下角）或者一个坐标加上宽度和高度来定义。</li>
 </ol>
 <p>所以，<code>getBoundingClientRect</code> 方法的名字表示它返回一个元素在客户端区域（即视口）内的边界框信息。这个信息包括元素的位置（相对于视口的左上角）和尺寸（宽度和高度）。</p>
-<h4>3.1.4 小结</h4>
+<h4>3.2.4 小结</h4>
 <p>实际上就是获取客户端方块的意思，返回的与 <strong>两个“方块”（或矩形）</strong> 相关的信息：</p>
 <ol>
 <li><strong>元素本身的方块</strong>：这指的是元素的外围边界框。这个矩形框定义了元素的尺寸，包括其宽度（<code>width</code>）和高度（<code>height</code>）。</li>
@@ -199,25 +242,25 @@
   </time>
 </p>
   <p>
-    Last updated: <time datetime="2023-12-29T15:51:31+08:00">
-    2023-12-29
+    Last updated: <time datetime="2023-12-30T10:59:34+08:00">
+    2023-12-30
   </time>
 </p>
-  <p class="col-span-2 ">
+  <p class="col-span-2 flex flex-wrap gap-1">
     Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
     href="https://qrkks.github.io/category/pelican.html">Pelican</a>
   </p>
-  <p class="col-span-2">
+  <p class="col-span-2 flex flex-wrap gap-1">
     Tags:
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/pelican.html">pelican</a>
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/javascript.html">javascript</a>
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/toc.html">toc</a>
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/nav.html">nav</a>
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/tailwind.html">tailwind</a>
   </p>
 </footer><section id="erectContainer"

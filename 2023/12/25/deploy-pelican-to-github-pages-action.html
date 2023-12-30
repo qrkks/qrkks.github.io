@@ -7,11 +7,9 @@
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
       <script defer src="/static/js/script.js"></script>
-      <script 
-              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
       <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
-
       <title>
   Python Website Building Learning Journal - 将pelican自动化部署到Github Pages的action文件
       </title>
@@ -61,12 +59,13 @@
     <div class="flex flex-col lg:flex-row">
         <aside class="order-1 w-full bg-white lg:w-1/5">
         </aside>
-        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
-          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
             <ul id="toc-list" class="space-y-2 list-none">
-                <!-- JavaScript will dynamically fill this list -->
+              <!-- JavaScript will dynamically fill this list -->
             </ul>
-        </div>
+          </div>
         </aside>
       <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
   <article class="text-gray-700">
@@ -209,15 +208,15 @@
     2023-12-26
   </time>
 </p>
-  <p class="col-span-2 ">
+  <p class="col-span-2 flex flex-wrap gap-1">
     Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
     href="https://qrkks.github.io/category/pelican.html">Pelican</a>
   </p>
-  <p class="col-span-2">
+  <p class="col-span-2 flex flex-wrap gap-1">
     Tags:
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/pelican.html">pelican</a>
-      <a class="px-3 py-1 text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
          href="https://qrkks.github.io/tag/github-actions.html">github actions</a>
   </p>
 </footer><section id="erectContainer"

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+      <title>
+  Python Website Building Learning Journal - Python 的 f-strings 与 JavaScript 的模板字符串：一场优雅字符串处理的比较
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/code-learning.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="JavaScript 和 Python 比较" />
+    <meta name="tags" content="编程语言比较" />
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="python" />
+    <meta name="tags" content="f-string" />
+    <meta name="tags" content="模板字符串" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+ aria-current="page" >Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <ul id="toc-list" class="space-y-2 list-none">
+              <!-- JavaScript will dynamically fill this list -->
+            </ul>
+          </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2023/12/30/python-de-f-strings-yu-javascript-de-mo-ban-zi-fu-chuan-yi-chang-you-ya-zi-fu-chuan-chu-li-de-bi-jiao.html"
+           rel="bookmark"
+           title="Permalink to Python 的 f-strings 与 JavaScript 的模板字符串：一场优雅字符串处理的比较">Python 的 f-strings 与 JavaScript 的模板字符串：一场优雅字符串处理的比较</a>
+      </h1>
+      
+    </header>
+    <h2>1 引言</h2>
+<p>在现代编程中，字符串处理是一项基础且重要的任务。Python 和 JavaScript，作为两种流行的编程语言，都提供了各自的解决方案来简化字符串中的动态表达式插入：Python 的 f-strings 和 JavaScript 的模板字符串。本文旨在比较这两种方法的特点和用途。</p>
+<h2>2 Python 的 F-strings</h2>
+<p>引入于 Python 3.6，f-strings 是格式化字符串的一种新方法。使用起来既简单又直观，它通过在字符串前加 <code>f</code> 或 <code>F</code> 并在花括号 <code>{}</code> 中插入表达式来工作。</p>
+<h3>2.1 特点</h3>
+<ul>
+<li><strong>简洁性</strong>：直接在字符串中嵌入变量和表达式。</li>
+<li><strong>可读性</strong>：代码易于编写且阅读性高。</li>
+<li><strong>效率</strong>：比传统的格式化方法（如 <code>%</code> 操作符或 <code>str.format()</code>）更高效。</li>
+</ul>
+<h3>2.2 示例</h3>
+<div class="highlight"><pre><span></span><code><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;Alice&quot;</span>
+<span class="n">age</span> <span class="o">=</span> <span class="mi">30</span>
+<span class="n">greeting</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;Hello, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">. You are </span><span class="si">{</span><span class="n">age</span><span class="si">}</span><span class="s2"> years old.&quot;</span>
+</code></pre></div>
+
+<h2>3 JavaScript 的模板字符串</h2>
+<p>随着 ECMAScript 2015 (ES6) 的推出，模板字符串成为了 JavaScript 的一个新特性。它们使用反引号 <code>`</code> 来定义，并允许通过 <code>${expression}</code> 语法嵌入表达式。</p>
+<h3>3.1 特点</h3>
+<ul>
+<li><strong>多行支持</strong>：可以轻松地跨越多行，而不需要使用连接符或特殊字符。</li>
+<li><strong>灵活性</strong>：可以包含任意的表达式，包括函数调用和复杂的运算。</li>
+<li><strong>易用性</strong>：改善了字符串的组合和多变量插值的可读性。</li>
+</ul>
+<h3>3.2 示例</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;Alice&quot;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">age</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">30</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">greeting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="sb">`Hello, </span><span class="si">${</span><span class="nx">name</span><span class="si">}</span><span class="sb">. You are </span><span class="si">${</span><span class="nx">age</span><span class="si">}</span><span class="sb"> years old.`</span><span class="p">;</span>
+</code></pre></div>
+
+<h2>4 比较与分析</h2>
+<p>虽然 Python 的 f-strings 和 JavaScript 的模板字符串在语法上有所不同，但它们都极大地简化了字符串的构造过程，尤其是在需要动态插入变量或表达式时。</p>
+<ul>
+<li><strong>语法差异</strong>：Python 使用 <code>f"Hello, {name}"</code> 的格式，而 JavaScript 使用 <code>`Hello, ${name}`</code>。尽管外观略有不同，但它们的功能和目的非常相似。</li>
+<li><strong>用途</strong>：在格式化字符串、构建动态字符串（如 SQL 查询、HTML 模板等）方面，这两种方法都极为有用。</li>
+<li><strong>性能</strong>：Python 的 f-strings 在性能上通常比传统的格式化方法更优，而 JavaScript 的模板字符串则比传统的字符串拼接更简洁易读。</li>
+</ul>
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+  <p>
+    Published: <time datetime="2023-12-30T00:00:00+08:00">
+    2023-12-30
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-30T10:46:00+08:00">
+    2023-12-30
+  </time>
+</p>
+  <p class="col-span-2 flex flex-wrap gap-1">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/code-learning.html">Code Learning</a>
+  </p>
+  <p class="col-span-2 flex flex-wrap gap-1">
+    Tags:
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript-he-python-bi-jiao.html">JavaScript 和 Python 比较</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/bian-cheng-yu-yan-bi-jiao.html">编程语言比较</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript.html">javascript</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/python.html">python</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/f-string.html">f-string</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/mo-ban-zi-fu-chuan.html">模板字符串</a>
+  </p>
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/30/python-de-f-strings-yu-javascript-de-mo-ban-zi-fu-chuan-yi-chang-you-ya-zi-fu-chuan-chu-li-de-bi-jiao.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+      <title>
+  Python Website Building Learning Journal - 111
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/za-xiang.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <ul id="toc-list" class="space-y-2 list-none">
+              <!-- JavaScript will dynamically fill this list -->
+            </ul>
+          </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/drafts/111.html"
+           rel="bookmark"
+           title="Permalink to 111">111</a>
+      </h1>
+      
+    </header>
+    <h2>1 一个小问题</h2>
+<p>今天遇到了这么一个场景，</p>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">bounding</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">bounding</span><span class="p">.</span><span class="nx">bottom</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nb">document</span><span class="p">.</span><span class="nx">querySelectorAll</span><span class="p">(</span><span class="s1">&#39;#toc-list a&#39;</span><span class="p">).</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">a</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="s1">&#39;font-bold&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-red-500&#39;</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="s1">&#39;font-bold&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;text-red-500&#39;</span><span class="p">);</span>
+<span class="w">            </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>这里面 remove 与 add 使用了同样的类，测试颜色不断修改时要改两个地方，所以我想把它们提出来放到变量里。比如，</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;text-sky-500 font-bold&#39;</span><span class="p">;</span>
+
+<span class="p">...</span>
+<span class="w">        </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 移除多个类</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 添加多个类</span>
+<span class="w">            </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>但是却发现不起作用。</p>
+<p>原来这有些想当然， 此时传给 <code>classList.add</code> 和 <code>classList.remove</code> 方法的实际是一个<strong>包含多个类名和空格的字符串</strong>，而这两个方法预期接收的是<strong>单个字符串（类名）或者多个单独的字符串（类名）参数</strong>。当我尝试传递一个包含空格的字符串（如 <code>'text-sky-500 font-bold'</code>）时，它们不能正确地解析和应用这些类。</p>
+<p>所以我现在有两个方法，要么传入一个列表，使用...解包，</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;text-sky-500&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;font-bold&#39;</span><span class="p">];</span>
+
+<span class="p">...</span>
+<span class="w">        </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(...</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 移除多个类</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">activeClasses</span><span class="p">);</span><span class="w"> </span><span class="c1">// 添加多个类</span>
+<span class="w">            </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>要么还是传入这个带有多个类名和空格字符串，先 split，再解包，</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;text-sky-500 font-bold&#39;</span><span class="p">;</span>
+
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">bounding</span><span class="p">.</span><span class="nx">top</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">window</span><span class="p">.</span><span class="nx">innerHeight</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">0.2</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="nx">bounding</span><span class="p">.</span><span class="nx">bottom</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">0</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="p">...</span>
+<span class="w">        </span><span class="c1">// 使用 split 方法将字符串转换为数组，并使用展开运算符应用类名</span>
+<span class="w">        </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">remove</span><span class="p">(...</span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">a</span><span class="p">.</span><span class="nx">getAttribute</span><span class="p">(</span><span class="s1">&#39;href&#39;</span><span class="p">)</span><span class="w"> </span><span class="o">===</span><span class="w"> </span><span class="s1">&#39;#&#39;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">id</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nx">a</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">));</span>
+<span class="w">            </span><span class="nx">foundActive</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kc">true</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">});</span>
+<span class="p">}</span>
+</code></pre></div>
+
+<p>这种情况下实际就是将带空格的字符串先根据空格分成了含有两个字符串的列表，再用...解包。分成两步看就是，</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;text-sky-500 font-bold&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// [&#39;text-sky-500&#39;, &#39;font-bold&#39;]</span>
+
+<span class="c1">// 使用展开运算符将数组中的每个元素作为单独的参数传递</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">classes</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等同于 element.classList.add(&#39;text-sky-500&#39;, &#39;font-bold&#39;);</span>
+</code></pre></div>
+
+<p><a href="">字符串的引号</a> 有时对我们这些初学者会造成很大的困扰，不知道什么时候有，什么时候没了。我觉得可能得理解两个内容，一个是字面量，一个是 js 里的引号与 html 里的引号的区别。</p>
+<h2>2 展开运算符 <code>...</code></h2>
+<p>在 JavaScript 中，<code>...</code> 是一个展开运算符（Spread Operator）。它用于将一个数组或类数组对象的所有元素“展开”成单独的项。在上面的情况下，当使用在 <code>activeClass.split(' ')</code> 返回的数组上时，它将数组中的每个元素（这里是类名）展开为单独的参数。</p>
+<h3>2.1 在 <code>classList.add</code> 和 <code>classList.remove</code> 中使用展开运算符</h3>
+<p>当 <code>activeClass</code> 字符串被 <code>split</code> 方法分割成数组后，数组中的每个元素是一个单独的类名。在调用 <code>classList.add</code> 或 <code>classList.remove</code> 方法时，您需要将这些类名作为单独的参数传递。这是展开运算符发挥作用的地方：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">activeClass</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;text-sky-500 font-bold&#39;</span><span class="p">;</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">activeClass</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">);</span><span class="w"> </span><span class="c1">// [&#39;text-sky-500&#39;, &#39;font-bold&#39;]</span>
+
+<span class="c1">// 使用展开运算符将数组中的每个元素作为单独的参数传递</span>
+<span class="nx">element</span><span class="p">.</span><span class="nx">classList</span><span class="p">.</span><span class="nx">add</span><span class="p">(...</span><span class="nx">classes</span><span class="p">);</span><span class="w"> </span><span class="c1">// 等同于 element.classList.add(&#39;text-sky-500&#39;, &#39;font-bold&#39;);</span>
+</code></pre></div>
+
+<h3>2.2 展开运算符的其他用途</h3>
+<p>展开运算符在其他场景中也很有用，例如：</p>
+<p>1.<strong>在函数调用中</strong>：将数组元素作为单独的参数传递给函数。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="nx">x</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="p">,</span><span class="w"> </span><span class="nx">z</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="nx">x</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">y</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">z</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">));</span><span class="w"> </span><span class="c1">// 输出 6</span>
+</code></pre></div>
+
+<p>2.<strong>在数组字面量中</strong>：创建新数组时，将已有数组的元素包含进来。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">parts</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;shoulders&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;knees&#39;</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">body</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;head&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">parts</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;toes&#39;</span><span class="p">];</span><span class="w"> </span><span class="c1">// [&#39;head&#39;, &#39;shoulders&#39;, &#39;knees&#39;, &#39;toes&#39;]</span>
+</code></pre></div>
+
+<p>3.<strong>与对象字面量一起使用</strong>：用于复制或合并对象。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">obj1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;bar&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">x</span><span class="o">:</span><span class="w"> </span><span class="mf">42</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">foo</span><span class="o">:</span><span class="w"> </span><span class="s1">&#39;baz&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">y</span><span class="o">:</span><span class="w"> </span><span class="mf">13</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">clonedObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">obj1</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// { foo: &#39;bar&#39;, x: 42 }</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">obj1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">obj2</span><span class="w"> </span><span class="p">};</span><span class="w"> </span><span class="c1">// { foo: &#39;baz&#39;, x: 42, y: 13 }</span>
+</code></pre></div>
+
+<p>展开运算符用于确保 <code>classList.add</code> 和 <code>classList.remove</code> 方法能够接收多个类名作为单独的参数，这对于动态地添加或移除元素上的多个类至关重要。</p>
+<h2>3 Javascript 里的 <code>...</code> 与 Python 里的 <code>*</code></h2>
+<p>使用 <code>...</code> 解包让我想到 python 里的 <code>*</code>，作用都是解包，很多不同。<code>*</code> 的作用好像比较受限，只能用在函数里解包，而 <code>...</code> 的范围则广的多，几乎不受限制。</p>
+<h3>3.1 Python 中的展开运算符</h3>
+<ul>
+<li><strong>函数调用</strong>：在 Python 中，展开运算符 <code>*</code> 主要用于函数调用时，将列表或元组中的元素展开为单独的参数。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="k">def</span> <span class="nf">sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">):</span>
+  <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span> <span class="o">+</span> <span class="n">c</span>
+
+<span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="o">*</span><span class="n">numbers</span><span class="p">))</span>  <span class="c1"># 展开列表作为单独参数</span>
+</code></pre></div>
+
+<ul>
+<li><strong>限制</strong>：Python 的 <code>*</code> 展开运算符<strong>仅限于</strong>这种情况，不能在像数组字面量或对象字面量中使用。</li>
+</ul>
+<h3>3.2 JavaScript 中的展开运算符</h3>
+<ul>
+<li><strong>函数调用</strong>：JavaScript 中的展开运算符 <code>...</code> 可以用于函数调用，与 Python 类似。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">function</span><span class="w"> </span><span class="nx">sum</span><span class="p">(</span><span class="nx">a</span><span class="p">,</span><span class="w"> </span><span class="nx">b</span><span class="p">,</span><span class="w"> </span><span class="nx">c</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="k">return</span><span class="w"> </span><span class="nx">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">c</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">sum</span><span class="p">(...</span><span class="nx">numbers</span><span class="p">));</span><span class="w">  </span><span class="c1">// 展开数组作为单独参数</span>
+</code></pre></div>
+
+<ul>
+<li><strong>数组和对象字面量</strong>：在 JavaScript 中，<code>...</code> 还可以用于数组和对象字面量，用于合并数组或对象。</li>
+</ul>
+<div class="highlight"><pre><span></span><code><span class="kd">let</span><span class="w"> </span><span class="nx">arr1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">arr2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedArr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[...</span><span class="nx">arr1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">arr2</span><span class="p">];</span><span class="w">  </span><span class="c1">// 合并数组</span>
+
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">a</span><span class="o">:</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">obj2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">b</span><span class="o">:</span><span class="w"> </span><span class="mf">2</span><span class="w"> </span><span class="p">};</span>
+<span class="kd">let</span><span class="w"> </span><span class="nx">mergedObj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="p">...</span><span class="nx">obj1</span><span class="p">,</span><span class="w"> </span><span class="p">...</span><span class="nx">obj2</span><span class="w"> </span><span class="p">};</span><span class="w">  </span><span class="c1">// 合并对象</span>
+</code></pre></div>
+
+<h3>3.3 总结</h3>
+<ul>
+<li>在 Python 中，<code>*</code> 仅用于函数调用中将列表或元组展开为参数。</li>
+<li>在 JavaScript 中，<code>...</code> 不仅可以在函数调用中展开数组，还可以在创建新的数组或对象时用于合并。</li>
+</ul>
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+  <p>
+    Published: <time datetime="2023-12-29T00:00:00+08:00">
+    2023-12-29
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-30T11:07:23+08:00">
+    2023-12-30
+  </time>
+</p>
+  <p class="col-span-2 flex flex-wrap gap-1">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/za-xiang.html">杂项</a>
+  </p>
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: 'drafts/111.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>

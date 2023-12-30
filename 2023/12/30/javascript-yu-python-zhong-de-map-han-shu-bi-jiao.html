@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+      <title>
+  Python Website Building Learning Journal - JavaScript 与 Python 中的 `map` 函数比较
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/code-learning.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="JavaScript 和 Python 比较" />
+    <meta name="tags" content="编程语言比较" />
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="python" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+ aria-current="page" >Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <ul id="toc-list" class="space-y-2 list-none">
+              <!-- JavaScript will dynamically fill this list -->
+            </ul>
+          </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html"
+           rel="bookmark"
+           title="Permalink to JavaScript 与 Python 中的 `map` 函数比较">JavaScript 与 Python 中的 `map` 函数比较</a>
+      </h1>
+      
+    </header>
+    <h2>1 什么是 <code>map</code> 函数？</h2>
+<p><code>map</code> 是一种常用的函数式编程技术，用于对序列中的每个元素执行相同的操作，并返回一个新的序列，其中包含了原序列中每个元素经过指定操作后的结果。</p>
+<h3>1.1 JavaScript 中的 <code>map</code></h3>
+<p>在 JavaScript 中，<code>map</code> 是数组的一个方法。它对数组中的每个元素执行一个由你提供的函数，并返回一个新数组，这个新数组包含原数组中每个元素经过函数处理后的结果。</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">,</span><span class="w"> </span><span class="mf">4</span><span class="p">];</span>
+<span class="kd">const</span><span class="w"> </span><span class="nx">squared</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nx">numbers</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="nx">num</span><span class="w"> </span><span class="p">=&gt;</span><span class="w"> </span><span class="nx">num</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="nx">num</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">squared</span><span class="p">);</span><span class="w"> </span><span class="c1">// 输出: [1, 4, 9, 16]</span>
+</code></pre></div>
+
+<p>这里，<code>map</code> 方法接收一个函数（<code>num =&gt; num * num</code>），这个函数计算数组 <code>numbers</code> 中每个元素的平方。</p>
+<h3>1.2 Python 中的 <code>map</code></h3>
+<p>Python 中的 <code>map</code> 是一个内置函数，它接收两个参数：一个函数和一个可迭代对象（如列表）。它对可迭代对象中的每个元素应用这个函数，并返回一个 <code>map</code> 对象，这是一个迭代器，包含了所有经过函数处理的元素。</p>
+<div class="highlight"><pre><span></span><code><span class="n">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="n">squared</span> <span class="o">=</span> <span class="nb">map</span><span class="p">(</span><span class="k">lambda</span> <span class="n">num</span><span class="p">:</span> <span class="n">num</span> <span class="o">*</span> <span class="n">num</span><span class="p">,</span> <span class="n">numbers</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">list</span><span class="p">(</span><span class="n">squared</span><span class="p">))</span> <span class="c1"># 输出: [1, 4, 9, 16]</span>
+</code></pre></div>
+
+<p>在这个例子中，我们使用了 <code>lambda</code> 函数来计算列表 <code>numbers</code> 中每个元素的平方。</p>
+<h2>2 相似之处</h2>
+<p>JavaScript 和 Python 中的 <code>map</code> 函数都用于对序列中的每个元素应用一个函数，并收集结果。它们都是函数式编程的例证，有助于编写更简洁、更清晰的代码。</p>
+<h2>3 不同之处</h2>
+<p>尽管基本概念相似，但 JavaScript 和 Python 中的 <code>map</code> 函数在使用和行为上有一些关键差异：</p>
+<ol>
+<li><strong>返回值类型：</strong></li>
+<li>JavaScript 的 <code>map</code> 返回一个新数组。</li>
+<li>
+<p>Python 的 <code>map</code> 返回一个 <code>map</code> 对象（迭代器），通常需要使用 <code>list()</code> 函数转换为列表。</p>
+</li>
+<li>
+<p><strong>调用方式：</strong></p>
+</li>
+<li>在 JavaScript 中，<code>map</code> 是数组的方法。</li>
+<li>
+<p>在 Python 中，<code>map</code> 是一个全局函数。</p>
+</li>
+<li>
+<p><strong>对空元素的处理（JavaScript 特有）：</strong></p>
+</li>
+<li>JavaScript 中的 <code>map</code> 会跳过空元素。</li>
+<li>Python 中的 <code>map</code> 会对可迭代对象中的每个元素执行操作，不会自动跳过。</li>
+</ol>
+<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+  <p>
+    Published: <time datetime="2023-12-30T00:00:00+08:00">
+    2023-12-30
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-30T10:55:02+08:00">
+    2023-12-30
+  </time>
+</p>
+  <p class="col-span-2 flex flex-wrap gap-1">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/code-learning.html">Code Learning</a>
+  </p>
+  <p class="col-span-2 flex flex-wrap gap-1">
+    Tags:
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript-he-python-bi-jiao.html">JavaScript 和 Python 比较</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/bian-cheng-yu-yan-bi-jiao.html">编程语言比较</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript.html">javascript</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/python.html">python</a>
+  </p>
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>
