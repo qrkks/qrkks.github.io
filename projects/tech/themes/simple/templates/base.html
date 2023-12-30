@@ -7,11 +7,9 @@
       <link rel="stylesheet" href="/static/css/pygment.css" />
       <link rel="stylesheet" href="/static/css/custom.css" />
       <script defer src="/static/js/script.js"></script>
-      <script 
-              src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
       <link rel="stylesheet"
             href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
-
       <title>
         {% block title %}
           {{ SITENAME|striptags }}
@@ -122,13 +120,14 @@
         </aside>
       {% endblock left_side %}
       {% block right_side %}
-        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5">
-          <div id="table-of-contents" class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
             {# <div class="mb-2 text-xl font-bold text-center text-gray-600">Table of Contents</div> #}
             <ul id="toc-list" class="space-y-2 list-none">
-                <!-- JavaScript will dynamically fill this list -->
+              <!-- JavaScript will dynamically fill this list -->
             </ul>
-        </div>
+          </div>
         </aside>
       {% endblock right_side %}
       <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">

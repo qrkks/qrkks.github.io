@@ -21,14 +21,38 @@
             "state": {
               "type": "markdown",
               "state": {
+                "file": "articles/2023-12-29 使用 Javascript 建一个 动态目录 (Dynamic Toc).md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "b4c6ba8ba6ecfebe",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
                 "file": "articles/2023-12-29 Python 与Javascript 的....md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "d839cc7b94f6d6dd",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "2023-12-29 Python 与Javascript 的... 1.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 3
       }
     ],
     "direction": "vertical"
@@ -94,7 +118,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023-12-29 Python 与Javascript 的....md",
+                "file": "2023-12-29 Python 与Javascript 的... 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -111,7 +135,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023-12-29 Python 与Javascript 的....md",
+                "file": "2023-12-29 Python 与Javascript 的... 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -134,7 +158,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "articles/2023-12-29 Python 与Javascript 的....md"
+                "file": "2023-12-29 Python 与Javascript 的... 1.md"
               }
             }
           }
@@ -157,14 +181,16 @@
       "obsidian-full-calendar:Open Full Calendar": false
     }
   },
-  "active": "bc294f7723f4e260",
+  "active": "39354aefbe505eca",
   "lastOpenFiles": [
+    "articles/2023-12-30 模板字符串对比.md",
+    "2023-12-29 Python 与Javascript 的... 1.md",
+    "articles/2023-12-30 map 函数.md",
     "articles/2023-12-29 使用 Javascript 建一个 动态目录 (Dynamic Toc).md",
+    "articles/2023-12-29 Python 与Javascript 的....md",
     "articles/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
     "articles/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
-    "articles/2023-12-29 Python 与Javascript 的... 1.md",
     "pages/博客建站日志.md",
-    "articles/2023-12-29 Python 与Javascript 的....md",
     "articles/2023-12-28 使用 Docker 部署自托管方式在 Pelican 中集成 Twikoo 评论系统.md",
     "static/js/script.js",
     "static/js/scripts.js",
@@ -192,8 +218,6 @@
     "static/css/pygment.css",
     "pages/关于.md",
     "代码.md",
-    "第一篇.md",
-    "第一篇 1 1.md",
-    "第一篇 1.md"
+    "第一篇.md"
   ]
 }
