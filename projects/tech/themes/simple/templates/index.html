@@ -15,10 +15,11 @@
   {% block right_side %}
   {% endblock right_side %}
   {% for article in articles_page.object_list %}
-    <article class="text-gray-500">
+    <article class="text-gray-500 border-b  border-gray-200">
       <header>
-        <h2>
-          <a href="{{ SITEURL }}/{{ article.url }}"
+        <h2 class=" ">
+          <a class="text-sky-500"
+             href="{{ SITEURL }}/{{ article.url }}"
              rel="bookmark"
              title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
         </h2>

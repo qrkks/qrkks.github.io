@@ -1,4 +1,4 @@
-<footer class="grid grid-cols-1 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose">
+<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose ">
   <p>
     Published: <time datetime="{{ article.date.isoformat() }}">
     {{ article.locale_date }}
@@ -20,13 +20,13 @@
   </address>
 {% endif %}
 {% if article.category %}
-  <p class="col-span-2 flex flex-wrap gap-1">
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
     Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
     href="{{ SITEURL }}/{{ article.category.url }}">{{ article.category }}</a>
   </p>
 {% endif %}
 {% if article.tags %}
-  <p class="col-span-2 flex flex-wrap gap-1">
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
     Tags:
     {% for tag in article.tags %}
       <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
@@ -34,4 +34,5 @@
     {% endfor %}
   </p>
 {% endif %}
+
 </footer>

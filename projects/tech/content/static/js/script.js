@@ -3,11 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
     // Get the table of contents (TOC) list element
     let tocList = document.getElementById('toc-list');
 
-    // Define the selector for the headings to be included in the TOC
-    const headingSelector = "h1, h2, h3, h4, h5";
+    function createHeadingSelector(baseClass, headings) {
+        return headings.map(heading => `${baseClass} ${heading}`).join(', ');
+    }
 
-    // Get all the heading elements within the .toc-content-area element
-    let headings = document.querySelectorAll(".toc-content-area " + headingSelector);
+    // 举例，如果你想选择 .toc-content-area 类中的 h1, h2, h3
+    const headingSelector = createHeadingSelector('.toc-content-area', ['h1', 'h2', 'h3', 'h4', 'h5', 'h6']);
+
+    // 使用生成的选择器选择标题元素
+    let headings = document.querySelectorAll(headingSelector);
 
     // Function to update the highlighting of the active TOC item
     function updateTocHighlight() {

@@ -1,6 +1,7 @@
-      <footer class="flex justify-start my-5 text-sm text-gray-400 not-prose">
-        <p>
-          Published: <time datetime="{{ article.date }}"> {{ article.locale_date }} </time>
+      <footer class="flex gap-x-20 flex-wrap justify-end my-5 text-sm text-gray-400 not-prose">
+        <p class="">
+          Published: <time datetime="{{ article.date }}"> {{ article.locale_date }} </time></p>
+          <p>
           {% if  article.modified %}
             Modified: <time datetime="{{ article.modified.isoformat() }}"> {{ article.locale_modified }} </time>
           {% endif %}

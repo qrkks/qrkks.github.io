@@ -4,6 +4,11 @@
       "type": "local",
       "color": "#512929",
       "directory": "articles"
+    },
+    {
+      "type": "local",
+      "color": "hsl(258, 88%, 66%)",
+      "directory": "articles/2023/12"
     }
   ],
   "defaultCalendar": 0,
