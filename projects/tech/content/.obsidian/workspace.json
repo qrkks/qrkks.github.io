@@ -33,7 +33,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "articles/2023/12/2023-12-31 1.md",
+                "file": "pages/博客建站日志.md",
                 "mode": "source",
                 "source": false
               }
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023/12/2023-12-31 1.md",
+                "file": "pages/博客建站日志.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023/12/2023-12-31 1.md",
+                "file": "pages/博客建站日志.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "articles/2023/12/2023-12-31 1.md"
+                "file": "pages/博客建站日志.md"
               }
             }
           }
@@ -171,8 +171,8 @@
   },
   "active": "647492229acda574",
   "lastOpenFiles": [
-    "articles/2023/12/2023-12-31 forEach.md",
     "articles/2023/12/2023-12-31 1.md",
+    "articles/2023/12/2023-12-31 forEach.md",
     "pages/博客建站日志.md",
     "forEach.md",
     "articles/2023/12/2023-12-25 pelican actions.md",
