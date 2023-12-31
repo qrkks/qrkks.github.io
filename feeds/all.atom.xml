@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/all.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-30T10:55:02+08:00</updated><entry><title>JavaScript 与 Python 中的 `map` 函数比较</title><link href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html" rel="alternate"></link><published>2023-12-30T00:00:00+08:00</published><updated>2023-12-30T10:55:02+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-30:/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;1 什么是 &lt;code&gt;map&lt;/code&gt; 函数？&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/all.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-31T14:37:18+08:00</updated><entry><title>深入理解 JavaScript 中的 forEach 方法</title><link href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html" rel="alternate"></link><published>2023-12-31T00:00:00+08:00</published><updated>2023-12-31T14:37:18+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-31:/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html</id><summary type="html">&lt;p&gt;这篇文章提供了对 &lt;code&gt;forEach&lt;/code&gt; 方法的基本介绍、使用方法、与传统循环的比较以及适用场景。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 简介&lt;/h2&gt;
+&lt;p&gt;JavaScript 的 &lt;code&gt;forEach&lt;/code&gt; 方法是一种在数组上执行操作的常用技术。它为数组的每个元素执行一次提供的函数，使得处理数组变得简单而直观。&lt;/p&gt;
+&lt;h2&gt;2 什么是 forEach&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 是 Array 对象的一个方法。它为数组中的每个元素执行一次提供的函数。不像 &lt;code&gt;map&lt;/code&gt; 或 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;forEach&lt;/code&gt; 不返回任何值，它仅用于操作或改变数组。&lt;/p&gt;
+&lt;h3&gt;2.1 基本语法&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;array&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;currentValue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thisValue&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;currentValue&lt;/code&gt;：数组中正在处理的当前元素。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;index&lt;/code&gt;（可选）：数组中正在处理的当前元素的索引。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arr&lt;/code&gt;（可选）：&lt;code&gt;forEach&lt;/code&gt; 方法正在操作的数组。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;thisValue&lt;/code&gt;（可选）：执行回调时使用的 &lt;code&gt;this&lt;/code&gt; 值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.2 示例&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;item&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;3 forEach 与传统循环的比较&lt;/h2&gt;
+&lt;p&gt;虽然 &lt;code&gt;forEach&lt;/code&gt; 可以用来替代传统的 &lt;code&gt;for&lt;/code&gt; 循环，但它们之间有一些关键的区别：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;简洁性&lt;/strong&gt;：&lt;code&gt;forEach&lt;/code&gt; 通常比传统的 &lt;code&gt;for&lt;/code&gt; 循环更简洁。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无法中断&lt;/strong&gt;：在 &lt;code&gt;forEach&lt;/code&gt; 循环中，&lt;strong&gt;不能使用 &lt;code&gt;break&lt;/code&gt; 或 &lt;code&gt;continue&lt;/code&gt; 来中断或跳过迭代&lt;/strong&gt;。（直接使用 &lt;code&gt;return&lt;/code&gt; 跳出循环）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;4 适用场景&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 最适合那些需要遍历数组并对每个元素执行操作，但不需要中断循环的场景。&lt;/p&gt;
+&lt;h2&gt;5 Q&amp;amp;A&lt;/h2&gt;
+&lt;h3&gt;5.1 &lt;code&gt;item&lt;/code&gt;,&lt;code&gt;index&lt;/code&gt;,&lt;code&gt;arr&lt;/code&gt; 都可以随便命名吗？&lt;/h3&gt;
+&lt;p&gt;是的，&lt;code&gt;item&lt;/code&gt;、&lt;code&gt;index&lt;/code&gt; 和 &lt;code&gt;arr&lt;/code&gt; 这些参数的名称在 &lt;code&gt;forEach&lt;/code&gt; 方法的回调函数中是可以自由命名的。它们只是参数的标识符，您可以根据您的喜好或者代码的语义上下文来命名它们。重要的是它们在 &lt;code&gt;forEach&lt;/code&gt; 回调函数中的位置：第一个参数总是当前元素，第二个是当前元素的索引，第三个是数组本身。这些参数的实际名称可以任意指定。&lt;/p&gt;
+&lt;h3&gt;5.2 &lt;code&gt;item&lt;/code&gt;,&lt;code&gt;index&lt;/code&gt;,&lt;code&gt;arr&lt;/code&gt; 是位置参数？&lt;/h3&gt;
+&lt;p&gt;是的，这三个参数 —— 当前元素 (&lt;code&gt;item&lt;/code&gt; 或 &lt;code&gt;node&lt;/code&gt;)、索引 (&lt;code&gt;index&lt;/code&gt;)、以及数组本身 (&lt;code&gt;arr&lt;/code&gt;) —— 是 &lt;code&gt;forEach&lt;/code&gt; 方法中回调函数的位置参数。它们按照这个顺序被传递给函数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一个参数代表数组中当前正在处理的元素。&lt;/li&gt;
+&lt;li&gt;第二个参数是当前元素的索引。&lt;/li&gt;
+&lt;li&gt;第三个参数是数组本身。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些参数的顺序是固定的，您可以根据需要使用其中的一个或多个。&lt;/p&gt;
+&lt;h3&gt;5.3 &lt;code&gt;thisValue&lt;/code&gt; 是什么？&lt;/h3&gt;
+&lt;p&gt;在 JavaScript 的 &lt;code&gt;forEach&lt;/code&gt; 方法中，&lt;code&gt;thisValue&lt;/code&gt; 是一个可选参数，用于指定执行回调函数时 &lt;code&gt;this&lt;/code&gt; 的值。如果提供 &lt;code&gt;thisValue&lt;/code&gt;，它将被作为回调函数内部的 &lt;code&gt;this&lt;/code&gt; 上下文使用。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myObject&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;20&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myObject&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// `this` inside `callback` will refer to `myObject`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在这个例子中，&lt;code&gt;myObject&lt;/code&gt; 作为 &lt;code&gt;thisValue&lt;/code&gt; 被传递给 &lt;code&gt;forEach&lt;/code&gt;，因此在 &lt;code&gt;callback&lt;/code&gt; 函数内部，&lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;myObject&lt;/code&gt;。如果不指定 &lt;code&gt;thisValue&lt;/code&gt;，&lt;code&gt;this&lt;/code&gt; 将是全局对象（在非严格模式下）或 &lt;code&gt;undefined&lt;/code&gt;（在严格模式下）。&lt;/p&gt;</content><category term="Code Learning"></category><category term="javascript"></category><category term="forEach"></category><category term="数组处理"></category><category term="迭代方法"></category></entry><entry><title>JavaScript 与 Python 中的 `map` 函数比较</title><link href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html" rel="alternate"></link><published>2023-12-30T00:00:00+08:00</published><updated>2023-12-30T10:55:02+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-30:/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;1 什么是 &lt;code&gt;map&lt;/code&gt; 函数？&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;map&lt;/code&gt; 是一种常用的函数式编程技术，用于对序列中的每个元素执行相同的操作，并返回一个新的序列，其中包含了原序列中每个元素经过指定操作后的结果。&lt;/p&gt;
 &lt;h3&gt;1.1 JavaScript 中的 &lt;code&gt;map&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的一个方法。它对数组中的每个元素执行一个由你提供的函数，并返回一个新数组，这个新数组包含原数组中每个元素经过函数处理后的结果。&lt;/p&gt;
+&lt;p&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的一个方法。它对数组中的&lt;strong&gt;每个元素&lt;/strong&gt;执行一个&lt;strong&gt;由你提供的函数&lt;/strong&gt;，并返回一个新数组，这个新数组包含原数组中每个元素经过函数处理后的结果。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;squared&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// 输出: [1, 4, 9, 16]&lt;/span&gt;
@@ -10,7 +62,7 @@
 
 &lt;p&gt;这里，&lt;code&gt;map&lt;/code&gt; 方法接收一个函数（&lt;code&gt;num =&amp;gt; num * num&lt;/code&gt;），这个函数计算数组 &lt;code&gt;numbers&lt;/code&gt; 中每个元素的平方。&lt;/p&gt;
 &lt;h3&gt;1.2 Python 中的 &lt;code&gt;map&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Python 中的 &lt;code&gt;map&lt;/code&gt; 是一个内置函数，它接收两个参数：一个函数和一个可迭代对象（如列表）。它对可迭代对象中的每个元素应用这个函数，并返回一个 &lt;code&gt;map&lt;/code&gt; 对象，这是一个迭代器，包含了所有经过函数处理的元素。&lt;/p&gt;
+&lt;p&gt;Python 中的 &lt;code&gt;map&lt;/code&gt; 是一个内置函数，它接收两个参数：&lt;strong&gt;一个函数和一个可迭代对象&lt;/strong&gt;（如列表）。它对可迭代对象中的每个元素应用这个函数，并返回一个 &lt;code&gt;map&lt;/code&gt; 对象，这是一个迭代器，包含了所有经过函数处理的元素。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;squared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 输出: [1, 4, 9, 16]&lt;/span&gt;
@@ -23,16 +75,16 @@
 &lt;p&gt;尽管基本概念相似，但 JavaScript 和 Python 中的 &lt;code&gt;map&lt;/code&gt; 函数在使用和行为上有一些关键差异：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;返回值类型：&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;JavaScript 的 &lt;code&gt;map&lt;/code&gt; 返回一个新数组。&lt;/li&gt;
+&lt;li&gt;JavaScript 的 &lt;code&gt;map&lt;/code&gt; 返回一个&lt;strong&gt;新数组&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Python 的 &lt;code&gt;map&lt;/code&gt; 返回一个 &lt;code&gt;map&lt;/code&gt; 对象（迭代器），通常需要使用 &lt;code&gt;list()&lt;/code&gt; 函数转换为列表。&lt;/p&gt;
+&lt;p&gt;Python 的 &lt;code&gt;map&lt;/code&gt; 返回一个 &lt;strong&gt;&lt;code&gt;map&lt;/code&gt; 对象&lt;/strong&gt;（迭代器），通常需要使用 &lt;strong&gt;&lt;code&gt;list()&lt;/code&gt; 函数&lt;/strong&gt;转换为列表。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;调用方式：&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的方法。&lt;/li&gt;
+&lt;li&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是&lt;strong&gt;数组的方法&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;在 Python 中，&lt;code&gt;map&lt;/code&gt; 是一个全局函数。&lt;/p&gt;
+&lt;p&gt;在 Python 中，&lt;code&gt;map&lt;/code&gt; 是一个&lt;strong&gt;全局函数&lt;/strong&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;对空元素的处理（JavaScript 特有）：&lt;/strong&gt;&lt;/p&gt;
@@ -75,7 +127,203 @@
 &lt;li&gt;&lt;strong&gt;语法差异&lt;/strong&gt;：Python 使用 &lt;code&gt;f"Hello, {name}"&lt;/code&gt; 的格式，而 JavaScript 使用 &lt;code&gt;`Hello, ${name}`&lt;/code&gt;。尽管外观略有不同，但它们的功能和目的非常相似。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;用途&lt;/strong&gt;：在格式化字符串、构建动态字符串（如 SQL 查询、HTML 模板等）方面，这两种方法都极为有用。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;性能&lt;/strong&gt;：Python 的 f-strings 在性能上通常比传统的格式化方法更优，而 JavaScript 的模板字符串则比传统的字符串拼接更简洁易读。&lt;/li&gt;
-&lt;/ul&gt;</content><category term="Code Learning"></category><category term="JavaScript 和 Python 比较"></category><category term="编程语言比较"></category><category term="javascript"></category><category term="python"></category><category term="f-string"></category><category term="模板字符串"></category></entry><entry><title>Python 的 `*` 与Javascript 的`...` ： 展开运算符的比较</title><link href="https://qrkks.github.io/2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html" rel="alternate"></link><published>2023-12-29T00:00:00+08:00</published><updated>2023-12-29T22:34:30+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-29:/2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html</id><summary type="html">&lt;p&gt;本文对比了JavaScript的展开运算符&lt;code&gt;...&lt;/code&gt;与Python中的&lt;code&gt;*&lt;/code&gt;和&lt;code&gt;**&lt;/code&gt;运算符，重点介绍了它们在处理数组、对象和函数参数方面的不同用法。通过具体的代码示例，文章展示了如何在JavaScript和Python中使用这些运算符进行数据结构的展开和合并。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 解决一个实际问题&lt;/h2&gt;
+&lt;/ul&gt;</content><category term="Code Learning"></category><category term="JavaScript 和 Python 比较"></category><category term="编程语言比较"></category><category term="javascript"></category><category term="python"></category><category term="f-string"></category><category term="模板字符串"></category></entry><entry><title>使用 Javascript, tailwind css 建一个动态目录</title><link href="https://qrkks.github.io/2023/12/29/building-dynamic-toc-with-javascript.html" rel="alternate"></link><published>2023-12-29T00:00:00+08:00</published><updated>2023-12-31T14:18:10+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-29:/2023/12/29/building-dynamic-toc-with-javascript.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;1 实现思路&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;使用 tailwind 建一个目录的框架和样式。&lt;/li&gt;
+&lt;li&gt;设置要生成目录的内容区，可以通过添加类名进行选择和反选。&lt;/li&gt;
+&lt;li&gt;由 javascript 监听内容区提取标题加入到目录中，并监听滚动高亮正在显示的标题。&lt;/li&gt;
+&lt;li&gt;监听点击。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;2 Javascript 代码&lt;/h2&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;DOMContentLoaded&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 获取TOC列表的容器&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;tocList&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;toc-list&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;createHeadingSelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;baseClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;heading&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;baseClass&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;heading&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;, &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 举例，如果你想选择 .toc-content-area 类中的 h1, h2, h3&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headingSelector&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;createHeadingSelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.toc-content-area&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;h3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]);&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 使用生成的选择器选择标题元素&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelectorAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;headingSelector&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 函数：更新TOC高亮状态&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;updateTocHighlight&lt;/span&gt;&lt;span class="p"&gt;()&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;foundActive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;false&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;// 排除带有特定类（toc-exclude）的元素&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;closest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.toc-exclude&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;// 获取标题的位置&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getBoundingClientRect&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="c1"&gt;// 判断标题是否在视窗内&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;top&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerHeight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bottom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelectorAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#toc-list a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;classList&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;remove&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;font-bold&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text-red-500&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getAttribute&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;href&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;===&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;                        &lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;classList&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;font-bold&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;text-red-500&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;                        &lt;/span&gt;&lt;span class="nx"&gt;foundActive&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kc"&gt;true&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;                    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;                &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 遍历所有标题元素，为它们创建TOC项&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;closest&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;.toc-exclude&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;||&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerText&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;trim&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;toLowerCase&lt;/span&gt;&lt;span class="p"&gt;().&lt;/span&gt;&lt;span class="nx"&gt;replace&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="sr"&gt;/\s+/g&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;-&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// 根据标题级别计算左边距&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;level&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;parseInt&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;nodeName&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;substring&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;marginLeftClass&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`ml-&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;level&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// 创建TOC项&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;listItem&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;createElement&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;li&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;listItem&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerHTML&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&amp;lt;a href=&amp;quot;#&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;&amp;quot; class=&amp;quot;text-blue-500 hover:text-blue-700 &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;marginLeftClass&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;&amp;quot;&amp;gt;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerText&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;&amp;lt;/a&amp;gt;`&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="c1"&gt;// 为TOC项添加点击事件监听器&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;listItem&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;click&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;e&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;preventDefault&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getElementById&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;id&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;scrollIntoView&lt;/span&gt;&lt;span class="p"&gt;({&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;behavior&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;smooth&amp;#39;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;span class="w"&gt;            &lt;/span&gt;&lt;span class="nx"&gt;setTimeout&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;updateTocHighlight&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;200&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// 延迟更新高亮&lt;/span&gt;
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="w"&gt;        &lt;/span&gt;&lt;span class="nx"&gt;tocList&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;appendChild&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;listItem&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="c1"&gt;// 监听滚动事件以更新TOC高亮&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;addEventListener&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;scroll&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;updateTocHighlight&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;3 代码学习&lt;/h2&gt;
+&lt;h3&gt;3.1 &lt;code&gt;function createHeadingSelector&lt;/code&gt;&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;createHeadingSelector&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;baseClass&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="k"&gt;return&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;headings&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;heading&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;baseClass&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt; &lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nx"&gt;heading&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="sb"&gt;`&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;join&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;, &amp;#39;&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这段 JavaScript 代码定义了一个名为 &lt;code&gt;createHeadingSelector&lt;/code&gt; 的函数，该函数接受两个参数：&lt;code&gt;baseClass&lt;/code&gt; 和 &lt;code&gt;headings&lt;/code&gt;。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;参数&lt;/strong&gt;：&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;baseClass&lt;/code&gt;：一个字符串，表示基础 CSS 类名。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;code&gt;headings&lt;/code&gt;：一个字符串数组，每个元素代表一个后缀或额外的类名。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;功能&lt;/strong&gt;：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;函数内部，使用 &lt;a href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html"&gt; &lt;code&gt;map&lt;/code&gt; 方法&lt;/a&gt; 遍历 &lt;code&gt;headings&lt;/code&gt; 数组。&lt;/li&gt;
+&lt;li&gt;对于 &lt;code&gt;headings&lt;/code&gt; 数组中的每个元素 &lt;code&gt;heading&lt;/code&gt;，函数会创建一个新字符串，该字符串是 &lt;code&gt;baseClass&lt;/code&gt; 和 &lt;code&gt;heading&lt;/code&gt; 的组合，两者之间用空格分隔。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;然后，使用 &lt;code&gt;join&lt;/code&gt; 方法将这些组合后的字符串用逗号和空格连接成一个单一的字符串。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;结果&lt;/strong&gt;：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;这个函数的输出是一个新的字符串，其中包含了由基础类名和每个头部类名组合而成的所有可能的类名，这些类名由逗号分隔。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;用途&lt;/strong&gt;：&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;这个函数通常用于动态生成 CSS 类名，特别是在需要根据不同的上下文或变化生成多个类名的情况下。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如，如果 &lt;code&gt;baseClass&lt;/code&gt; 是 &lt;code&gt;"title"&lt;/code&gt;，而 &lt;code&gt;headings&lt;/code&gt; 是 &lt;code&gt;["big", "small"]&lt;/code&gt;，那么 &lt;code&gt;createHeadingSelector&lt;/code&gt; 函数将返回 &lt;code&gt;"title big, title small"&lt;/code&gt;，这是一个表示两个 CSS 类的字符串。&lt;/p&gt;
+&lt;h3&gt;3.2 &lt;code&gt;let headings = document.querySelectorAll(headingSelector);&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;3.2.1 &lt;code&gt;document.querySelectorAll&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;这是一个 DOM 方法，用于在文档中选择与指定选择器匹配的一组元素。它返回一个 &lt;strong&gt;&lt;code&gt;NodeList&lt;/code&gt; 对象&lt;/strong&gt;，其中包含文档（HTML 页面）中所有与指定的 CSS 选择器匹配的 &lt;strong&gt;元素（包括标签和内容）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;例如，如果你使用 &lt;code&gt;document.querySelectorAll('.className')&lt;/code&gt;，它将返回页面上所有具有 &lt;code&gt;className&lt;/code&gt; 类的元素。这个 &lt;code&gt;NodeList&lt;/code&gt; 对象类似于数组，你可以使用索引来访问其中的元素，也可以使用 &lt;code&gt;forEach&lt;/code&gt; 方法来遍历它。&lt;/p&gt;
+&lt;p&gt;重要的是要注意，尽管 &lt;code&gt;NodeList&lt;/code&gt; 在使用上&lt;strong&gt;类似于数组&lt;/strong&gt;，但它并不是一个真正的数组。它不具备数组的所有方法，但你可以用常见的方法如 &lt;code&gt;forEach&lt;/code&gt; 来遍历其元素。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;headings
+
+&lt;span class="m"&gt;1&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;NodeList&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;h2,&lt;span class="w"&gt; &lt;/span&gt;h1#使用-javascript,-tailwind-css-建一个动态目录,&lt;span class="w"&gt; &lt;/span&gt;h2#1-实现思路,&lt;span class="w"&gt; &lt;/span&gt;h2#2-javascript-代码,&lt;span class="w"&gt; &lt;/span&gt;h2#3-逐句解释,&lt;span class="w"&gt; &lt;/span&gt;h3#3.1-var-headings-&lt;span class="o"&gt;=&lt;/span&gt;-document.queryselectorall&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.toc-content-area-&amp;quot;&lt;/span&gt;-+-headingselector&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.1-document.queryselectorall,&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.2-&lt;span class="s2"&gt;&amp;quot;.toc-content-area-&amp;quot;&lt;/span&gt;-+-headingselector,&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.3-整体表达的含义,&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.4-输入值,&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.5-输出值,&lt;span class="w"&gt; &lt;/span&gt;h3#3.2-getboundingclientrect&lt;span class="o"&gt;()&lt;/span&gt;,&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.1-代码示例解释,&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.2-如何使用这些信息,&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.3-getboundingclientrect-方法的字面意思,&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.4-小结&lt;span class="o"&gt;]&lt;/span&gt;
+
+&lt;span class="m"&gt;1&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;0&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h2
+&lt;span class="m"&gt;2&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;1&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h1#使用-javascript,-tailwind-css-建一个动态目录
+&lt;span class="m"&gt;3&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;2&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h2#1-实现思路
+&lt;span class="m"&gt;4&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;3&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h2#2-javascript-代码
+&lt;span class="m"&gt;5&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;4&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h2#3-逐句解释
+&lt;span class="m"&gt;6&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;5&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h3#3.1-var-headings-&lt;span class="o"&gt;=&lt;/span&gt;-document.queryselectorall&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="s2"&gt;&amp;quot;.toc-content-area-&amp;quot;&lt;/span&gt;-+-headingselector&lt;span class="o"&gt;)&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;span class="m"&gt;7&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;6&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.1-document.queryselectorall
+&lt;span class="m"&gt;8&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;7&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.2-&lt;span class="s2"&gt;&amp;quot;.toc-content-area-&amp;quot;&lt;/span&gt;-+-headingselector
+&lt;span class="m"&gt;9&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;8&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.3-整体表达的含义
+&lt;span class="m"&gt;10&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;9&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.4-输入值
+&lt;span class="m"&gt;11&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;10&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.1.5-输出值
+&lt;span class="m"&gt;12&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;11&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h3#3.2-getboundingclientrect&lt;span class="o"&gt;()&lt;/span&gt;
+&lt;span class="m"&gt;13&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;12&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.1-代码示例解释
+&lt;span class="m"&gt;14&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;13&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.2-如何使用这些信息
+&lt;span class="m"&gt;15&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.3-getboundingclientrect-方法的字面意思
+&lt;span class="m"&gt;16&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;15&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.4-小结
+&lt;span class="m"&gt;17&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;
+&lt;span class="m"&gt;18&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[[&lt;/span&gt;Prototype&lt;span class="o"&gt;]]&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;NodeList
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;3.3 &lt;code&gt;headings.forEach(function (node) {if (node.closest('.toc-exclude')) {return;}}&lt;/code&gt;&lt;/h3&gt;
+&lt;h4&gt;3.3.1 为什么使用 &lt;code&gt;return&lt;/code&gt; 而不是 &lt;code&gt;continue&lt;/code&gt;&lt;/h4&gt;
+&lt;p&gt;在 JavaScript 的 &lt;a href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html"&gt; &lt;code&gt;forEach&lt;/code&gt; 方法&lt;/a&gt; 中，回调函数是作为一个&lt;strong&gt;独立的函数调用的&lt;/strong&gt;，而不是传统循环的一部分。在这样的回调函数内部，&lt;code&gt;continue&lt;/code&gt; 关键字不适用，因为它只能在标准的循环结构（如 &lt;code&gt;for&lt;/code&gt;、&lt;code&gt;while&lt;/code&gt; 循环）中使用。相反，使用 &lt;code&gt;return&lt;/code&gt; 语句可以从当前的回调函数中提前退出，这在效果上等同于在传统循环中使用 &lt;code&gt;continue&lt;/code&gt;。简而言之，在 &lt;code&gt;forEach&lt;/code&gt; 的回调函数中，&lt;code&gt;return&lt;/code&gt; 用来跳过当前迭代，但在常规循环中，则使用 &lt;code&gt;continue&lt;/code&gt; 达到相同的目的。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 方法在 JavaScript 中&lt;strong&gt;对数组的每个元素执行一次回调函数&lt;/strong&gt;。如果数组有 &lt;code&gt;n&lt;/code&gt; 个元素，回调函数就会被执行 &lt;code&gt;n&lt;/code&gt; 次，每次处理数组的一个元素。在每次调用中，当前元素被作为参数传递给回调函数。&lt;/p&gt;
+&lt;h4&gt;3.3.2 &lt;code&gt;node&lt;/code&gt; 是哪来的&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;node&lt;/code&gt; 是 &lt;code&gt;forEach&lt;/code&gt; 方法为每次迭代自动提供的参数。当您调用数组的 &lt;code&gt;forEach&lt;/code&gt; 方法时，它会遍历数组中的每个元素，并为每个元素执行一次提供的回调函数。在每次执行回调函数时，当前正在处理的数组元素会作为参数传递给该函数。&lt;/p&gt;
+&lt;p&gt;所以在这个例子中，&lt;code&gt;headings&lt;/code&gt; 数组中的每个元素（在这里是 DOM 节点）会依次作为 &lt;code&gt;node&lt;/code&gt; 参数传递给回调函数。这就是 &lt;code&gt;node&lt;/code&gt; 的来源，它代表 &lt;code&gt;headings&lt;/code&gt; 数组中当前正在处理的元素。&lt;/p&gt;
+&lt;h3&gt;3.4 &lt;code&gt;getBoundingClientRect()&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;&lt;code&gt;getBoundingClientRect()&lt;/code&gt; 是一个 JavaScript DOM 方法，它返回一个 DOM 元素的大小及其相对于视口的位置。当这个方法应用于一个 DOM 节点时（比如一个 HTML 元素），它会提供该元素的 &lt;code&gt;top&lt;/code&gt;, &lt;code&gt;bottom&lt;/code&gt;, &lt;code&gt;left&lt;/code&gt;, &lt;code&gt;right&lt;/code&gt;, &lt;code&gt;width&lt;/code&gt;, 和 &lt;code&gt;height&lt;/code&gt; 等属性。&lt;/p&gt;
+&lt;p&gt;在我们的动态目录（TOC）的上下文中，&lt;code&gt;getBoundingClientRect()&lt;/code&gt; 被用来确定一个标题元素在当前视口中的位置。这是非常重要的，因为它允许脚本知道用户当前查看的是哪部分内容。&lt;/p&gt;
+&lt;h4&gt;3.4.1 代码示例解释&lt;/h4&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;let&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;node&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;getBoundingClientRect&lt;/span&gt;&lt;span class="p"&gt;();&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在这行代码中：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;node&lt;/code&gt; 代表一个标题元素（如 &lt;code&gt;h1&lt;/code&gt;, &lt;code&gt;h2&lt;/code&gt;, &lt;code&gt;h3&lt;/code&gt; 等）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;getBoundingClientRect()&lt;/code&gt; 对该元素调用，返回一个包含该元素位置和尺寸的对象。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bounding&lt;/code&gt; 变量现在包含了元素的位置信息。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4&gt;3.4.2 如何使用这些信息&lt;/h4&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bounding.top&lt;/code&gt;: 元素顶部相对于视口顶部的距离。如果这个值小于或等于 0，意味着元素的顶部已经滚动到视口顶部或以上。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;bounding.bottom&lt;/code&gt;: 元素底部相对于视口顶部的距离。如果这个值大于视口的高度，意味着元素的底部还没有进入视口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;这些信息被用来判断一个标题是否在当前视口内，从而决定是否将对应的 TOC 项设置为“活动”状态，这通常通过改变样式（如高亮）来实现。&lt;/p&gt;
+&lt;h4&gt;3.4.3 &lt;code&gt;getBoundingClientRect&lt;/code&gt; 方法的字面意思&lt;/h4&gt;
+&lt;p&gt;&lt;code&gt;getBoundingClientRect&lt;/code&gt; 方法的字面意思可以分为两部分：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Bounding&lt;/strong&gt;: 在这个上下文中，"bounding" 通常指的是一个边界框（bounding box）或外围矩形（bounding rectangle）。这个边界框是围绕着元素最小的矩形，包含了元素的全部可视部分，包括边框、滚动条等。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;ClientRect&lt;/strong&gt;: "ClientRect" 指的是客户端区域（client area），在浏览器中通常指的是浏览器视口（viewport）的区域。这个区域不包括浏览器的界面元素（如地址栏、工具栏等），只包括网页内容显示的部分。&lt;/li&gt;
+&lt;li&gt;"Rect" 在 &lt;code&gt;getBoundingClientRect&lt;/code&gt; 方法中是 "rectangle"（矩形）的缩写。在计算机图形学和 Web 开发中，矩形通常用来描述一个元素或区域的形状和大小，它由两个坐标（通常是左上角和右下角）或者一个坐标加上宽度和高度来定义。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;所以，&lt;code&gt;getBoundingClientRect&lt;/code&gt; 方法的名字表示它返回一个元素在客户端区域（即视口）内的边界框信息。这个信息包括元素的位置（相对于视口的左上角）和尺寸（宽度和高度）。&lt;/p&gt;
+&lt;h4&gt;3.4.4 小结&lt;/h4&gt;
+&lt;p&gt;实际上就是获取客户端方块的意思，返回的与 &lt;strong&gt;两个“方块”（或矩形）&lt;/strong&gt; 相关的信息：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;元素本身的方块&lt;/strong&gt;：这指的是元素的外围边界框。这个矩形框定义了元素的尺寸，包括其宽度（&lt;code&gt;width&lt;/code&gt;）和高度（&lt;code&gt;height&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;元素相对于视口的位置&lt;/strong&gt;：这些信息表示元素的边界框相对于浏览器视口（屏幕上可见区域）的位置。它包括元素顶部（&lt;code&gt;top&lt;/code&gt;）、底部（&lt;code&gt;bottom&lt;/code&gt;）、左侧（&lt;code&gt;left&lt;/code&gt;）和右侧（&lt;code&gt;right&lt;/code&gt;）距离视口顶部和左侧的距离。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;总结来说，&lt;code&gt;getBoundingClientRect&lt;/code&gt; 方法提供了&lt;strong&gt;一个元素在页面上的几何信息，这包括它的大小和它相对于当前视口的位置&lt;/strong&gt;。这个方法在处理页面布局和交互时非常有用，特别是在需要确定元素是否在当前可视区域内，以及元素的确切位置时。&lt;/p&gt;
+&lt;h3&gt;3.5 &lt;code&gt;if (bounding.top &amp;lt;= window.innerHeight * 0.2 &amp;amp;&amp;amp; bounding.bottom &amp;gt;= 0)&lt;/code&gt;&lt;/h3&gt;
+&lt;p&gt;这行代码是一个条件判断，用于检查一个元素的视觉边界是否在特定的视窗范围内。这里的 &lt;code&gt;bounding&lt;/code&gt; 是一个 DOM 元素的边界框（通常通过 &lt;code&gt;element.getBoundingClientRect()&lt;/code&gt; 获得），它包含了元素的位置和尺寸信息。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bounding.top&lt;/code&gt; 是元素顶部相对于视窗顶部的距离。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;window.innerHeight&lt;/code&gt; 是浏览器视窗的内部高度。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;条件 &lt;code&gt;bounding.top &amp;lt;= window.innerHeight * 0.2&lt;/code&gt; 检查元素顶部是否位于视窗内部高度的前 20% 以内。&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;bounding.bottom&lt;/code&gt; 是元素底部相对于视窗顶部的距离。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;条件 &lt;code&gt;bounding.bottom &amp;gt;= 0&lt;/code&gt; 检查元素底部是否位于视窗顶部以上。&lt;/p&gt;
+&lt;p&gt;综合这两个条件，这行代码用于判断一个元素是否部分或完全位于视窗的上方 20% 区域内。&lt;/p&gt;</content><category term="Pelican"></category><category term="pelican"></category><category term="javascript"></category><category term="toc"></category><category term="nav"></category><category term="tailwind"></category></entry><entry><title>Python 的 `*` 与Javascript 的`...` ： 展开运算符的比较</title><link href="https://qrkks.github.io/2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html" rel="alternate"></link><published>2023-12-29T00:00:00+08:00</published><updated>2023-12-29T22:34:30+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-29:/2023/12/29/python-de-yu-javascript-de-zhan-kai-yun-suan-fu-de-bi-jiao.html</id><summary type="html">&lt;p&gt;本文对比了JavaScript的展开运算符&lt;code&gt;...&lt;/code&gt;与Python中的&lt;code&gt;*&lt;/code&gt;和&lt;code&gt;**&lt;/code&gt;运算符，重点介绍了它们在处理数组、对象和函数参数方面的不同用法。通过具体的代码示例，文章展示了如何在JavaScript和Python中使用这些运算符进行数据结构的展开和合并。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 解决一个实际问题&lt;/h2&gt;
 &lt;p&gt;今天，在处理 DOM 操作时，我遇到了一个有趣的场景。问题出在我想要优化下面这段 JavaScript 代码时：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="k"&gt;if&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;top&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;lt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;window&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;innerHeight&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0.2&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;bounding&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;bottom&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;&amp;gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;0&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
 &lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nb"&gt;document&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;querySelectorAll&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;#toc-list a&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;).&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;a&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;

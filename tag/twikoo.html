@@ -2,9 +2,9 @@
 <html lang="zh">
   <head>
       <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/custom.css" />
       <link rel="stylesheet" href="/static/css/tailwind.min.css" />
       <link rel="stylesheet" href="/static/css/pygment.css" />
-      <link rel="stylesheet" href="/static/css/custom.css" />
       <script defer src="/static/js/script.js"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
       <link rel="stylesheet"
@@ -49,10 +49,11 @@ Python Website Building Learning Journal - twikoo tag      </title>
     </header>
     <div class="flex flex-col lg:flex-row">
       <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
-    <article class="text-gray-500">
+    <article class="text-gray-500 border-b  border-gray-200">
       <header>
-        <h2>
-          <a href="https://qrkks.github.io/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html"
+        <h2 class=" ">
+          <a class="text-sky-500"
+             href="https://qrkks.github.io/2023/12/27/shi-yong-docker-zi-tuo-guan-fang-shi-zai-pelican-zhong-ji-cheng-twikoo-ping-lun-xi-tong.html"
              rel="bookmark"
              title="Permalink to 使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统">使用 Docker 自托管方式在 Pelican 中集成 Twikoo 评论系统</a>
         </h2>
@@ -60,9 +61,10 @@ Python Website Building Learning Journal - twikoo tag      </title>
       <section>
           由于 twikoo 提供了 官方的容器和YAML文件，所以如果有自己的服务器，采用容器部署自托管方式就非常简便了，5 分钟即可完成部署。 实际配置三个文件即可：Docker Compose 文件，Nginx 配置文件，客户端网页脚本。 1 服务器端 1.1 YAML...
       </section>
-      <footer class="flex justify-start my-5 text-sm text-gray-400 not-prose">
-        <p>
-          Published: <time datetime="2023-12-27 00:00:00+08:00"> 2023-12-27 </time>
+      <footer class="flex gap-x-20 flex-wrap justify-end my-5 text-sm text-gray-400 not-prose">
+        <p class="">
+          Published: <time datetime="2023-12-27 00:00:00+08:00"> 2023-12-27 </time></p>
+          <p>
             Modified: <time datetime="2023-12-28T17:06:48+08:00"> 2023-12-28 </time>
         </p>
       </footer>

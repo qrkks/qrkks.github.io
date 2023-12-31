@@ -1,8 +1,60 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal - Code Learning</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/code-learning.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-30T10:55:02+08:00</updated><entry><title>JavaScript 与 Python 中的 `map` 函数比较</title><link href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html" rel="alternate"></link><published>2023-12-30T00:00:00+08:00</published><updated>2023-12-30T10:55:02+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-30:/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;1 什么是 &lt;code&gt;map&lt;/code&gt; 函数？&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal - Code Learning</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/code-learning.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-31T14:37:18+08:00</updated><entry><title>深入理解 JavaScript 中的 forEach 方法</title><link href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html" rel="alternate"></link><published>2023-12-31T00:00:00+08:00</published><updated>2023-12-31T14:37:18+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-31:/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html</id><summary type="html">&lt;p&gt;这篇文章提供了对 &lt;code&gt;forEach&lt;/code&gt; 方法的基本介绍、使用方法、与传统循环的比较以及适用场景。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 简介&lt;/h2&gt;
+&lt;p&gt;JavaScript 的 &lt;code&gt;forEach&lt;/code&gt; 方法是一种在数组上执行操作的常用技术。它为数组的每个元素执行一次提供的函数，使得处理数组变得简单而直观。&lt;/p&gt;
+&lt;h2&gt;2 什么是 forEach&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 是 Array 对象的一个方法。它为数组中的每个元素执行一次提供的函数。不像 &lt;code&gt;map&lt;/code&gt; 或 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;forEach&lt;/code&gt; 不返回任何值，它仅用于操作或改变数组。&lt;/p&gt;
+&lt;h3&gt;2.1 基本语法&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nx"&gt;array&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;currentValue&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;index&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;arr&lt;/span&gt;&lt;span class="p"&gt;),&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;thisValue&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;currentValue&lt;/code&gt;：数组中正在处理的当前元素。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;index&lt;/code&gt;（可选）：数组中正在处理的当前元素的索引。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;arr&lt;/code&gt;（可选）：&lt;code&gt;forEach&lt;/code&gt; 方法正在操作的数组。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;thisValue&lt;/code&gt;（可选）：执行回调时使用的 &lt;code&gt;this&lt;/code&gt; 值。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;2.2 示例&lt;/h3&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item1&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item2&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s1"&gt;&amp;#39;item3&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;items&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;item&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="w"&gt;   &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;item&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;3 forEach 与传统循环的比较&lt;/h2&gt;
+&lt;p&gt;虽然 &lt;code&gt;forEach&lt;/code&gt; 可以用来替代传统的 &lt;code&gt;for&lt;/code&gt; 循环，但它们之间有一些关键的区别：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;简洁性&lt;/strong&gt;：&lt;code&gt;forEach&lt;/code&gt; 通常比传统的 &lt;code&gt;for&lt;/code&gt; 循环更简洁。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;无法中断&lt;/strong&gt;：在 &lt;code&gt;forEach&lt;/code&gt; 循环中，&lt;strong&gt;不能使用 &lt;code&gt;break&lt;/code&gt; 或 &lt;code&gt;continue&lt;/code&gt; 来中断或跳过迭代&lt;/strong&gt;。（直接使用 &lt;code&gt;return&lt;/code&gt; 跳出循环）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2&gt;4 适用场景&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 最适合那些需要遍历数组并对每个元素执行操作，但不需要中断循环的场景。&lt;/p&gt;
+&lt;h2&gt;5 Q&amp;amp;A&lt;/h2&gt;
+&lt;h3&gt;5.1 &lt;code&gt;item&lt;/code&gt;,&lt;code&gt;index&lt;/code&gt;,&lt;code&gt;arr&lt;/code&gt; 都可以随便命名吗？&lt;/h3&gt;
+&lt;p&gt;是的，&lt;code&gt;item&lt;/code&gt;、&lt;code&gt;index&lt;/code&gt; 和 &lt;code&gt;arr&lt;/code&gt; 这些参数的名称在 &lt;code&gt;forEach&lt;/code&gt; 方法的回调函数中是可以自由命名的。它们只是参数的标识符，您可以根据您的喜好或者代码的语义上下文来命名它们。重要的是它们在 &lt;code&gt;forEach&lt;/code&gt; 回调函数中的位置：第一个参数总是当前元素，第二个是当前元素的索引，第三个是数组本身。这些参数的实际名称可以任意指定。&lt;/p&gt;
+&lt;h3&gt;5.2 &lt;code&gt;item&lt;/code&gt;,&lt;code&gt;index&lt;/code&gt;,&lt;code&gt;arr&lt;/code&gt; 是位置参数？&lt;/h3&gt;
+&lt;p&gt;是的，这三个参数 —— 当前元素 (&lt;code&gt;item&lt;/code&gt; 或 &lt;code&gt;node&lt;/code&gt;)、索引 (&lt;code&gt;index&lt;/code&gt;)、以及数组本身 (&lt;code&gt;arr&lt;/code&gt;) —— 是 &lt;code&gt;forEach&lt;/code&gt; 方法中回调函数的位置参数。它们按照这个顺序被传递给函数：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;第一个参数代表数组中当前正在处理的元素。&lt;/li&gt;
+&lt;li&gt;第二个参数是当前元素的索引。&lt;/li&gt;
+&lt;li&gt;第三个参数是数组本身。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;这些参数的顺序是固定的，您可以根据需要使用其中的一个或多个。&lt;/p&gt;
+&lt;h3&gt;5.3 &lt;code&gt;thisValue&lt;/code&gt; 是什么？&lt;/h3&gt;
+&lt;p&gt;在 JavaScript 的 &lt;code&gt;forEach&lt;/code&gt; 方法中，&lt;code&gt;thisValue&lt;/code&gt; 是一个可选参数，用于指定执行回调函数时 &lt;code&gt;this&lt;/code&gt; 的值。如果提供 &lt;code&gt;thisValue&lt;/code&gt;，它将被作为回调函数内部的 &lt;code&gt;this&lt;/code&gt; 上下文使用。&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myObject&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;20&lt;/span&gt;
+&lt;span class="p"&gt;};&lt;/span&gt;
+
+&lt;span class="kd"&gt;function&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;{&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;this&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;value&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;+&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;element&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
+&lt;span class="p"&gt;}&lt;/span&gt;
+
+&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
+&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;forEach&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;callback&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;myObject&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// `this` inside `callback` will refer to `myObject`&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;在这个例子中，&lt;code&gt;myObject&lt;/code&gt; 作为 &lt;code&gt;thisValue&lt;/code&gt; 被传递给 &lt;code&gt;forEach&lt;/code&gt;，因此在 &lt;code&gt;callback&lt;/code&gt; 函数内部，&lt;code&gt;this&lt;/code&gt; 指向 &lt;code&gt;myObject&lt;/code&gt;。如果不指定 &lt;code&gt;thisValue&lt;/code&gt;，&lt;code&gt;this&lt;/code&gt; 将是全局对象（在非严格模式下）或 &lt;code&gt;undefined&lt;/code&gt;（在严格模式下）。&lt;/p&gt;</content><category term="Code Learning"></category><category term="javascript"></category><category term="forEach"></category><category term="数组处理"></category><category term="迭代方法"></category></entry><entry><title>JavaScript 与 Python 中的 `map` 函数比较</title><link href="https://qrkks.github.io/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html" rel="alternate"></link><published>2023-12-30T00:00:00+08:00</published><updated>2023-12-30T10:55:02+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-30:/2023/12/30/javascript-yu-python-zhong-de-map-han-shu-bi-jiao.html</id><summary type="html"></summary><content type="html">&lt;h2&gt;1 什么是 &lt;code&gt;map&lt;/code&gt; 函数？&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;map&lt;/code&gt; 是一种常用的函数式编程技术，用于对序列中的每个元素执行相同的操作，并返回一个新的序列，其中包含了原序列中每个元素经过指定操作后的结果。&lt;/p&gt;
 &lt;h3&gt;1.1 JavaScript 中的 &lt;code&gt;map&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的一个方法。它对数组中的每个元素执行一个由你提供的函数，并返回一个新数组，这个新数组包含原数组中每个元素经过函数处理后的结果。&lt;/p&gt;
+&lt;p&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的一个方法。它对数组中的&lt;strong&gt;每个元素&lt;/strong&gt;执行一个&lt;strong&gt;由你提供的函数&lt;/strong&gt;，并返回一个新数组，这个新数组包含原数组中每个元素经过函数处理后的结果。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mf"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="mf"&gt;4&lt;/span&gt;&lt;span class="p"&gt;];&lt;/span&gt;
 &lt;span class="kd"&gt;const&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;squared&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="p"&gt;=&amp;gt;&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;*&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nx"&gt;num&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;
 &lt;span class="nx"&gt;console&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="nx"&gt;log&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nx"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;);&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="c1"&gt;// 输出: [1, 4, 9, 16]&lt;/span&gt;
@@ -10,7 +62,7 @@
 
 &lt;p&gt;这里，&lt;code&gt;map&lt;/code&gt; 方法接收一个函数（&lt;code&gt;num =&amp;gt; num * num&lt;/code&gt;），这个函数计算数组 &lt;code&gt;numbers&lt;/code&gt; 中每个元素的平方。&lt;/p&gt;
 &lt;h3&gt;1.2 Python 中的 &lt;code&gt;map&lt;/code&gt;&lt;/h3&gt;
-&lt;p&gt;Python 中的 &lt;code&gt;map&lt;/code&gt; 是一个内置函数，它接收两个参数：一个函数和一个可迭代对象（如列表）。它对可迭代对象中的每个元素应用这个函数，并返回一个 &lt;code&gt;map&lt;/code&gt; 对象，这是一个迭代器，包含了所有经过函数处理的元素。&lt;/p&gt;
+&lt;p&gt;Python 中的 &lt;code&gt;map&lt;/code&gt; 是一个内置函数，它接收两个参数：&lt;strong&gt;一个函数和一个可迭代对象&lt;/strong&gt;（如列表）。它对可迭代对象中的每个元素应用这个函数，并返回一个 &lt;code&gt;map&lt;/code&gt; 对象，这是一个迭代器，包含了所有经过函数处理的元素。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="n"&gt;numbers&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;2&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;3&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="mi"&gt;4&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
 &lt;span class="n"&gt;squared&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="nb"&gt;map&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="k"&gt;lambda&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt; &lt;span class="o"&gt;*&lt;/span&gt; &lt;span class="n"&gt;num&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;numbers&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 &lt;span class="nb"&gt;print&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="nb"&gt;list&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;squared&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt; &lt;span class="c1"&gt;# 输出: [1, 4, 9, 16]&lt;/span&gt;
@@ -23,16 +75,16 @@
 &lt;p&gt;尽管基本概念相似，但 JavaScript 和 Python 中的 &lt;code&gt;map&lt;/code&gt; 函数在使用和行为上有一些关键差异：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;返回值类型：&lt;/strong&gt;&lt;/li&gt;
-&lt;li&gt;JavaScript 的 &lt;code&gt;map&lt;/code&gt; 返回一个新数组。&lt;/li&gt;
+&lt;li&gt;JavaScript 的 &lt;code&gt;map&lt;/code&gt; 返回一个&lt;strong&gt;新数组&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;Python 的 &lt;code&gt;map&lt;/code&gt; 返回一个 &lt;code&gt;map&lt;/code&gt; 对象（迭代器），通常需要使用 &lt;code&gt;list()&lt;/code&gt; 函数转换为列表。&lt;/p&gt;
+&lt;p&gt;Python 的 &lt;code&gt;map&lt;/code&gt; 返回一个 &lt;strong&gt;&lt;code&gt;map&lt;/code&gt; 对象&lt;/strong&gt;（迭代器），通常需要使用 &lt;strong&gt;&lt;code&gt;list()&lt;/code&gt; 函数&lt;/strong&gt;转换为列表。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;调用方式：&lt;/strong&gt;&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是数组的方法。&lt;/li&gt;
+&lt;li&gt;在 JavaScript 中，&lt;code&gt;map&lt;/code&gt; 是&lt;strong&gt;数组的方法&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;在 Python 中，&lt;code&gt;map&lt;/code&gt; 是一个全局函数。&lt;/p&gt;
+&lt;p&gt;在 Python 中，&lt;code&gt;map&lt;/code&gt; 是一个&lt;strong&gt;全局函数&lt;/strong&gt;。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;对空元素的处理（JavaScript 特有）：&lt;/strong&gt;&lt;/p&gt;

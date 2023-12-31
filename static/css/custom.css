@@ -30,7 +30,7 @@
   color: #bdbdbd !important; /* 蓝色图标 */
 }
 .tk-pagination-pager.__current {
-  background-color: #bdbdbd !important; 
+  background-color: #bdbdbd !important;
 }
 
 /* 关于蓝色边框的类 */
@@ -80,4 +80,19 @@
 /* #toc-list a.font-bold.text-red-500 {
   font-weight: bold;
   color: red;
+} */
+
+/* :root {
+  --link-color: rgb(1, 143, 13);
+  --link-hover-color: aqua;
+}
+
+a {
+  text-decoration: none;
+  color: var(--link-color);
+}
+
+a:hover {
+  text-decoration: underline;
+  color: var(--link-color);
 } */

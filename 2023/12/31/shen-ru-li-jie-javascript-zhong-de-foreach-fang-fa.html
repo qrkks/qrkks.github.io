@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+      <title>
+  Python Website Building Learning Journal - 深入理解 JavaScript 中的 forEach 方法
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/code-learning.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="javascript" />
+    <meta name="tags" content="forEach" />
+    <meta name="tags" content="数组处理" />
+    <meta name="tags" content="迭代方法" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+ aria-current="page" >Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <ul id="toc-list" class="space-y-2 list-none">
+              <!-- JavaScript will dynamically fill this list -->
+            </ul>
+          </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html"
+           rel="bookmark"
+           title="Permalink to 深入理解 JavaScript 中的 forEach 方法">深入理解 JavaScript 中的 forEach 方法</a>
+      </h1>
+      
+    </header>
+    <h2>1 简介</h2>
+<p>JavaScript 的 <code>forEach</code> 方法是一种在数组上执行操作的常用技术。它为数组的每个元素执行一次提供的函数，使得处理数组变得简单而直观。</p>
+<h2>2 什么是 forEach</h2>
+<p><code>forEach</code> 是 Array 对象的一个方法。它为数组中的每个元素执行一次提供的函数。不像 <code>map</code> 或 <code>filter</code>，<code>forEach</code> 不返回任何值，它仅用于操作或改变数组。</p>
+<h3>2.1 基本语法</h3>
+<div class="highlight"><pre><span></span><code><span class="nx">array</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">currentValue</span><span class="p">,</span><span class="w"> </span><span class="nx">index</span><span class="p">,</span><span class="w"> </span><span class="nx">arr</span><span class="p">),</span><span class="w"> </span><span class="nx">thisValue</span><span class="p">)</span>
+</code></pre></div>
+
+<ul>
+<li><code>currentValue</code>：数组中正在处理的当前元素。</li>
+<li><code>index</code>（可选）：数组中正在处理的当前元素的索引。</li>
+<li><code>arr</code>（可选）：<code>forEach</code> 方法正在操作的数组。</li>
+<li><code>thisValue</code>（可选）：执行回调时使用的 <code>this</code> 值。</li>
+</ul>
+<h3>2.2 示例</h3>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">items</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="s1">&#39;item1&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;item2&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;item3&#39;</span><span class="p">];</span><span class="w"> </span><span class="nx">items</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w">   </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">item</span><span class="p">);</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+
+<h2>3 forEach 与传统循环的比较</h2>
+<p>虽然 <code>forEach</code> 可以用来替代传统的 <code>for</code> 循环，但它们之间有一些关键的区别：</p>
+<ol>
+<li><strong>简洁性</strong>：<code>forEach</code> 通常比传统的 <code>for</code> 循环更简洁。</li>
+<li><strong>无法中断</strong>：在 <code>forEach</code> 循环中，<strong>不能使用 <code>break</code> 或 <code>continue</code> 来中断或跳过迭代</strong>。（直接使用 <code>return</code> 跳出循环）</li>
+</ol>
+<h2>4 适用场景</h2>
+<p><code>forEach</code> 最适合那些需要遍历数组并对每个元素执行操作，但不需要中断循环的场景。</p>
+<h2>5 Q&amp;A</h2>
+<h3>5.1 <code>item</code>,<code>index</code>,<code>arr</code> 都可以随便命名吗？</h3>
+<p>是的，<code>item</code>、<code>index</code> 和 <code>arr</code> 这些参数的名称在 <code>forEach</code> 方法的回调函数中是可以自由命名的。它们只是参数的标识符，您可以根据您的喜好或者代码的语义上下文来命名它们。重要的是它们在 <code>forEach</code> 回调函数中的位置：第一个参数总是当前元素，第二个是当前元素的索引，第三个是数组本身。这些参数的实际名称可以任意指定。</p>
+<h3>5.2 <code>item</code>,<code>index</code>,<code>arr</code> 是位置参数？</h3>
+<p>是的，这三个参数 —— 当前元素 (<code>item</code> 或 <code>node</code>)、索引 (<code>index</code>)、以及数组本身 (<code>arr</code>) —— 是 <code>forEach</code> 方法中回调函数的位置参数。它们按照这个顺序被传递给函数：</p>
+<ol>
+<li>第一个参数代表数组中当前正在处理的元素。</li>
+<li>第二个参数是当前元素的索引。</li>
+<li>第三个参数是数组本身。</li>
+</ol>
+<p>这些参数的顺序是固定的，您可以根据需要使用其中的一个或多个。</p>
+<h3>5.3 <code>thisValue</code> 是什么？</h3>
+<p>在 JavaScript 的 <code>forEach</code> 方法中，<code>thisValue</code> 是一个可选参数，用于指定执行回调函数时 <code>this</code> 的值。如果提供 <code>thisValue</code>，它将被作为回调函数内部的 <code>this</code> 上下文使用。</p>
+<p>例如：</p>
+<div class="highlight"><pre><span></span><code><span class="kd">const</span><span class="w"> </span><span class="nx">myObject</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">value</span><span class="o">:</span><span class="w"> </span><span class="mf">20</span>
+<span class="p">};</span>
+
+<span class="kd">function</span><span class="w"> </span><span class="nx">callback</span><span class="p">(</span><span class="nx">element</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">  </span><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">value</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nx">element</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kd">const</span><span class="w"> </span><span class="nx">numbers</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1</span><span class="p">,</span><span class="w"> </span><span class="mf">2</span><span class="p">,</span><span class="w"> </span><span class="mf">3</span><span class="p">];</span>
+<span class="nx">numbers</span><span class="p">.</span><span class="nx">forEach</span><span class="p">(</span><span class="nx">callback</span><span class="p">,</span><span class="w"> </span><span class="nx">myObject</span><span class="p">);</span><span class="w"> </span><span class="c1">// `this` inside `callback` will refer to `myObject`</span>
+</code></pre></div>
+
+<p>在这个例子中，<code>myObject</code> 作为 <code>thisValue</code> 被传递给 <code>forEach</code>，因此在 <code>callback</code> 函数内部，<code>this</code> 指向 <code>myObject</code>。如果不指定 <code>thisValue</code>，<code>this</code> 将是全局对象（在非严格模式下）或 <code>undefined</code>（在严格模式下）。</p>
+<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose ">
+  <p>
+    Published: <time datetime="2023-12-31T00:00:00+08:00">
+    2023-12-31
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2023-12-31T14:37:18+08:00">
+    2023-12-31
+  </time>
+</p>
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/code-learning.html">Code Learning</a>
+  </p>
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
+    Tags:
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/javascript.html">javascript</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/foreach.html">forEach</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/shu-zu-chu-li.html">数组处理</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/die-dai-fang-fa.html">迭代方法</a>
+  </p>
+
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>
