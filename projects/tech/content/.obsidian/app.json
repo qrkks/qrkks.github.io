@@ -3,5 +3,5 @@
   "useMarkdownLinks": false,
   "promptDelete": false,
   "alwaysUpdateLinks": true,
-  "newLinkFormat": "absolute"
+  "newLinkFormat": "shortest"
 }
