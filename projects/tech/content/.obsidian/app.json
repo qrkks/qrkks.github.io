@@ -1,6 +1,7 @@
 {
   "propertiesInDocument": "source",
-  "useMarkdownLinks": true,
+  "useMarkdownLinks": false,
   "promptDelete": false,
-  "alwaysUpdateLinks": true
+  "alwaysUpdateLinks": true,
+  "newLinkFormat": "absolute"
 }

@@ -71,6 +71,10 @@ ARTICLE_SAVE_AS = '{date:%Y}/{date:%m}/{date:%d}/{slug}.html'
 
 
 # Plugin settings
+PLUGINS = [
+    'obsidian',
+]
+
 IMAGE_PROCESS = {
     "article-image": ["scale_in 300 300 True"],
     "thumb": ["crop 0 0 50% 50%", "scale_out 150 150 True", "crop 0 0 150 150"],

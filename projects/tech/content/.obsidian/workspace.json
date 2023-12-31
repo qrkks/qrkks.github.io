@@ -21,7 +21,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "articles/2023/12/2023-12-29 使用 Javascript 建一个 动态目录 (Dynamic Toc).md",
+                "file": "articles/2023/12/2023-12-28 twikoo.md",
                 "mode": "source",
                 "source": false
               }
@@ -33,7 +33,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "articles/2023/12/2023-12-31 forEach.md",
+                "file": "articles/2023/12/2023-12-31 1.md",
                 "mode": "source",
                 "source": false
               }
@@ -106,7 +106,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "articles/2023/12/2023-12-31 forEach.md",
+                "file": "articles/2023/12/2023-12-31 1.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -123,7 +123,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "articles/2023/12/2023-12-31 forEach.md",
+                "file": "articles/2023/12/2023-12-31 1.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -146,7 +146,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "articles/2023/12/2023-12-31 forEach.md"
+                "file": "articles/2023/12/2023-12-31 1.md"
               }
             }
           }
@@ -171,20 +171,22 @@
   },
   "active": "647492229acda574",
   "lastOpenFiles": [
-    "articles/2023/12/2023-12-29 使用 Javascript 建一个 动态目录 (Dynamic Toc).md",
-    "2023-12-29 Python 与Javascript 的... 1.md",
     "articles/2023/12/2023-12-31 forEach.md",
-    "articles/2023/12/2023-12-30 比较 map 函数.md",
-    "articles/2023/12/2023-12-29 比较....md",
+    "articles/2023/12/2023-12-31 1.md",
+    "pages/博客建站日志.md",
+    "forEach.md",
+    "articles/2023/12/2023-12-25 pelican actions.md",
+    "articles/2023/12/2023-12-28 twikoo.md",
+    "articles/2023/12/2023-12-29 toc.md",
+    "articles/2023/12/2023-12-30 map.md",
+    "articles/2023/12/2023-12-30 比较模板字符串.md",
+    "articles/2023/12/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
+    "articles/2023/12/2023-12-29 比较解包运算符.md",
+    "2023-12-29 Python 与Javascript 的... 1.md",
     "{{filename}}/2023-12-30.md",
     "{{filename}}",
-    "articles/2023/12/2023-12-30 比较模板字符串.md",
-    "articles/2023/12/2023-12-28 使用 Docker 部署自托管方式在 Pelican 中集成 Twikoo 评论系统.md",
-    "articles/2023/12/2023-12-25 将pelican自动化部署到Github Pages的action文件.md",
-    "articles/2023/12/2023-12-25 Tailwind CSS 中 Grid 的使用.md",
     "articles/2023/12",
     "articles/2023",
-    "pages/博客建站日志.md",
     "static/js/script.js",
     "static/js/scripts.js",
     "static/css/custom copy.css",
@@ -204,8 +206,6 @@
     "calender/2023-12-27 1.md",
     "calender/2023-12-26 a.md",
     "calender/2023-12-27 3.md",
-    "calender/2023-12-26 text.md",
-    "calender/2023-12-27 2.md",
-    "pages/关于.md"
+    "calender/2023-12-26 text.md"
   ]
 }
