@@ -140,7 +140,7 @@
 &lt;span class="m"&gt;15&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;14&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.3-getboundingclientrect-方法的字面意思
 &lt;span class="m"&gt;16&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;15&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;h4#3.2.4-小结
 &lt;span class="m"&gt;17&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;length:&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="m"&gt;16&lt;/span&gt;
-&lt;span class="m"&gt;18&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[[&lt;/span&gt;Prototype&lt;span class="o"&gt;]]&lt;/span&gt;:&lt;span class="w"&gt; &lt;/span&gt;NodeList
+&lt;span class="m"&gt;18&lt;/span&gt;.&lt;span class="w"&gt; &lt;/span&gt;Prototype:&lt;span class="w"&gt; &lt;/span&gt;NodeList
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 
 &lt;h3&gt;3.3 &lt;code&gt;headings.forEach(function (node) {if (node.closest('.toc-exclude')) {return;}}&lt;/code&gt;&lt;/h3&gt;
