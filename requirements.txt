@@ -23,6 +23,7 @@ ordered-set==4.1.0
 pathspec==0.12.1
 pelican==4.9.1
 pelican-neighbors==1.2.0
+pelican-obsidian @ git+https://github.com/jonathan-s/pelican-obsidian@86be3c80c86a6a88055605cf30a6e3575043c803
 pelican-readtime==0.2.0
 Pygments==2.17.2
 python-dateutil==2.8.2
