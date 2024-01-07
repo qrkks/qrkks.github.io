@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="  zh
+">
+  <head>
+        <script src="https://cdn.tailwindcss.com"></script>
+      <link rel="stylesheet" href="/static/css/custom.css" />
+      <link rel="stylesheet" href="/static/css/tailwind.min.css" />
+      <link rel="stylesheet" href="/static/css/pygment.css" />
+      <script defer src="/static/js/script.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.min.js"></script>
+      <link rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.25.0/tocbot.css">
+      <title>
+  Python Website Building Learning Journal - 从 SQLite 到 PostgreSQL：Nextcloud 数据库迁移指南
+      </title>
+      <meta charset="utf-8" />
+      <meta name="generator" content="Pelican" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://qrkks.github.io/feeds/all.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Full Atom Feed" />
+        <link href="https://qrkks.github.io/feeds/za-xiang.atom.xml"
+              type="application/atom+xml"
+              rel="alternate"
+              title="Python Website Building Learning Journal Categories Atom Feed" />
+
+    <meta name="tags" content="nextcloud" />
+    <meta name="tags" content="sqlite" />
+    <meta name="tags" content="postgres" />
+    <meta name="tags" content="数据库" />
+    <meta name="tags" content="迁移" />
+  </head>
+  <body class="font-noto-sans-sc ">
+    <header class="flex justify-around p-3 text-gray-500 bg-gray-200 toc-exclude">
+      <hgroup>
+          <h2>
+            <a href="https://qrkks.github.io/">Python Website Building Learning Journal</a>
+          </h2>
+      </hgroup>
+      <nav>
+        <ul class="flex gap-5 mx-4">
+              <li>
+                <a href="https://qrkks.github.io/pages/blog-log.html"
+>Blog Log</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/code-learning.html"
+>Code Learning</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/pelican.html"
+>Pelican</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/taiwind-css.html"
+>Taiwind CSS</a>
+              </li>
+              <li>
+                <a href="https://qrkks.github.io/category/za-xiang.html"
+ aria-current="page" >杂项</a>
+              </li>
+        </ul>
+      </nav>
+    </header>
+    <div class="flex flex-col lg:flex-row">
+        <aside class="order-1 w-full bg-white lg:w-1/5">
+        </aside>
+        <aside class="relative order-3 w-full bg-gray-50 lg:w-1/5 hidden lg:block">
+          <div id="table-of-contents"
+               class="fixed p-4 text-sm border-gray-200 border-y top-36 ">
+            <ul id="toc-list" class="space-y-2 list-none">
+              <!-- JavaScript will dynamically fill this list -->
+            </ul>
+          </div>
+        </aside>
+      <main class="order-2 w-full max-w-4xl p-10 mx-auto prose toc-content-area lg:w-3/5 js-toc-content">
+  <article class="text-gray-700">
+    <header>
+      <h1>
+        <a href="https://qrkks.github.io/2024/01/07/cong-sqlite-dao-postgresqlnextcloud-shu-ju-ku-qian-yi-zhi-nan.html"
+           rel="bookmark"
+           title="Permalink to 从 SQLite 到 PostgreSQL：Nextcloud 数据库迁移指南">从 SQLite 到 PostgreSQL：Nextcloud 数据库迁移指南</a>
+      </h1>
+      
+    </header>
+    <h2>1. 概述</h2>
+<p>Nextcloud 提供了灵活的部署选项，其中包括使用 SQLite 或 PostgreSQL 作为其后端数据库。随着用户数量和数据量的增长，可能会需要从轻量级的 SQLite 迁移到更强大的 PostgreSQL 数据库。本文档将指导您完成从 SQLite 到 PostgreSQL 的迁移过程，特别适用于容器化环境中的 Nextcloud 实例。</p>
+<p>当前使用的 Docker Compose 配置如下，其中展示了基于 SQLite 的 Nextcloud 部署：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nextcloud_app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nextcloud</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nextcloud_container</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps:/var/www/html/custom_apps</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config:/var/www/html/config</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data:/var/www/html/data</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qbittorrent_qbittorrent_shared_downloads:/mnt/qbittorrent_shared_downloads</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TZ=Asia/Shanghai</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nginx-network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">qbittorrent_qbittorrent_shared_downloads</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+<h2>2. 迁移策略</h2>
+<p>迁移 Nextcloud 数据库涉及以下主要步骤：更新 Docker Compose 配置以包含 PostgreSQL 服务，执行数据库迁移命令，修改 Nextcloud 配置以连接新的数据库，最后重启服务以应用更改。</p>
+<h2>3. 实施步骤</h2>
+<h3>3.1 更新 Docker Compose 文件</h3>
+<p>首先，将 PostgreSQL 容器配置添加到现有的 Docker Compose 文件中：</p>
+<div class="highlight"><pre><span></span><code><span class="nt">version</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;3&#39;</span>
+
+<span class="nt">services</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nextcloud_app</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nextcloud</span>
+<span class="w">    </span><span class="nt">container_name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nextcloud_container</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">apps:/var/www/html/custom_apps</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">config:/var/www/html/config</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">data:/var/www/html/data</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">qbittorrent_qbittorrent_shared_downloads:/mnt/qbittorrent_shared_downloads</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TZ=Asia/Shanghai</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_HOST=postgres</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=[数据库名]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=[用户名]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=[密码]</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+
+<span class="w">  </span><span class="nt">postgres</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">image</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres</span>
+<span class="w">    </span><span class="nt">restart</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">always</span>
+<span class="w">    </span><span class="nt">volumes</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">postgres_data:/var/lib/postgresql/data</span>
+<span class="w">    </span><span class="nt">environment</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_DB=[数据库名]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_USER=[用户名]</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">POSTGRES_PASSWORD=[密码]</span>
+<span class="w">    </span><span class="nt">networks</span><span class="p">:</span>
+<span class="w">      </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+
+<span class="nt">networks</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">nginx-network</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nginx-network</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+
+<span class="nt">volumes</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">apps</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">config</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">postgres_data</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">qbittorrent_qbittorrent_shared_downloads</span><span class="p">:</span>
+<span class="w">    </span><span class="nt">external</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+</code></pre></div>
+
+<p>确保正确设置 <code>POSTGRES_DB</code>, <code>POSTGRES_USER</code>, 和 <code>POSTGRES_PASSWORD</code> 环境变量。</p>
+<h3>3.2 执行数据库迁移</h3>
+<p>使用 Nextcloud 的 <code>occ</code> 命令工具进行数据库迁移。在 Docker <strong>容器外部</strong>执行以下命令：</p>
+<div class="highlight"><pre><span></span><code>docker<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>-it<span class="w"> </span>-u<span class="w"> </span>www-data<span class="w"> </span>nextcloud_container<span class="w"> </span>php<span class="w"> </span>occ<span class="w"> </span>db:convert-type<span class="w"> </span>--all-apps<span class="w"> </span>pgsql<span class="w"> </span><span class="o">[</span>用户名<span class="o">]</span><span class="w"> </span><span class="o">[</span>密码<span class="o">]</span><span class="w"> </span><span class="o">[</span>数据库名<span class="o">]</span>
+</code></pre></div>
+
+<p>这将迁移数据并保留原有结构。</p>
+<h3>3.3 修改 Nextcloud 配置</h3>
+<p>迁移完成后，更新 <code>config.php</code> 文件以反映新的数据库连接信息。示例如下：</p>
+<div class="highlight"><pre><span></span><code><span class="x"> &#39;dbtype&#39; =&gt; &#39;pgsql&#39;,</span>
+<span class="x"> &#39;dbname&#39; =&gt; &#39;nextcloud&#39;,  // PostgreSQL 数据库名</span>
+<span class="x"> &#39;dbuser&#39; =&gt; &#39;nextclouduser&#39;,  // PostgreSQL 用户名</span>
+<span class="x"> &#39;dbpassword&#39; =&gt; &#39;password&#39;,  // PostgreSQL 密码</span>
+<span class="x"> &#39;dbhost&#39; =&gt; &#39;postgres&#39;,  // PostgreSQL 主机名，如果在同一 Docker 网络可以使用服务名</span>
+<span class="x"> &#39;dbport&#39; =&gt; &#39;&#39;,  // PostgreSQL 端口，如果使用默认端口可以留空</span>
+</code></pre></div>
+
+<h3>3.4 重启服务</h3>
+<p>重新启动 Nextcloud 服务以应用更改：</p>
+<div class="highlight"><pre><span></span><code>docker-compose<span class="w"> </span>restart<span class="w"> </span>nextcloud_container
+</code></pre></div>
+
+<h3>3.5 验证和优化</h3>
+<p>确认数据库迁移成功并检查 Nextcloud 的性能。可选地，使用 <code>occ db:add-missing-indices</code> 命令添加任何缺失的数据库索引以优化性能。</p>
+<footer class="grid grid-cols-2 gap-4 px-10 py-5 my-10 text-sm text-gray-500 bg-gray-100 rounded not-prose ">
+  <p>
+    Published: <time datetime="2024-01-07T00:00:00+08:00">
+    2024-01-07
+  </time>
+</p>
+  <p>
+    Last updated: <time datetime="2024-01-07T19:34:28+08:00">
+    2024-01-07
+  </time>
+</p>
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
+    Category: <a class="px-3 py-1 text-white duration-300 bg-yellow-400 rounded-full hover:bg-yellow-600"
+    href="https://qrkks.github.io/category/za-xiang.html">杂项</a>
+  </p>
+  <p class="col-span-2 flex flex-wrap gap-1 items-center">
+    Tags:
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/nextcloud.html">nextcloud</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/sqlite.html">sqlite</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/postgres.html">postgres</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/shu-ju-ku.html">数据库</a>
+      <a class="px-3 py-1 overflow-hidden text-white duration-300 bg-pink-400 rounded-full hover:bg-pink-600"
+         href="https://qrkks.github.io/tag/qian-yi.html">迁移</a>
+  </p>
+
+</footer><section id="erectContainer"
+         class="px-5 py-10 my-10 border-t border-gray-400 not-prose erect-it font-Arial">
+  <div id="twikoo">
+  </div>
+  <script async
+          src="https://cdn.jsdelivr.net/npm/twikoo@1.6.27/dist/twikoo.min.js"></script>
+  <script>
+    window.onload = function() {
+      twikoo.init({
+        envId: 'https://39.107.126.13:8092/',
+        path: '2024/01/07/cong-sqlite-dao-postgresqlnextcloud-shu-ju-ku-qian-yi-zhi-nan.html'
+      });
+      tocbot.init({
+        // Where to render the table of contents.
+        tocSelector: '.js-toc',
+        // Where to grab the headings to build the table of contents.
+        contentSelector: '.js-toc-content',
+        // Which headings to grab inside of the contentSelector element.
+        headingSelector: 'h1, h2, h3, h4 ,h5',
+        // For headings inside relative or absolute positioned containers within content.
+      });
+    };
+  </script>
+</section>  </article>
+      </main>
+    </div>
+    <footer class="flex items-center justify-center h-32 text-sm prose text-gray-500 bg-gray-100 max-w-none">
+      <address class="not-italic text-center">
+        Proudly powered by <a rel="nofollow" href="https://getpelican.com/">Pelican</a>,
+        which takes great advantage of <a rel="nofollow" href="https://www.python.org/">Python</a>.
+      </address>
+    </footer>
+  </body>
+</html>

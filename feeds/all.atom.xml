@@ -1,5 +1,114 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/all.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2023-12-31T14:37:18+08:00</updated><entry><title>深入理解 JavaScript 中的 forEach 方法</title><link href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html" rel="alternate"></link><published>2023-12-31T00:00:00+08:00</published><updated>2023-12-31T14:37:18+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-31:/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html</id><summary type="html">&lt;p&gt;这篇文章提供了对 &lt;code&gt;forEach&lt;/code&gt; 方法的基本介绍、使用方法、与传统循环的比较以及适用场景。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 简介&lt;/h2&gt;
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Python Website Building Learning Journal</title><link href="https://qrkks.github.io/" rel="alternate"></link><link href="https://qrkks.github.io/feeds/all.atom.xml" rel="self"></link><id>https://qrkks.github.io/</id><updated>2024-01-07T19:34:28+08:00</updated><entry><title>从 SQLite 到 PostgreSQL：Nextcloud 数据库迁移指南</title><link href="https://qrkks.github.io/2024/01/07/cong-sqlite-dao-postgresqlnextcloud-shu-ju-ku-qian-yi-zhi-nan.html" rel="alternate"></link><published>2024-01-07T00:00:00+08:00</published><updated>2024-01-07T19:34:28+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2024-01-07:/2024/01/07/cong-sqlite-dao-postgresqlnextcloud-shu-ju-ku-qian-yi-zhi-nan.html</id><summary type="html">&lt;p&gt;本指南详细说明了如何将容器部署的 Nextcloud 从 SQLite 数据库迁移到 PostgreSQL，以应对文件和用户数量增加的挑战。包含全面的步骤描述和必要的代码示例。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1. 概述&lt;/h2&gt;
+&lt;p&gt;Nextcloud 提供了灵活的部署选项，其中包括使用 SQLite 或 PostgreSQL 作为其后端数据库。随着用户数量和数据量的增长，可能会需要从轻量级的 SQLite 迁移到更强大的 PostgreSQL 数据库。本文档将指导您完成从 SQLite 到 PostgreSQL 的迁移过程，特别适用于容器化环境中的 Nextcloud 实例。&lt;/p&gt;
+&lt;p&gt;当前使用的 Docker Compose 配置如下，其中展示了基于 SQLite 的 Nextcloud 部署：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;
+
+
+&lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;nextcloud_app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nextcloud&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;container_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nextcloud_container&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;always&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;apps:/var/www/html/custom_apps&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;config:/var/www/html/config&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;data:/var/www/html/data&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;qbittorrent_qbittorrent_shared_downloads:/mnt/qbittorrent_shared_downloads&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;TZ=Asia/Shanghai&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-network&lt;/span&gt;
+
+&lt;span class="nt"&gt;networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;nginx-network&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-network&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;external&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+
+&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;qbittorrent_qbittorrent_shared_downloads&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;external&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;2. 迁移策略&lt;/h2&gt;
+&lt;p&gt;迁移 Nextcloud 数据库涉及以下主要步骤：更新 Docker Compose 配置以包含 PostgreSQL 服务，执行数据库迁移命令，修改 Nextcloud 配置以连接新的数据库，最后重启服务以应用更改。&lt;/p&gt;
+&lt;h2&gt;3. 实施步骤&lt;/h2&gt;
+&lt;h3&gt;3.1 更新 Docker Compose 文件&lt;/h3&gt;
+&lt;p&gt;首先，将 PostgreSQL 容器配置添加到现有的 Docker Compose 文件中：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="nt"&gt;version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s"&gt;&amp;#39;3&amp;#39;&lt;/span&gt;
+
+&lt;span class="nt"&gt;services&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;nextcloud_app&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nextcloud&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;container_name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nextcloud_container&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;always&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;apps:/var/www/html/custom_apps&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;config:/var/www/html/config&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;data:/var/www/html/data&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;qbittorrent_qbittorrent_shared_downloads:/mnt/qbittorrent_shared_downloads&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;TZ=Asia/Shanghai&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_HOST=postgres&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_DB=[数据库名]&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_USER=[用户名]&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_PASSWORD=[密码]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-network&lt;/span&gt;
+
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;postgres&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;image&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;postgres&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;restart&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;always&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;postgres_data:/var/lib/postgresql/data&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;environment&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_DB=[数据库名]&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_USER=[用户名]&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;POSTGRES_PASSWORD=[密码]&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;      &lt;/span&gt;&lt;span class="p p-Indicator"&gt;-&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-network&lt;/span&gt;
+
+&lt;span class="nt"&gt;networks&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;nginx-network&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;nginx-network&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;external&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+
+&lt;span class="nt"&gt;volumes&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;apps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;config&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;postgres_data&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;  &lt;/span&gt;&lt;span class="nt"&gt;qbittorrent_qbittorrent_shared_downloads&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
+&lt;span class="w"&gt;    &lt;/span&gt;&lt;span class="nt"&gt;external&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l l-Scalar l-Scalar-Plain"&gt;true&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;确保正确设置 &lt;code&gt;POSTGRES_DB&lt;/code&gt;, &lt;code&gt;POSTGRES_USER&lt;/code&gt;, 和 &lt;code&gt;POSTGRES_PASSWORD&lt;/code&gt; 环境变量。&lt;/p&gt;
+&lt;h3&gt;3.2 执行数据库迁移&lt;/h3&gt;
+&lt;p&gt;使用 Nextcloud 的 &lt;code&gt;occ&lt;/code&gt; 命令工具进行数据库迁移。在 Docker &lt;strong&gt;容器外部&lt;/strong&gt;执行以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nb"&gt;exec&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;-it&lt;span class="w"&gt; &lt;/span&gt;-u&lt;span class="w"&gt; &lt;/span&gt;www-data&lt;span class="w"&gt; &lt;/span&gt;nextcloud_container&lt;span class="w"&gt; &lt;/span&gt;php&lt;span class="w"&gt; &lt;/span&gt;occ&lt;span class="w"&gt; &lt;/span&gt;db:convert-type&lt;span class="w"&gt; &lt;/span&gt;--all-apps&lt;span class="w"&gt; &lt;/span&gt;pgsql&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;用户名&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;密码&lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="o"&gt;[&lt;/span&gt;数据库名&lt;span class="o"&gt;]&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;这将迁移数据并保留原有结构。&lt;/p&gt;
+&lt;h3&gt;3.3 修改 Nextcloud 配置&lt;/h3&gt;
+&lt;p&gt;迁移完成后，更新 &lt;code&gt;config.php&lt;/code&gt; 文件以反映新的数据库连接信息。示例如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;&lt;span class="x"&gt; &amp;#39;dbtype&amp;#39; =&amp;gt; &amp;#39;pgsql&amp;#39;,&lt;/span&gt;
+&lt;span class="x"&gt; &amp;#39;dbname&amp;#39; =&amp;gt; &amp;#39;nextcloud&amp;#39;,  // PostgreSQL 数据库名&lt;/span&gt;
+&lt;span class="x"&gt; &amp;#39;dbuser&amp;#39; =&amp;gt; &amp;#39;nextclouduser&amp;#39;,  // PostgreSQL 用户名&lt;/span&gt;
+&lt;span class="x"&gt; &amp;#39;dbpassword&amp;#39; =&amp;gt; &amp;#39;password&amp;#39;,  // PostgreSQL 密码&lt;/span&gt;
+&lt;span class="x"&gt; &amp;#39;dbhost&amp;#39; =&amp;gt; &amp;#39;postgres&amp;#39;,  // PostgreSQL 主机名，如果在同一 Docker 网络可以使用服务名&lt;/span&gt;
+&lt;span class="x"&gt; &amp;#39;dbport&amp;#39; =&amp;gt; &amp;#39;&amp;#39;,  // PostgreSQL 端口，如果使用默认端口可以留空&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;3.4 重启服务&lt;/h3&gt;
+&lt;p&gt;重新启动 Nextcloud 服务以应用更改：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span&gt;&lt;/span&gt;&lt;code&gt;docker-compose&lt;span class="w"&gt; &lt;/span&gt;restart&lt;span class="w"&gt; &lt;/span&gt;nextcloud_container
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;3.5 验证和优化&lt;/h3&gt;
+&lt;p&gt;确认数据库迁移成功并检查 Nextcloud 的性能。可选地，使用 &lt;code&gt;occ db:add-missing-indices&lt;/code&gt; 命令添加任何缺失的数据库索引以优化性能。&lt;/p&gt;</content><category term="杂项"></category><category term="nextcloud"></category><category term="sqlite"></category><category term="postgres"></category><category term="数据库"></category><category term="迁移"></category></entry><entry><title>深入理解 JavaScript 中的 forEach 方法</title><link href="https://qrkks.github.io/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html" rel="alternate"></link><published>2023-12-31T00:00:00+08:00</published><updated>2023-12-31T14:37:18+08:00</updated><author><name></name></author><id>tag:qrkks.github.io,2023-12-31:/2023/12/31/shen-ru-li-jie-javascript-zhong-de-foreach-fang-fa.html</id><summary type="html">&lt;p&gt;这篇文章提供了对 &lt;code&gt;forEach&lt;/code&gt; 方法的基本介绍、使用方法、与传统循环的比较以及适用场景。&lt;/p&gt;</summary><content type="html">&lt;h2&gt;1 简介&lt;/h2&gt;
 &lt;p&gt;JavaScript 的 &lt;code&gt;forEach&lt;/code&gt; 方法是一种在数组上执行操作的常用技术。它为数组的每个元素执行一次提供的函数，使得处理数组变得简单而直观。&lt;/p&gt;
 &lt;h2&gt;2 什么是 forEach&lt;/h2&gt;
 &lt;p&gt;&lt;code&gt;forEach&lt;/code&gt; 是 Array 对象的一个方法。它为数组中的每个元素执行一次提供的函数。不像 &lt;code&gt;map&lt;/code&gt; 或 &lt;code&gt;filter&lt;/code&gt;，&lt;code&gt;forEach&lt;/code&gt; 不返回任何值，它仅用于操作或改变数组。&lt;/p&gt;
